@@ -1,14 +1,14 @@
 ---
-repo_url: https://github.com/jonh-carvalho/BDCC_26.1_8002
+repo_url: https://github.com/jonh-carvalho/BDCC_26.2_8001
 site_author: Jonh Carvalho
-site_name: BDCC_CDIA_26.1_8001
+site_name: BDCC_CDIA_26.2_8001
 copyright: Copyright ©️ 2026, Jonh Carvalho
 
 nav: 
   - Home: index.md
   - Disciplina:
       - Aulas: Disciplina/aulas.md
-      - Ambiente: Disciplina/ambiente.md
+#      - Ambiente: Disciplina/ambiente.md
 #      - Roteiro:
 #        - 01- AWS: Disciplina/roteiros/02 - aws.md
 #        - 04 - EC2: Disciplina/roteiros/04 - ec2.md
