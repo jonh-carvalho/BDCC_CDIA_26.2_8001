@@ -1,0 +1,1122 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Jonh Carvalho">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/ibmec_icon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>EC2 - BDCC_CDIA_26.1_8001</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="#FAB90A" data-md-color-accent="#193257">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#provisionando-sua-primeira-instancia-ec2-e-conectando-via-ssh" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="BDCC_CDIA_26.1_8001" class="md-header__button md-logo" aria-label="BDCC_CDIA_26.1_8001" data-md-component="logo">
+      
+  <img src="../../../assets/ibmec_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BDCC_CDIA_26.1_8001
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EC2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="#FAB90A" data-md-color-accent="#193257"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="#193257" data-md-color-accent="#FAB90A"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="all" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jonh-carvalho/BDCC_26.1_8002" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aulas/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Disciplina
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Avalia/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Avaliações
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../bibliografia/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Bibliografia
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="BDCC_CDIA_26.1_8001" class="md-nav__button md-logo" aria-label="BDCC_CDIA_26.1_8001" data-md-component="logo">
+      
+  <img src="../../../assets/ibmec_logo.png" alt="logo">
+
+    </a>
+    BDCC_CDIA_26.1_8001
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jonh-carvalho/BDCC_26.1_8002" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disciplina
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Disciplina
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ambiente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambiente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Avaliações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Avalia/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Avalia/AC01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Avalia/ap1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AP1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Avalia/ap2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bibliografia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliografia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>EC2</h1>
+
+<h3 id="provisionando-sua-primeira-instancia-ec2-e-conectando-via-ssh">Provisionando sua Primeira Instância EC2 e Conectando via SSH<a class="headerlink" href="#provisionando-sua-primeira-instancia-ec2-e-conectando-via-ssh" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Ao final deste roteiro, o aluno terá provisionado (criado) sua primeira máquina virtual na AWS (uma instância EC2), configurado as regras de firewall para permitir acesso, e se conectado a ela de forma segura utilizando SSH, tanto no Windows quanto no macOS/Linux.</p>
+<p><strong>Pré-requisitos:</strong></p>
+<ul>
+<li>Conta no <strong>AWS</strong> ativa e aprovada.</li>
+<li>Navegador web para acessar o Console AWS.</li>
+<li>Para usuários Windows: software <strong>PuTTY</strong> instalado. (Recomendamos baixar o instalador completo em <a href="https://www.putty.org/">putty.org</a>).</li>
+<li>Para usuários macOS/Linux: o terminal já possui cliente SSH nativo.</li>
+</ul>
+<h4 id="parte-1-conceitos-fundamentais-entendendo-o-que-vamos-fazer"><strong>Parte 1:</strong> Conceitos Fundamentais (Entendendo o que vamos fazer)<a class="headerlink" href="#parte-1-conceitos-fundamentais-entendendo-o-que-vamos-fazer" title="Permanent link">&para;</a></h4>
+<p>Antes de colocar a mão no código, é crucial entender os componentes com os quais vamos interagir .</p>
+<ul>
+<li><strong>EC2 (Elastic Compute Cloud):</strong> É o serviço da AWS que permite criar e executar servidores virtuais na nuvem, chamados de <strong>instâncias</strong>. Pense neles como computadores que você aluga e que ficam rodando nos data centers da Amazon.</li>
+<li><strong>AMI (Amazon Machine Image):</strong> É um modelo pré-configurado para sua instância, contendo o sistema operacional e, muitas vezes, software pré-instalado. Escolher a AMI é como escolher o sistema operacional do seu computador (ex: Ubuntu, Amazon Linux, Windows Server).</li>
+<li><strong>Par de Chaves (Key Pair):</strong> Em vez de usar senhas, o Linux na AWS usa um sistema de criptografia de chaves para acesso SSH. Você terá um arquivo de chave <strong>privada</strong> (com extensão <code>.pem</code>) que deve ser guardado como um tesouro. A AWS guarda a chave <strong>pública</strong>. É a única maneira de acessar sua instância com segurança .</li>
+<li><strong>Security Group:</strong> É um firewall virtual para sua instância. Você define <strong>regras de entrada (inbound rules)</strong> para permitir tráfego em portas específicas, vindos de locais específicos (como seu IP). Por padrão, tudo é bloqueado. Para conectar via SSH, precisamos liberar a porta 22 .</li>
+<li><strong>SSH (Secure Shell):</strong> É o protocolo usado para acessar de forma segura o terminal de um servidor remoto. Através dele, você executa comandos como se estivesse sentado na frente da máquina.</li>
+</ul>
+<h4 id="parte-2-mao-na-massa-provisionando-a-instancia-ec2"><strong>Parte 2:</strong> Mão na Massa - Provisionando a Instância EC2<a class="headerlink" href="#parte-2-mao-na-massa-provisionando-a-instancia-ec2" title="Permanent link">&para;</a></h4>
+<p><strong>Passo 1:</strong> Acesse o Console AWS e vá para o EC2</p>
+<ol>
+<li>Faça login no Console AWS com sua conta do AWS.</li>
+<li>Na barra de pesquisa no topo da página, digite <strong>"EC2"</strong> e clique no primeiro resultado para abrir o painel do serviço EC2.</li>
+</ol>
+<p><strong>Passo 2:</strong> Inicie o Assistente de Criação</p>
+<ol>
+<li>No painel do EC2, localize e clique no botão laranja <strong>"Executar instância"</strong> .</li>
+</ol>
+<p><strong>Passo 3:</strong> Configure a Instância (Passo a passo do assistente)</p>
+<p>Siga estas configurações cuidadosamente:</p>
+<ul>
+<li>
+<p><strong>Nome e tags:</strong> Dê um nome à sua instância, como <code>"Meu-Primeiro-Servidor"</code>. Isso é apenas uma etiqueta para facilitar a identificação.</p>
+</li>
+<li>
+<p><strong>Escolha uma AMI (Imagem de máquina da Amazon):</strong> No campo "Imagens de máquina da Amazon (AMI)", selecione <strong>"Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type"</strong> . Esta é uma ótima escolha para iniciantes, pois é leve, bem suportada e gratuita no Free Tier. Note que o nome de usuário padrão para esta AMI será <code>ec2-user</code> .</p>
+</li>
+<li>
+<p><strong>Tipo de instância:</strong> Em "Tipo de instância", certifique-se de que <strong><code>t2.micro</code></strong> (ou <code>t3.micro</code>) esteja selecionado. Esta é a opção do <strong>Free Tier</strong>, ou seja, não custará nada (dentro dos limites de 750 horas/mês) .</p>
+</li>
+<li>
+<p><strong>Par de chaves (login):</strong> Esta é a etapa mais importante para a segurança.</p>
+<ol>
+<li>No campo "Par de chaves", clique no menu suspenso e selecione <strong>"Criar novo par de chaves"</strong> .</li>
+<li>Dê a ele um nome, como <code>"Minha-Chave-EC2"</code>.</li>
+<li>Mantenha o <strong>"Tipo de par de chaves"</strong> como <strong>RSA</strong> e o <strong>"Formato de arquivo de chave privada"</strong> como <strong><code>.pem</code></strong> (para usuários de Mac/Linux) ou <strong><code>.ppk</code></strong> (se você for usar o PuTTY no Windows).</li>
+<li>Clique em <strong>"Criar par de chaves"</strong> .</li>
+<li><strong>IMPORTANTE:</strong> O arquivo da chave privada será baixado automaticamente para o seu computador. <strong>Guarde-o em uma pasta segura (ex: uma pasta chamada "aws-keys" dentro do seu diretório "Documentos") e não o perca.</strong> Esta é a única chance de baixar este arquivo .</li>
+</ol>
+</li>
+<li>
+<p><strong>Configurações de rede:</strong> Esta seção define o Security Group.</p>
+<ol>
+<li>Clique em <strong>"Editar"</strong> .</li>
+<li><strong>Firewall (grupos de segurança):</strong> Certifique-se de que a opção <strong>"Criar grupo de segurança"</strong> esteja selecionada.</li>
+<li>
+<p><strong>Regras de entrada (inbound rules):</strong> Vamos adicionar uma regra para permitir SSH.</p>
+<ul>
+<li>Clique em <strong>"Adicionar regra de segurança"</strong> .</li>
+<li><strong>Tipo:</strong> Selecione <strong>SSH</strong>.</li>
+<li><strong>Protocolo:</strong> Será automaticamente preenchido como TCP.</li>
+<li><strong>Intervalo de portas:</strong> Será automaticamente preenchido como <strong>22</strong>.</li>
+<li><strong>Tipo de origem:</strong> Selecione <strong>"Meu IP"</strong> . Isso é uma boa prática de segurança. O console detectará automaticamente seu endereço IP público e só permitirá conexões dele. Se você estiver em casa ou na faculdade com IP variável, pode, para fins de teste, selecionar <strong>"Qualquer lugar (0.0.0.0/0)"</strong> , mas isso é menos seguro .</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Configurar armazenamento:</strong> Mantenha a configuração padrão: um volume raiz de 20 GiB do tipo <code>gp2</code> (SSD). Isso também é coberto pelo Free Tier .</p>
+</li>
+</ul>
+<p><strong>Passo 4:</strong> Revise e Inicie</p>
+<ol>
+<li>Revise todas as configurações no resumo à direita. Certifique-se de que o tipo de instância é <code>t2.micro</code>.</li>
+<li>Clique no botão <strong>"Executar instância"</strong> .</li>
+</ol>
+<p><strong>Passo 5:</strong> Visualize a Instância</p>
+<ol>
+<li>Você verá uma mensagem de sucesso. Clique no botão <strong>"Visualizar todas as instâncias"</strong> para voltar à lista de instâncias.</li>
+<li>Sua nova instância aparecerá na lista. Inicialmente, o "Status da instância" será <code>pending</code>. Aguarde um ou dois minutos até que o status mude para <strong><code>running</code></strong>.</li>
+<li>Selecione a instância (clicando no checkbox). No painel inferior, você verá os detalhes. Procure o campo <strong>"Endereço IPv4 público"</strong> . Copie este endereço IP, pois você precisará dele para se conectar via SSH .</li>
+</ol>
+<h4 id="parte-3-conectando-se-a-instancia-via-ssh"><strong>Parte 3:</strong> Conectando-se à Instância via SSH<a class="headerlink" href="#parte-3-conectando-se-a-instancia-via-ssh" title="Permanent link">&para;</a></h4>
+<p>Agora que a instância está rodando e temos o IP público, vamos nos conectar a ela usando a chave privada.</p>
+<h4 id="cenario-a-conectando-do-windows-usando-putty"><strong>Cenário A: Conectando do Windows (usando PuTTY)</strong><a class="headerlink" href="#cenario-a-conectando-do-windows-usando-putty" title="Permanent link">&para;</a></h4>
+<p>O PuTTY não entende nativamente o formato <code>.pem</code>. Precisamos converter a chave para o formato <code>.ppk</code> usando o PuTTYgen .</p>
+<p><strong>Passo 1:</strong> Converter a chave .pem para .ppk</p>
+<ol>
+<li>Abra o programa <strong>PuTTYgen</strong> (procure por ele no menu Iniciar).</li>
+<li>No canto inferior direito, clique no botão <strong>"Load"</strong> .</li>
+<li>Altere o filtro de arquivos para mostrar <strong>"All Files (<em>.</em>)"</strong> .</li>
+<li>Navegue até a pasta onde você salvou o arquivo <code>.pem</code> baixado da AWS, selecione-o e clique em <strong>"Abrir"</strong> .</li>
+<li>O PuTTYgen mostrará uma mensagem informando que a chave foi importada com sucesso. Clique em <strong>"OK"</strong> .</li>
+<li>Agora, clique no botão <strong>"Save private key"</strong> .</li>
+<li>Uma mensagem de aviso perguntará se você quer salvar a chave sem uma senha. Clique em <strong>"Sim"</strong> .</li>
+<li>Salve o arquivo com um nome (ex: <code>Minha-Chave-EC2.ppk</code>) na mesma pasta segura.</li>
+</ol>
+<p><strong>Passo 2:</strong> Conectar usando PuTTY</p>
+<ol>
+<li>Abra o <strong>PuTTY</strong>.</li>
+<li>No painel esquerdo (Category), vá em <strong>Connection &gt; SSH &gt; Auth</strong> (ou <strong>Auth &gt; Credentials</strong> em versões mais novas).</li>
+<li>Em "Private key file for authentication", clique em <strong>"Browse"</strong> e selecione o arquivo <code>.ppk</code> que você acabou de criar.</li>
+<li>Volte ao painel <strong>"Session"</strong> (no topo da árvore à esquerda).</li>
+<li>No campo <strong>"Host Name (or IP address)"</strong> , digite: <strong><code>ec2-user@&lt;Endereço-IPv4-Público&gt;</code></strong> . Substitua <code>&lt;Endereço-IPv4-Público&gt;</code> pelo IP que você copiou do console.</li>
+<li>Certifique-se de que a <strong>"Port"</strong> é <strong>22</strong> e o <strong>"Connection type"</strong> é <strong>SSH</strong>.</li>
+<li>Clique em <strong>"Open"</strong> .</li>
+<li>Na primeira vez que você se conectar a esta instância, uma alerta de segurança aparecerá sobre a chave do host não ser conhecida. Clique em <strong>"Accept"</strong> para continuar .</li>
+<li>Uma janela de terminal será aberta e você estará logado dentro da sua instância EC2!</li>
+</ol>
+<p><strong>Cenário B:</strong> Conectando do macOS ou Linux (usando Terminal)</p>
+<p><strong>Passo 1:</strong> Ajustar permissões da chave</p>
+<h4 id="cenario-b-conectando-do-macos-ou-linux-usando-terminal"><strong>Cenário B: Conectando do macOS ou Linux (usando Terminal)</strong><a class="headerlink" href="#cenario-b-conectando-do-macos-ou-linux-usando-terminal" title="Permanent link">&para;</a></h4>
+<p><strong>Passo 1: Ajustar permissões da chave</strong></p>
+<ol>
+<li>Abra o <strong>Terminal</strong>.</li>
+<li>Navegue até a pasta onde você salvou o arquivo <code>.pem</code> usando o comando <code>cd</code>. Por exemplo: <code>cd ~/Documentos/aws-keys/</code></li>
+<li>As chaves SSH precisam ter permissões restritas para serem aceitas. Execute o seguinte comando para garantir isso:</li>
+</ol>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span>chmod<span class="w"> </span><span class="m">400</span><span class="w"> </span>Minha-Chave-EC2.pem
+</span></code></pre></div>
+(Substitua <code>Minha-Chave-EC2.pem</code> pelo nome do seu arquivo) .</p>
+<p><strong>Passo 2:</strong> Conectar via SSH</p>
+<ol>
+<li>No mesmo terminal, execute o comando de conexão SSH:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;Minha-Chave-EC2.pem&quot;</span><span class="w"> </span>ec2-user@&lt;Endereço-IPv4-Público&gt;
+</span></code></pre></div>
+    (Substitua o nome do arquivo e o IP pelos seus)</li>
+<li>Na primeira conexão, você verá uma mensagem perguntando se deseja continuar conectando, pois a autenticidade do host não pode ser estabelecida. Digite <strong><code>yes</code></strong> e pressione Enter .</li>
+<li>Pronto! Você estará conectado ao terminal da sua instância EC2.</li>
+</ol>
+<p><strong>Cenário C:</strong> Conectando do Windows, macOS ou Linux (usando VS Code)</p>
+<p>VS Code oferece uma forma moderna e integrada de se conectar a servidores remotos via SSH, permitindo editar arquivos e executar comandos diretamente do editor.</p>
+<p><strong>Pré-requisitos:</strong></p>
+<ul>
+<li>VS Code instalado em seu computador.</li>
+<li>Extensão <strong>"Remote - SSH"</strong> instalada (abra VS Code, vá em Extensions e procure por "Remote - SSH" da Microsoft).</li>
+</ul>
+<p><strong>Passo 1:</strong> Configurar a Conexão SSH no VS Code</p>
+<ol>
+<li>Abra VS Code.</li>
+<li>Pressione <strong>Ctrl+Shift+P</strong> (ou <strong>Cmd+Shift+P</strong> no macOS) para abrir a Paleta de Comandos.</li>
+<li>Digite <strong>"Remote-SSH: Open Configuration File"</strong> e selecione a opção.</li>
+<li>Escolha ou crie o arquivo de configuração SSH (geralmente em <code>~/.ssh/config</code>).</li>
+<li>Adicione as seguintes linhas ao arquivo:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    Host meu-ec2
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        HostName &lt;Endereço-IPv4-Público&gt;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        User ec2-user
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        IdentityFile &lt;Caminho-para-sua-chave&gt;.pem
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>Substitua `&lt;Endereço-IPv4-Público&gt;` pelo IP da sua instância e `&lt;Caminho-para-sua-chave&gt;` pelo caminho completo do arquivo `.pem`.
+</code></pre></div>
+<ol>
+<li>Salve o arquivo.</li>
+</ol>
+<p><strong>Passo 2:</strong> Conectar à Instância</p>
+<ol>
+<li>Na Paleta de Comandos, digite <strong>"Remote-SSH: Connect to Host"</strong> e selecione.</li>
+<li>Escolha <code>meu-ec2</code> da lista.</li>
+<li>Uma nova janela do VS Code será aberta conectada ao servidor remoto.</li>
+<li>Na primeira conexão, aceite a chave do host quando solicitado.</li>
+<li>Agora você pode explorar os arquivos, editar código e executar comandos no terminal integrado do VS Code, tudo conectado à sua instância EC2!</li>
+</ol>
+<p><strong>Dica:</strong> Você pode abrir o terminal integrado (Ctrl+`) para executar comandos Linux diretamente na instância.</p>
+<h3 id="parte-4-explorando-e-finalizando"><strong>Parte 4:</strong> Explorando e Finalizando<a class="headerlink" href="#parte-4-explorando-e-finalizando" title="Permanent link">&para;</a></h3>
+<p><strong>O que fazer depois de conectar:</strong></p>
+<ul>
+<li>Você está dentro do servidor! Experimente alguns comandos básicos para se familiarizar:<ul>
+<li><code>pwd</code> (print working directory): Mostra em qual diretório você está.</li>
+<li><code>ls</code> (list): Lista os arquivos da pasta atual.</li>
+<li><code>df -h</code> (disk free): Mostra o espaço em disco.</li>
+<li><code>sudo yum update -y</code> (atualiza o sistema - específico para Amazon Linux).</li>
+</ul>
+</li>
+</ul>
+<p><strong>IMPORTANTE:</strong> Como parar a instância para não gastar créditos</p>
+<p>Lembre-se: no AWS Educate, você tem créditos limitados. A instância <code>t2.micro</code> em execução consome esses créditos. Quando não estiver usando, é fundamental <strong>parar (stop)</strong> a instância .</p>
+<ol>
+<li>No Console AWS, vá para a lista de instâncias EC2.</li>
+<li>Selecione sua instância.</li>
+<li>Clique no menu <strong>"Estado da instância"</strong> e escolha <strong>"Parar instância"</strong> .</li>
+<li>Confirme. A instância será desligada e você não será cobrado enquanto ela estiver parada.</li>
+<li>Para usá-la novamente, basta selecioná-la e clicar em <strong>"Iniciar instância"</strong> (atenção: o IP público pode mudar ao reiniciar, a menos que você tenha um IP elástico).</li>
+</ol>
+<h3 id="resumo-e-checklist-de-boas-praticas"><strong>Resumo</strong> e Checklist de Boas Práticas<a class="headerlink" href="#resumo-e-checklist-de-boas-praticas" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sempre use um par de chaves:** Nunca habilite acesso por senha .</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Mantenha sua chave privada em local seguro e com permissões restritas** (<code>chmod 400</code> no Mac/Linux) .</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Configure o Security Group para permitir SSH apenas do seu IP** (origem <code>Meu IP</code>), evitando acesso de qualquer lugar da internet .</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> PARE a instância** quando não estiver utilizando para otimizar seus créditos .</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Explore o terminal da sua instância** e familiarize-se com os comandos básicos do Linux.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright ©️ 2026, Jonh Carvalho
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
