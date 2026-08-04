@@ -1,10 +1,4 @@
-Perfeito! A substituição por **Python/Django REST Framework** e o foco na **AWS** são escolhas excelentes, pois alinham a disciplina com um dos ecossistemas mais populares e demandados do mercado para Ciência de Dados.
-
-Segue o plano de ensino reelaborado com essas especificações.
-
----
-
-### **PLANO DE ENSINO (REELABORADO - PYTHON/DJANGO & AWS)**
+## **PLANO DE ENSINO (PYTHON/DJANGO & AWS)**
 
 | **Curso:** Ciência de Dados e Inteligência Artificial | **Disciplina:** Big Data e Cloud Computing |
 |---|---|
@@ -26,7 +20,7 @@ Capacitar o aluno a compreender os fundamentos da computação em nuvem **AWS** 
 - Distinguir os modelos de serviço (IaaS, PaaS, SaaS) e implantação (pública, privada, híbrida) em nuvem, com exemplos práticos na **AWS**.
 - Conhecer e utilizar os principais serviços da AWS: **EC2** (computação), **S3** (armazenamento), **RDS** (banco de dados relacional), **Lambda** (serverless) e **API Gateway**.
 - Compreender os fundamentos e a arquitetura de sistemas de Big Data.
-- Diferenciar modelos de banco de dados para Big Data: colunar (**Redshift**), orientado a documentos (**DynamoDB**, **MongoDB Atlas**) e tabular.
+- Diferenciar modelos de banco de dados para Big Data: colunar (**Redshift**), orientado a documentos (**DynamoDB**, **MongoDB Atlas**) e tabular(**Amazon Timestream**, **Parquet**, **Hive**).
 - Implementar uma aplicação back-end (API Rest) utilizando **Python, Django e Django REST Framework (DRF)**.
 - Realizar o deploy automatizado de uma aplicação Django em um ambiente AWS (**Elastic Beanstalk**) ou manual em instância **EC2**.
 - Explorar serviços gerenciados de Big Data na AWS para processamento e análise de dados: **Amazon EMR** (Hadoop/Spark), **AWS Glue** (ETL e catalogação) e **Amazon Athena** (consultas SQL em S3).
