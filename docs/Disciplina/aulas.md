@@ -1,11 +1,11 @@
 # Aulas
 
-|Aula                 | Conteúdo | |
-| ----------------------------------------------------------------| |
-Aula 01 - 04/08/2026 | :material-check: [Introdução](../Disciplina/docs/aula01/Fundamentos-de-Cloud-Computing-Introducao-a-Computacao-em-Nuvem.pptx) a Cloud Computing <br> :material-check: [Modelos ](../Disciplina/docs/aula01/Modelos-de-Servico-em-Nuvem-IaaS-PaaS-e-SaaS-Descomplicados.pptx) de Cloud Computing |
-Aula 02 - 11/08/2026 | :material-check: Introdução ao [Big Data](..//Disciplina/docs/aula02/Introducao-ao-Big-Data-Os-5-Vs-e-Desafios-do-Processamento-em-Larga-Escala.pptx) |
-Aula 03 - 18/08/2026 | :material-check: [Principais Serviços Aws](../Disciplina/docs/aula02/Principais-Servicos-AWS-Computacao-Armazenamento-e-Redes.pptx) |
-Aula 04 - 25/08/2026 | :material-check: [Computação](https://awseducate.instructure.com/courses/941) |
+| Aula               | Conteúdo |
+|--------------------|----------|
+| Aula 01 - 04/08/2026 | :material-check: [Introdução](../Disciplina/docs/aula01/Fundamentos-de-Cloud-Computing-Introducao-a-Computacao-em-Nuvem.pptx) a Cloud Computing <br> :material-check: [Modelos ](../Disciplina/docs/aula01/Modelos-de-Servico-em-Nuvem-IaaS-PaaS-e-SaaS-Descomplicados.pptx) de Cloud Computing |
+| Aula 02 - 11/08/2026 | :material-check: Introdução ao [Big Data](..//Disciplina/docs/aula02/Introducao-ao-Big-Data-Os-5-Vs-e-Desafios-do-Processamento-em-Larga-Escala.pptx) |
+| Aula 03 - 18/08/2026 | :material-check: [Principais Serviços Aws](../Disciplina/docs/aula02/Principais-Servicos-AWS-Computacao-Armazenamento-e-Redes.pptx) |
+| Aula 04 - 25/08/2026 | :material-check: [Computação](https://awseducate.instructure.com/courses/941) |
 
 <!--
 Aula 05 - 26/03/2026 | :material-check: Roteiro Nginx |
