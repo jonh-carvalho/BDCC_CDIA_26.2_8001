@@ -5,10 +5,6 @@ hide:
   - template: home.html
 ---
 
-### AP2 - APRESENTAÇÃO no LABORATÓRIO { style="background-color:#FF0000; color:white;" }
-#### Apresentação destacando os principais pontos do Deploy/Aplicação - importante um slide  com os destaques e todos membros do grupo devem apresentar algum aspectos. { style="background-color:#FF6600; color:white;" }
-#### Prazo de Entrega: 11/06/2026 { style="background-color:#FFFF00; color:black;" }
-
 <div class="bdcc-hero">
   <div class="bdcc-hero__content">
 

@@ -9,22 +9,22 @@ nav:
   - Disciplina:
       - Aulas: Disciplina/aulas.md
       - Ambiente: Disciplina/ambiente.md
-      - Roteiro:
-        - 01- AWS: Disciplina/roteiros/02 - aws.md
-        - 04 - EC2: Disciplina/roteiros/04 - ec2.md
-        - 04 - Linux Bash: Disciplina/roteiros/04 - linux.md
-        - 05 - Nginx: Disciplina/roteiros/05 - nginxsite.md
-        - 06 - S3: Disciplina/roteiros/06 - s3.md
-        - 07 - BE: Disciplina/roteiros/07 - eb.md
-        - 10 - Aurora RDS: Disciplina/roteiros/10 - aurora.md
-        - 12 - EB MySQL: Disciplina/roteiros/12 - ebmysql.md
+#      - Roteiro:
+#        - 01- AWS: Disciplina/roteiros/02 - aws.md
+#        - 04 - EC2: Disciplina/roteiros/04 - ec2.md
+#        - 04 - Linux Bash: Disciplina/roteiros/04 - linux.md
+#        - 05 - Nginx: Disciplina/roteiros/05 - nginxsite.md
+#        - 06 - S3: Disciplina/roteiros/06 - s3.md
+#        - 07 - BE: Disciplina/roteiros/07 - eb.md
+#        - 10 - Aurora RDS: Disciplina/roteiros/10 - aurora.md
+#        - 12 - EB MySQL: Disciplina/roteiros/12 - ebmysql.md
   - Avaliações:
       - AC:
         - Index: Avalia/index.md
         - AC1: Avalia/AC01.md
-        - AC2: Avalia/AC02.md
-        - AC3: Avalia/AC03.md
-        - AC4: Avalia/AC04.md
+#        - AC2: Avalia/AC02.md
+#        - AC3: Avalia/AC03.md
+#        - AC4: Avalia/AC04.md
       - AP:
         - AP1: Avalia/ap1.md
         - AP2: Avalia/ap2.md
