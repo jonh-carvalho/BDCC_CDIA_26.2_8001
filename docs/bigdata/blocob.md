@@ -1,3 +1,40 @@
+# Como rodar esse roteiro no shell linux?
+
+## Pré-requisitos
+
+- Python 3.8+ instalado
+- pip instalado 
+# como instalar o pip no Linux
+
+```bash
+sudo apt update
+sudo apt install python3-pip
+```
+
+-   Instalar as dependências do notebook:
+
+# criar um ambiente virtual (opcional, mas recomendado):
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+```bash
+pip install pandas numpy pyarrow duckdb jupyterlab
+```
+
+--   Iniciar o Jupyter Lab:
+
+```bash
+jupyter lab
+```
+
+
+
+
+---
+
 # Prática 1: Modelo Colunar (55 min)
 
 > Notebook de referência: [`bigdata/colunar/colunar.ipynb`](bigdata/colunar/colunar.ipynb)
@@ -59,6 +96,20 @@ print(f"Redução: {(1 - parquet_kb/csv_kb)*100:.1f}%")
 
 ## 3. Consulta SQL com DuckDB (15 min)
 
+# Pra que serve o duckdb?
+
+O DuckDB é um banco de dados analítico em memória, projetado para ser rápido e fácil de usar. Ele permite executar consultas SQL diretamente sobre arquivos de dados, como CSV e Parquet, sem a necessidade de um servidor de banco de dados.
+
+# Objetivo da prática do DuckDB
+
+- Demonstrar como o DuckDB pode ser usado para consultar dados armazenados em formato Parquet.
+- Mostrar a eficiência do DuckDB ao ler apenas as colunas necessárias para uma consulta, reduzindo o I/O e melhorando o desempenho.
+- Fornecer uma experiência prática de análise de dados usando SQL em um ambiente de notebook.
+- Permitir que os alunos comparem o desempenho entre diferentes formatos de arquivo (CSV vs Parquet) e compreendam os benefícios do armazenamento colunar.
+- Introduzir conceitos de análise de dados e otimização de consultas em um contexto real.
+
+
+
 ```python
 import duckdb
 
@@ -85,6 +136,7 @@ print(result2)
 ```
 
 **Destaques didáticos:**
+
 - DuckDB executa SQL diretamente sobre o arquivo Parquet **sem servidor**.
 - Internamente lê **apenas as colunas** pedidas no `SELECT` — as demais nem são descomprimidas.
 
