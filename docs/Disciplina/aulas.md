@@ -7,6 +7,7 @@
 | Aula 03 - 18/08/2026 | :material-check: [Computação](https://awseducate.instructure.com/courses/941) <br> :material-check: [Linux Online](https://distrosea.com/pt/) |
 | Aula 04 - 25/08/2026 | :material-check: Roteiros |
 Aula 05 - 01/09/2026 | :material-check: Roteiros |
+
 <!--
 
 Aula 06 - 02/04/2026 | :material-check: Feridado  |
