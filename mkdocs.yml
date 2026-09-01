@@ -11,7 +11,7 @@ nav:
 #      - Ambiente: Disciplina/ambiente.md
       - Roteiro:
         - 03 - Linux Bash: Disciplina/roteiros/03 - linux.md
-        - 04 - AWS: Disciplina/roteiros/02 - aws.md
+        - 04 - AWS: Disciplina/roteiros/04 - aws.md
         - 04 - EC2: Disciplina/roteiros/04 - ec2.md
         - 05 - Nginx: Disciplina/roteiros/05 - nginxsite.md
 #        - 06 - S3: Disciplina/roteiros/06 - s3.md
@@ -101,7 +101,7 @@ theme:
     - navigation.indexes
     - navigation.instant
     - navigation.instant.progress
-    - navigation.path
+#    - navigation.path
     - navigation.tabs
     - navigation.top
     - navigation.tracking

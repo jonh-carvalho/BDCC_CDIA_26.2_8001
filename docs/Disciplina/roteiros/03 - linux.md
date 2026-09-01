@@ -1,4 +1,4 @@
-### **Linux para Iniciantes** — Do Zero ao Controle do Sistema**
+# **Linux para Iniciantes — Do Zero ao Controle do Sistema**
 
 **Objetivo:** Ao final deste roteiro, o aluno deve ser capaz de navegar e operar um sistema Linux pela linha de comando (Bash), realizando tarefas essenciais de administração: gerenciar serviços, monitorar recursos, manipular arquivos e disco, instalar pacotes e aplicar configurações básicas de rede e segurança.
 

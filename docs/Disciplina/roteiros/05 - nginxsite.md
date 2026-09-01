@@ -3,7 +3,7 @@ id: nginx
 title: Nginx
 ---  
 
-### Site com nginx na EC2 
+# Deploy Site com nginx na EC2 
 
 Roteiro para sair de uma instância EC2 limpa até o site HTML/CSS/JS no ar com Nginx, incluindo segurança mínima e comando de publicação.
 

@@ -3,7 +3,7 @@ id: aws
 title: AWS
 ---  
 
-### Tutorial Prático: Criando e Explorando sua Conta AWS (Sem Cartão de Crédito)
+# Criando e Explorando sua Conta AWS (Sem Cartão de Crédito)
 
 **Objetivo:** Ao final deste tutorial, o aluno terá criado uma conta no **AWS Educate** (que não requer cartão de crédito), feito login no Console de Gerenciamento da AWS e explorado os principais serviços, compreendendo a função de cada elemento da interface.
 
