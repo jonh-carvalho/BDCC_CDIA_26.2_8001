@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../05%20-%20nginxsite/">
+      
+      
+        <link rel="next" href="../../../Avalia/">
       
       
         
@@ -252,10 +256,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../aulas/" class="md-tabs__link">
           
   
@@ -398,8 +404,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -411,17 +419,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -439,7 +450,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -482,8 +493,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -497,6 +510,8 @@
       
         
       
+        
+      
     
     
     
@@ -504,11 +519,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -529,7 +544,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -675,6 +690,249 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 - S3
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 - S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#roteiro-basico-criacao-de-bucket-s3-na-aws-e-envio-de-fotos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roteiro Básico: Criação de Bucket S3 na AWS e Envio de Fotos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roteiro Básico: Criação de Bucket S3 na AWS e Envio de Fotos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-criar-um-bucket-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Criar um Bucket S3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configurar-permissoes-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configurar Permissões (opcional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enviar-fotos-pelo-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enviar Fotos pelo Console
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Enviar Fotos pelo Console">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-enviar-fotos-via-aws-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enviar Fotos via AWS CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Enviar Fotos via AWS CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-instalar-o-aws-cli-para-instalar-o-aws-cli-siga-as-instrucoes-abaixo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como instalar o aws cli? Para instalar o AWS CLI, siga as instruções abaixo:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-logar-no-aws-cli-para-configurar-o-aws-cli-siga-os-passos-abaixo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como logar no aws cli? Para configurar o AWS CLI, siga os passos abaixo:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-enviar-fotos-via-codigo-python-boto3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Enviar Fotos via Código Python (boto3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pip-install-boto3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pip install boto3
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certifique-se-de-que-suas-credenciais-aws-estao-configuradas-aws-configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certifique-se de que suas credenciais AWS estão configuradas (aws configure)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-7-executar-o-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 7: Executar o upload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-9-funcao-adicional-para-listar-arquivos-no-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 9: Função adicional para listar arquivos no bucket
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-10-funcao-para-definir-metadados-da-foto-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 10: Função para definir metadados da foto (opcional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-de-uso-com-metadados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo de uso com metadados
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
