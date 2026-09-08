@@ -15,7 +15,7 @@ nav:
         - 05 - EC2: Disciplina/roteiros/04 - ec2.md
         - 06 - Docker: Disciplina/roteiros/06 - docker.md
         - 06 - Nginx: Disciplina/roteiros/05 - nginxsite.md
-#        - 06 - S3: Disciplina/roteiros/06 - s3.md
+        - 06 - S3: Disciplina/roteiros/06 - s3.md
 #        - 07 - BE: Disciplina/roteiros/07 - eb.md
 #        - 10 - Aurora RDS: Disciplina/roteiros/10 - aurora.md
 #        - 12 - EB MySQL: Disciplina/roteiros/12 - ebmysql.md
