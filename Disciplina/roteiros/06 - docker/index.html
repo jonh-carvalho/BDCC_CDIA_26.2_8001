@@ -11,24 +11,28 @@
       
       
       
+        <link rel="prev" href="../04%20-%20ec2/">
+      
+      
+        <link rel="next" href="../05%20-%20nginxsite/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/ibmec_icon.png">
+      <link rel="icon" href="../../../assets/ibmec_icon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Pa - BDCC_CDIA_26.2_8001</title>
+        <title>06 - Docker - BDCC_CDIA_26.2_8001</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -47,9 +51,9 @@
       
     
     
-      <link rel="stylesheet" href="../../css/extra.css">
+      <link rel="stylesheet" href="../../../css/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#plano-de-ensino-pythondjango-aws" class="md-skip">
+        <a href="#1-criando-a-instancia-ec2" class="md-skip">
           Skip to content
         </a>
       
@@ -88,9 +92,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="BDCC_CDIA_26.2_8001" class="md-header__button md-logo" aria-label="BDCC_CDIA_26.2_8001" data-md-component="logo">
+    <a href="../../.." title="BDCC_CDIA_26.2_8001" class="md-header__button md-logo" aria-label="BDCC_CDIA_26.2_8001" data-md-component="logo">
       
-  <img src="../../assets/ibmec_logo.png" alt="logo">
+  <img src="../../../assets/ibmec_logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -107,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pa
+              06 - Docker
             
           </span>
         </div>
@@ -235,7 +239,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -252,11 +256,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../Disciplina/aulas/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../aulas/" class="md-tabs__link">
           
   
   
@@ -285,7 +291,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../Avalia/" class="md-tabs__link">
+        <a href="../../../Avalia/" class="md-tabs__link">
           
   
   
@@ -308,7 +314,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../Disciplina/bibliografia/" class="md-tabs__link">
+      <a href="../../bibliografia/" class="md-tabs__link">
         
   
   
@@ -345,9 +351,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="BDCC_CDIA_26.2_8001" class="md-nav__button md-logo" aria-label="BDCC_CDIA_26.2_8001" data-md-component="logo">
+    <a href="../../.." title="BDCC_CDIA_26.2_8001" class="md-nav__button md-logo" aria-label="BDCC_CDIA_26.2_8001" data-md-component="logo">
       
-  <img src="../../assets/ibmec_logo.png" alt="logo">
+  <img src="../../../assets/ibmec_logo.png" alt="logo">
 
     </a>
     BDCC_CDIA_26.2_8001
@@ -374,7 +380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -398,8 +404,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -411,17 +419,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -439,7 +450,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -457,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Disciplina/aulas/" class="md-nav__link">
+      <a href="../../aulas/" class="md-nav__link">
         
   
   
@@ -482,8 +493,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -504,11 +517,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -529,7 +542,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -547,7 +560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Disciplina/roteiros/04%20-%20aws/" class="md-nav__link">
+      <a href="../04%20-%20aws/" class="md-nav__link">
         
   
   
@@ -575,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Disciplina/roteiros/03%20-%20linux/" class="md-nav__link">
+      <a href="../03%20-%20linux/" class="md-nav__link">
         
   
   
@@ -603,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Disciplina/roteiros/04%20-%20ec2/" class="md-nav__link">
+      <a href="../04%20-%20ec2/" class="md-nav__link">
         
   
   
@@ -628,10 +641,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../Disciplina/roteiros/06%20-%20docker/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 - Docker
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -647,6 +685,96 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-criando-a-instancia-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Criando a Instância EC2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-conectando-e-instalando-o-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Conectando e Instalando o Docker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-executando-um-container-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Executando um Container de Teste
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolucao-dos-principais-problemas-iniciais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Resolução dos Principais Problemas Iniciais
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Resolução dos Principais Problemas Iniciais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-1-erro-de-permissao-negada-permission-denied-ao-rodar-comandos-docker-sem-sudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema 1: Erro de "Permissão Negada" (Permission Denied) ao rodar comandos Docker sem sudo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-2-a-pagina-nao-carrega-no-navegador-tempo-limite-esgotado-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema 2: A página não carrega no navegador (Tempo limite esgotado / Timeout)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -659,7 +787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Disciplina/roteiros/05%20-%20nginxsite/" class="md-nav__link">
+      <a href="../05%20-%20nginxsite/" class="md-nav__link">
         
   
   
@@ -783,7 +911,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../Avalia/" class="md-nav__link ">
+            <a href="../../../Avalia/" class="md-nav__link ">
               
   
   
@@ -827,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Avalia/AC01/" class="md-nav__link">
+      <a href="../../../Avalia/AC01/" class="md-nav__link">
         
   
   
@@ -855,7 +983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Avalia/AC02/" class="md-nav__link">
+      <a href="../../../Avalia/AC02/" class="md-nav__link">
         
   
   
@@ -947,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Avalia/ap1/" class="md-nav__link">
+      <a href="../../../Avalia/ap1/" class="md-nav__link">
         
   
   
@@ -975,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Avalia/ap2/" class="md-nav__link">
+      <a href="../../../Avalia/ap2/" class="md-nav__link">
         
   
   
@@ -1018,7 +1146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Disciplina/bibliografia/" class="md-nav__link">
+      <a href="../../bibliografia/" class="md-nav__link">
         
   
   
@@ -1058,224 +1186,85 @@
   
 
 
-  <h1>Pa</h1>
+  <h1>06 - Docker</h1>
 
-<h2 id="plano-de-ensino-pythondjango-aws"><strong>PLANO DE ENSINO (PYTHON/DJANGO &amp; AWS)</strong><a class="headerlink" href="#plano-de-ensino-pythondjango-aws" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th><strong>Curso:</strong> Ciência de Dados e Inteligência Artificial</th>
-<th><strong>Disciplina:</strong> Big Data e Cloud Computing</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Carga Horária:</strong> 80h</td>
-<td><strong>Período:</strong> 5º Período (recomendado)</td>
-</tr>
-<tr>
-<td><strong>Professor:</strong> [Nome do Professor]</td>
-<td><strong>Ano/Semestre:</strong> [Ano/Semestre]</td>
-</tr>
-</tbody>
-</table>
+<p>Aqui está o <strong>roteiro básico de instalação e configuração do Docker no Amazon EC2</strong>, junto com a resolução dos obstáculos mais comuns enfrentados no início do processo.</p>
+<h3 id="1-criando-a-instancia-ec2">1. Criando a Instância EC2<a class="headerlink" href="#1-criando-a-instancia-ec2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Acesse o console da AWS e crie uma nova instância.</li>
+<li>Escolha um sistema operacional base simples, como <strong>Ubuntu</strong> ou <strong>Amazon Linux 2023</strong>.</li>
+<li>Selecione um tipo de instância elegível para o nível gratuito, como <strong>t2.micro</strong> ou <strong>t3.micro</strong>.</li>
+<li><strong>Configuração do Security Group (Essencial):</strong><ul>
+<li><strong>Porta 22 (SSH):</strong> Liberada e restrita apenas ao seu IP para garantir o acesso seguro.</li>
+<li><strong>Porta da sua aplicação (ex: 80 para HTTP ou 3000):</strong> Liberada para qualquer lugar (<code>0.0.0.0/0</code>) para que a aplicação fique acessível publicamente.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-conectando-e-instalando-o-docker">2. Conectando e Instalando o Docker<a class="headerlink" href="#2-conectando-e-instalando-o-docker" title="Permanent link">&para;</a></h3>
+<p>Conecte-se à sua máquina virtual via SSH e execute os comandos conforme o sistema operacional escolhido:</p>
+<ul>
+<li>
+<p><strong>Opção A: Se você utilizou Ubuntu</strong>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span>-y
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker.io<span class="w"> </span>-y
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>docker
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+</span></code></pre></div>
+    <em>(Nota: Recomenda-se fechar a conexão SSH e entrar novamente para aplicar a permissão do grupo de usuários).</em></p>
+</li>
+<li>
+<p><strong>Opção B: Se você utilizou Amazon Linux 2023</strong>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </span>-y
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>docker<span class="w"> </span>-y
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>service<span class="w"> </span>docker<span class="w"> </span>start
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>docker<span class="w"> </span>ec2-user
+</span></code></pre></div>
+    <em>(Nota: Recomenda-se fechar a conexão SSH e entrar novamente para aplicar a permissão).</em></p>
+</li>
+</ul>
+<h3 id="3-executando-um-container-de-teste">3. Executando um Container de Teste<a class="headerlink" href="#3-executando-um-container-de-teste" title="Permanent link">&para;</a></h3>
+<p>Para verificar se tudo está funcionando corretamente, faça o deploy de uma imagem pública de testes (servidor Nginx):
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>nginx
+</span></code></pre></div>
+Isso fará o download do servidor Nginx e o deixará rodando em segundo plano, expondo-o na porta 80 da sua instância EC2.</p>
+<p>Libere o tráfego de entrada: No console web da AWS, acesse a aba Segurança (Security) da sua instância EC2, clique para editar as Regras de Entrada (Inbound Rules) de seu Security Group e adicione uma regra permitindo tráfego HTTP na porta 80 vindo de qualquer lugar (0.0.0.0/0).</p>
+<p>Para testar, abra o navegador e acesse o <strong>IP público da sua instância</strong>. Você deverá ver a página padrão do Nginx.</p>
+<p>Como a aplicação está rodando em um container, você pode apontar a pasta do projeto para o container e acessar os arquivos diretamente.</p>
+<p>Exemplo: Se você tiver um projeto html, css e javascript, pode rodar o container apontando para a pasta do projeto:</p>
+<p>Pasta site: </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>index.html
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>css/style.css
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>js/index.js
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span>/caminho/para/seu/projeto:/usr/share/nginx/html<span class="w"> </span>nginx
+</span></code></pre></div>
 <hr />
-<h3 id="1-ementa"><strong>1. EMENTA</strong><a class="headerlink" href="#1-ementa" title="Permanent link">&para;</a></h3>
-<p>Introdução à Computação em Nuvem com foco em <strong>Amazon Web Services (AWS)</strong> e ecossistema de Big Data. Modelos de serviço em nuvem (IaaS, PaaS, SaaS) e sua implementação na AWS. Principais serviços AWS: computação (<strong>EC2</strong>), armazenamento (<strong>S3</strong>), banco de dados (<strong>RDS</strong>), API Gateway e computação serverless (<strong>AWS Lambda</strong>). Criação e deploy de uma <strong>API REST com Django REST Framework</strong> em ambiente AWS. Fundamentos e modelos de bancos de dados para Big Data (colunar, tabular e documental) com foco em serviços AWS. Introdução aos serviços gerenciados de Big Data e processamento distribuído na AWS (<strong>EMR</strong>, <strong>Athena</strong>, <strong>Glue</strong>).</p>
-<h3 id="2-objetivos-gerais"><strong>2. OBJETIVOS GERAIS</strong><a class="headerlink" href="#2-objetivos-gerais" title="Permanent link">&para;</a></h3>
-<p>Capacitar o aluno a compreender os fundamentos da computação em nuvem <strong>AWS</strong> e do ecossistema de Big Data, habilitando-o a projetar, implementar e implantar soluções escaláveis que utilizem serviços AWS para processamento e armazenamento de grandes volumes de dados, utilizando <strong>Python e Django</strong> como principal ferramenta de desenvolvimento.</p>
-<h3 id="3-objetivos-especificos"><strong>3. OBJETIVOS ESPECÍFICOS</strong><a class="headerlink" href="#3-objetivos-especificos" title="Permanent link">&para;</a></h3>
+<h3 id="resolucao-dos-principais-problemas-iniciais">🛠️ Resolução dos Principais Problemas Iniciais<a class="headerlink" href="#resolucao-dos-principais-problemas-iniciais" title="Permanent link">&para;</a></h3>
+<h4 id="problema-1-erro-de-permissao-negada-permission-denied-ao-rodar-comandos-docker-sem-sudo">Problema 1: Erro de "Permissão Negada" (Permission Denied) ao rodar comandos Docker sem <code>sudo</code><a class="headerlink" href="#problema-1-erro-de-permissao-negada-permission-denied-ao-rodar-comandos-docker-sem-sudo" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Distinguir os modelos de serviço (IaaS, PaaS, SaaS) e implantação (pública, privada, híbrida) em nuvem, com exemplos práticos na <strong>AWS</strong>.</li>
-<li>Conhecer e utilizar os principais serviços da AWS: <strong>EC2</strong> (computação), <strong>S3</strong> (armazenamento), <strong>RDS</strong> (banco de dados relacional), <strong>Lambda</strong> (serverless) e <strong>API Gateway</strong>.</li>
-<li>Compreender os fundamentos e a arquitetura de sistemas de Big Data.</li>
-<li>Diferenciar modelos de banco de dados para Big Data: colunar (<strong>Redshift</strong>), orientado a documentos (<strong>DynamoDB</strong>, <strong>MongoDB Atlas</strong>) e tabular(<strong>Amazon Timestream</strong>, <strong>Parquet</strong>, <strong>Hive</strong>).</li>
-<li>Implementar uma aplicação back-end (API Rest) utilizando <strong>Python, Django e Django REST Framework (DRF)</strong>.</li>
-<li>Realizar o deploy automatizado de uma aplicação Django em um ambiente AWS (<strong>Elastic Beanstalk</strong>) ou manual em instância <strong>EC2</strong>.</li>
-<li>Explorar serviços gerenciados de Big Data na AWS para processamento e análise de dados: <strong>Amazon EMR</strong> (Hadoop/Spark), <strong>AWS Glue</strong> (ETL e catalogação) e <strong>Amazon Athena</strong> (consultas SQL em S3).</li>
-</ul>
-<h3 id="4-conteudo-programatico"><strong>4. CONTEÚDO PROGRAMÁTICO</strong><a class="headerlink" href="#4-conteudo-programatico" title="Permanent link">&para;</a></h3>
-<p>O conteúdo está organizado em 20 semanas, com 4 horas de aula por semana (total de 80h).</p>
-<table>
-<thead>
-<tr>
-<th><strong>Semana</strong></th>
-<th><strong>Módulo</strong></th>
-<th><strong>Tópicos</strong></th>
-<th><strong>Atividades/Práticas (Foco em AWS &amp; Python)</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>1</strong></td>
-<td><strong>Fundamentos de Cloud Computing</strong></td>
-<td>Introdução à Computação em Nuvem: definição, vantagens, modelos de implantação. CapEx vs. OpEx. Visão geral da <strong>AWS</strong>: regiões, zonas de disponibilidade, modelos de responsabilidade compartilhada.</td>
-<td>Discussão sobre casos de uso. <strong>Laboratório:</strong> Criar uma conta na <strong>AWS Free Tier</strong> e explorar o Console de Gerenciamento.</td>
-</tr>
-<tr>
-<td><strong>2</strong></td>
-<td><strong>Modelos de Serviço em Nuvem</strong></td>
-<td>Detalhamento de IaaS, PaaS e SaaS com exemplos na AWS: <strong>EC2</strong> (IaaS), <strong>Elastic Beanstalk</strong> (PaaS) e serviços como <strong>Amazon WorkSpaces</strong> (SaaS).</td>
-<td><strong>Laboratório:</strong> Provisionar uma instância <strong>Amazon EC2</strong> (Linux) e conectar-se via SSH.</td>
-</tr>
-<tr>
-<td><strong>3</strong></td>
-<td><strong>Principais Serviços AWS</strong></td>
-<td>Computação (<strong>EC2</strong>, Auto Scaling), Armazenamento (<strong>Amazon S3</strong> - buckets, objetos, versões) e Redes (<strong>VPC</strong>, subnets, Security Groups).</td>
-<td><strong>Laboratório:</strong> Criar um bucket <strong>S3</strong> para armazenar e servir arquivos estáticos. Configurar um <strong>Security Group</strong> para a instância EC2.</td>
-</tr>
-<tr>
-<td><strong>4</strong></td>
-<td><strong>Introdução ao Big Data</strong></td>
-<td>Definição de Big Data: 5 V's. Desafios do processamento de dados em larga escala. O papel da nuvem no Big Data.</td>
-<td>Estudo de caso: Análise de um problema real de Big Data (ex: logs de servidor, dados de IoT) e como a AWS poderia solucioná-lo.</td>
-</tr>
-<tr>
-<td><strong>5</strong></td>
-<td><strong>Ecossistema de Big Data</strong></td>
-<td>Visão geral do ecossistema Hadoop: HDFS e MapReduce. Introdução ao Apache Spark (processamento em memória). <strong>Amazon EMR</strong> como serviço gerenciado para clusters Hadoop/Spark.</td>
-<td><strong>Laboratório:</strong> Usar o <strong>Amazon EMR</strong> para subir um cluster Spark e executar um job simples de contagem de palavras.</td>
-</tr>
-<tr>
-<td><strong>6</strong></td>
-<td><strong>Bancos de Dados para Big Data I</strong></td>
-<td>Modelos de bancos de dados NoSQL: Orientado a Documentos (MongoDB). Características, casos de uso. Opções na AWS: <strong>Amazon DocumentDB</strong> (compatível com MongoDB) e MongoDB Atlas.</td>
-<td><strong>Laboratório:</strong> Criar um cluster <strong>MongoDB Atlas</strong> (nível gratuito) e realizar operações CRUD básicas a partir de um script Python (<code>pymongo</code>).</td>
-</tr>
-<tr>
-<td><strong>7</strong></td>
-<td><strong>Bancos de Dados para Big Data II</strong></td>
-<td>Modelos NoSQL: Colunar (<strong>Amazon Redshift</strong> - Data Warehouse) e Chave-Valor (<strong>Amazon DynamoDB</strong> - banco NoSQL gerenciado). Bancos de dados tabulares.</td>
-<td><strong>Laboratório:</strong> Criar uma tabela no <strong>Amazon DynamoDB</strong> e interagir com ela usando <strong>boto3</strong> (biblioteca Python da AWS).</td>
-</tr>
-<tr>
-<td><strong>8</strong></td>
-<td><strong>AVALIAÇÃO 1 (P1)</strong></td>
-<td>Prova teórico-prática abordando os conteúdos das semanas 1 a 7.</td>
-<td><strong>Avaliação Individual</strong></td>
-</tr>
-<tr>
-<td><strong>9</strong></td>
-<td><strong>APIs com Python e Django</strong></td>
-<td>Conceitos de API Rest. Revisão de Python e introdução ao <strong>Django</strong>. Criação de um projeto Django. Conceitos de models, views e URLs.</td>
-<td><strong>Laboratório:</strong> Criar um projeto Django básico e configurar o ambiente virtual.</td>
-</tr>
-<tr>
-<td><strong>10</strong></td>
-<td><strong>Django REST Framework (DRF)</strong></td>
-<td>Introdução ao <strong>Django REST Framework</strong>. Serializers, ViewSets e Routers. Criação de uma API simples com operações de CRUD.</td>
-<td><strong>Laboratório:</strong> Implementar uma API para gerenciamento de uma entidade (ex: Produtos, Livros) usando DRF, com suporte a banco de dados SQLite.</td>
-</tr>
-<tr>
-<td><strong>11</strong></td>
-<td><strong>Serverless com AWS Lambda</strong></td>
-<td>Conceito de computação serverless. Criação de funções <strong>AWS Lambda</strong> em Python. Gatilhos (triggers) para execução (ex: upload no S3, chamada HTTP).</td>
-<td><strong>Laboratório:</strong> Criar uma função <strong>Lambda</strong> em Python que é executada automaticamente quando um arquivo é enviado para um bucket <strong>S3</strong> (ex: redimensionar uma imagem).</td>
-</tr>
-<tr>
-<td><strong>12</strong></td>
-<td><strong>API Gateway e Integração</strong></td>
-<td>Uso do <strong>Amazon API Gateway</strong> para criar, publicar e gerenciar APIs. Integração do API Gateway com funções <strong>Lambda</strong> para criar um back-end serverless.</td>
-<td><strong>Laboratório:</strong> Criar uma API REST no <strong>API Gateway</strong> que invoca uma função <strong>Lambda</strong> para processar requisições. Testar a API.</td>
-</tr>
-<tr>
-<td><strong>13</strong></td>
-<td><strong>Bancos de Dados Gerenciados na AWS</strong></td>
-<td>Aprofundamento no <strong>Amazon RDS</strong> (Relational Database Service) para bancos relacionais (PostgreSQL, MySQL). Como conectar uma aplicação Django ao RDS.</td>
-<td><strong>Laboratório:</strong> Provisionar uma instância <strong>Amazon RDS</strong> (PostgreSQL) e configurar uma aplicação Django local para se conectar a ela.</td>
-</tr>
-<tr>
-<td><strong>14</strong></td>
-<td><strong>Deploy de Aplicações Django na AWS</strong></td>
-<td>Estratégias de deploy. Opção 1 (Gerenciada): <strong>AWS Elastic Beanstalk</strong> para Django. Opção 2 (Manual): Configuração de um servidor web (Nginx + Gunicorn) em uma instância <strong>EC2</strong>.</td>
-<td><strong>Laboratório:</strong> Realizar o deploy da API Django desenvolvida nas semanas 9-10 no <strong>AWS Elastic Beanstalk</strong>.</td>
-</tr>
-<tr>
-<td><strong>15</strong></td>
-<td><strong>Serviços Analíticos AWS</strong></td>
-<td><strong>Amazon Athena:</strong> Consultas SQL interativas diretamente em dados armazenados no <strong>S3</strong>. <strong>AWS Glue:</strong> Catálogo de dados e jobs de ETL (Extract, Transform, Load) serverless.</td>
-<td><strong>Laboratório:</strong> Usar o <strong>Amazon Athena</strong> para consultar um arquivo CSV ou JSON armazenado em um bucket <strong>S3</strong>, sem precisar de um banco de dados tradicional.</td>
-</tr>
-<tr>
-<td><strong>16</strong></td>
-<td><strong>Orientação para o Projeto Final</strong></td>
-<td>Definição dos grupos e escopo do projeto final: <strong>Implementação de uma solução completa</strong>. Exemplo: Uma API Django que coleta dados, armazena no S3/RDS, processa com Lambda/Glue e disponibiliza resultados via API Gateway, com todo o deploy na AWS.</td>
-<td>Discussão de ideias e definição dos requisitos do projeto com os grupos.</td>
-</tr>
-<tr>
-<td><strong>17</strong></td>
-<td><strong>Acompanhamento de Projetos</strong></td>
-<td>Sessão de mentoria e acompanhamento do desenvolvimento dos projetos finais. Esclarecimento de dúvidas técnicas sobre Django, DRF e serviços AWS.</td>
-<td>Desenvolvimento do projeto.</td>
-</tr>
-<tr>
-<td><strong>18</strong></td>
-<td><strong>Entrega e Apresentação de Projetos</strong></td>
-<td>Apresentação e defesa dos projetos finais pelos grupos. Demonstração da solução implementada na <strong>AWS</strong>.</td>
-<td><strong>Avaliação de Projeto</strong></td>
-</tr>
-<tr>
-<td><strong>19</strong></td>
-<td><strong>AVALIAÇÃO 2 (P2)</strong></td>
-<td>Prova abordando os conteúdos das semanas 9 a 15, com foco no desenvolvimento de API com Django e serviços AWS.</td>
-<td><strong>Avaliação Individual</strong></td>
-</tr>
-<tr>
-<td><strong>20</strong></td>
-<td><strong>AVALIAÇÃO SUPLEMENTAR (SUB)</strong></td>
-<td>Prova abrangendo todo o conteúdo do semestre para alunos que não atingiram a média.</td>
-<td><strong>Avaliação Individual (Recuperação)</strong></td>
-</tr>
-</tbody>
-</table>
-<h3 id="5-procedimentos-metodologicos"><strong>5. PROCEDIMENTOS METODOLÓGICOS</strong><a class="headerlink" href="#5-procedimentos-metodologicos" title="Permanent link">&para;</a></h3>
-<p>A disciplina adotará uma abordagem <strong>teórico-prática</strong>, com forte ênfase em atividades de laboratório e desenvolvimento de projetos. As aulas serão expositivas-dialogadas para introdução dos conceitos, seguidas de atividades práticas em laboratório de informática, onde os alunos poderão aplicar os conceitos utilizando a <strong>AWS</strong>.</p>
-<p><strong>Recursos:</strong>
-- Laboratório de informática com acesso à internet.
-- Contas de estudante no programa <strong>AWS Educate</strong>.
-- Softwares: Python, Django, DRF, Postman/Insomnia, Git, AWS CLI.
-- Ambiente Virtual de Aprendizagem (AVA) para disponibilização de materiais, entregas de trabalhos e fóruns.</p>
-<h3 id="6-avaliacao-da-aprendizagem"><strong>6. AVALIAÇÃO DA APRENDIZAGEM</strong><a class="headerlink" href="#6-avaliacao-da-aprendizagem" title="Permanent link">&para;</a></h3>
-<p>A avaliação será contínua e processual, composta por três notas principais, conforme o calendário acadêmico:</p>
-<ul>
-<li>
-<p><strong>Avaliação 1 (P1) - Peso:</strong> [Inserir peso, ex: 30%]</p>
-<ul>
-<li>Prova individual teórico-prática sobre os fundamentos de Cloud e Big Data.</li>
-</ul>
-</li>
-<li>
-<p><strong>Avaliação 2 (P2) - Peso:</strong> [Inserir peso, ex: 40%]</p>
-<ul>
-<li>Projeto prático em grupo (desenvolvimento e apresentação) e/ou prova individual sobre desenvolvimento de API com Django e serviços AWS.</li>
-</ul>
-</li>
-<li>
-<p><strong>Trabalhos e Atividades Práticas (T) - Peso:</strong> [Inserir peso, ex: 30%]</p>
-<ul>
-<li>Entrega de atividades e relatórios dos laboratórios realizados ao longo do semestre.</li>
-</ul>
+<li><strong>Por que acontece:</strong> O usuário padrão do sistema (<code>ubuntu</code> ou <code>ec2-user</code>) não tem permissões administrativas para se comunicar diretamente com o serviço do Docker por padrão.</li>
+<li><strong>Como resolver:</strong><ol>
+<li>Adicione o seu usuário ao grupo do Docker:</li>
+<li>No <strong>Ubuntu</strong>: <code>sudo usermod -aG docker ubuntu</code></li>
+<li>No <strong>Amazon Linux 2023</strong>: <code>sudo usermod -aG docker ec2-user</code></li>
+<li>Execute o comando abaixo para recarregar as configurações de grupo no terminal sem precisar fechar a sessão atual:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>newgrp<span class="w"> </span>docker
+</span></code></pre></div>
+   <em>(Se preferir, você também pode simplesmente fechar o terminal SSH e conectar-se novamente).</em></li>
+</ol>
 </li>
 </ul>
-<p><strong>Média Final = (P1 * PesoP1) + (P2 * PesoP2) + (T * PesoT)</strong></p>
+<h4 id="problema-2-a-pagina-nao-carrega-no-navegador-tempo-limite-esgotado-timeout">Problema 2: A página não carrega no navegador (Tempo limite esgotado / Timeout)<a class="headerlink" href="#problema-2-a-pagina-nao-carrega-no-navegador-tempo-limite-esgotado-timeout" title="Permanent link">&para;</a></h4>
 <ul>
-<li><strong>Avaliação Suplementar (SUB):</strong> Prova individual abrangendo todo o conteúdo do semestre para os alunos que não alcançarem a média final para aprovação (geralmente 6,0). A nota da SUB substituirá a menor nota entre P1 e P2 para o recálculo da média final.</li>
-</ul>
-<h3 id="7-bibliografia"><strong>7. BIBLIOGRAFIA</strong><a class="headerlink" href="#7-bibliografia" title="Permanent link">&para;</a></h3>
-<h4 id="bibliografia-basica"><strong>Bibliografia Básica:</strong><a class="headerlink" href="#bibliografia-basica" title="Permanent link">&para;</a></h4>
-<ul>
-<li><strong>SANTOS, R.R.</strong> Fundamentos de Big Data. Porto Alegre: Sagah Educação, 2021.</li>
-<li><strong>PEREIRA, M.A.</strong> Framework de Big Data. Porto Alegre: Sagah Educação, 2019.</li>
-<li><strong>SILVA, A.; TANURE, A.; FREITAS, A.; MUNIZ, A.</strong> Jornada Cloud Native: do zero ao avançado somando conceitos e práticas. Rio de Janeiro: Brasport, 2023. (Abrange conceitos aplicáveis à AWS)</li>
-</ul>
-<h4 id="bibliografia-complementar"><strong>Bibliografia Complementar:</strong><a class="headerlink" href="#bibliografia-complementar" title="Permanent link">&para;</a></h4>
-<ul>
-<li><strong>WITTIG, Andreas; WITTIG, Michael.</strong> Amazon Web Services in Action. Manning Publications, 2018. (Leitura essencial para aprofundamento na AWS).</li>
-<li><strong>LACERDA, P.S.P.</strong> Programação em Big Data com R. Porto Alegre: Sagah Educação, 2021.</li>
-<li><strong>GOMES, E.</strong> Inteligência Competitiva em Tempos de Big Data. Rio de Janeiro: Alta Books, 2017.</li>
-<li><strong>FREEMAN, E.</strong> DevOps para Leigos. Rio de Janeiro: Alta Books, 2021.</li>
-<li><strong>DATE, C.</strong> Introdução a Sistemas de Banco de Dados. Rio de Janeiro: GEN LTC, 2004. (Para fundamentos de BD, base para os modelos NoSQL).</li>
-<li><strong>Documentação Oficial do Django e Django REST Framework.</strong> (disponível online)</li>
+<li><strong>Por que acontece:</strong> Normalmente, o tráfego HTTP é bloqueado pelo firewall da AWS (Security Group) ou você pode estar tentando acessar a máquina usando um endereço IP incorreto.</li>
+<li><strong>Como resolver:</strong><ol>
+<li><strong>Pegue o IP público correto:</strong> Com o terminal aberto no seu EC2, execute o comando abaixo para consultar o IP externo real da sua máquina:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>icanhazip.com
+</span></code></pre></div></li>
+<li><strong>Libere o tráfego de entrada:</strong> No console web da AWS, acesse a aba <strong>Segurança (Security)</strong> da sua instância EC2, clique para editar as <strong>Regras de Entrada (Inbound Rules)</strong> de seu Security Group e adicione uma regra permitindo tráfego <strong>HTTP na porta 80</strong> vindo de qualquer lugar (<code>0.0.0.0/0</code>).</li>
+</ol>
+</li>
 </ul>
 
 
@@ -1338,10 +1327,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

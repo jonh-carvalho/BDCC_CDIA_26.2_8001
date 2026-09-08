@@ -14,7 +14,7 @@
         <link rel="prev" href="../03%20-%20linux/">
       
       
-        <link rel="next" href="../05%20-%20nginxsite/">
+        <link rel="next" href="../06%20-%20docker/">
       
       
         
@@ -508,6 +508,8 @@
       
         
       
+        
+      
     
     
     
@@ -620,8 +622,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -664,8 +664,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -674,6 +672,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#provisionando-sua-primeira-instancia-ec2-e-conectando-via-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provisionando sua Primeira Instância EC2 e Conectando via SSH
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Provisionando sua Primeira Instância EC2 e Conectando via SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#parte-1-conceitos-fundamentais-entendendo-o-que-vamos-fazer" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -683,8 +693,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#parte-2-mao-na-massa-provisionando-a-instancia-ec2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -694,8 +704,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#parte-3-conectando-se-a-instancia-via-ssh" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -705,8 +715,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#cenario-a-conectando-do-windows-usando-putty" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -716,8 +726,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#cenario-b-conectando-do-macos-ou-linux-usando-terminal" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -727,8 +737,36 @@
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#cenario-d-conectando-via-senha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cenário D: Conectando via senha
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#como-configurar-o-ssh-para-permitir-autenticacao-por-senha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como configurar o SSH para permitir autenticação por senha:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Como configurar o SSH para permitir autenticação por senha:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#parte-4-explorando-e-finalizando" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -738,8 +776,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#resumo-e-checklist-de-boas-praticas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -749,11 +787,44 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06%20-%20docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 - Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1165,14 +1236,14 @@
   
 
 
-<h1 id="provisionando-sua-primeira-instancia-ec2-e-conectando-via-ssh">Provisionando sua Primeira Instância EC2 e Conectando via SSH<a class="headerlink" href="#provisionando-sua-primeira-instancia-ec2-e-conectando-via-ssh" title="Permanent link">&para;</a></h1>
+<h3 id="provisionando-sua-primeira-instancia-ec2-e-conectando-via-ssh">Provisionando sua Primeira Instância EC2 e Conectando via SSH<a class="headerlink" href="#provisionando-sua-primeira-instancia-ec2-e-conectando-via-ssh" title="Permanent link">&para;</a></h3>
 <p><strong>Objetivo:</strong> Ao final deste roteiro, o aluno terá provisionado (criado) sua primeira máquina virtual na AWS (uma instância EC2), configurado as regras de firewall para permitir acesso, e se conectado a ela de forma segura utilizando SSH, tanto no Windows quanto no macOS/Linux.</p>
 <p><strong>Pré-requisitos:</strong></p>
 <ul>
 <li>Conta no <strong>AWS</strong> ativa e aprovada.</li>
 <li>Navegador web para acessar o Console AWS.</li>
+<li>Para usuários macOS/Linux/windows(vscode): o terminal já possui cliente SSH nativo.</li>
 <li>Para usuários Windows: software <strong>PuTTY</strong> instalado. (Recomendamos baixar o instalador completo em <a href="https://www.putty.org/">putty.org</a>).</li>
-<li>Para usuários macOS/Linux: o terminal já possui cliente SSH nativo.</li>
 </ul>
 <h4 id="parte-1-conceitos-fundamentais-entendendo-o-que-vamos-fazer"><strong>Parte 1:</strong> Conceitos Fundamentais (Entendendo o que vamos fazer)<a class="headerlink" href="#parte-1-conceitos-fundamentais-entendendo-o-que-vamos-fazer" title="Permanent link">&para;</a></h4>
 <p>Antes de colocar a mão no código, é crucial entender os componentes com os quais vamos interagir .</p>
@@ -1210,7 +1281,7 @@
 <ol>
 <li>No campo "Par de chaves", clique no menu suspenso e selecione <strong>"Criar novo par de chaves"</strong> .</li>
 <li>Dê a ele um nome, como <code>"Minha-Chave-EC2"</code>.</li>
-<li>Mantenha o <strong>"Tipo de par de chaves"</strong> como <strong>RSA</strong> e o <strong>"Formato de arquivo de chave privada"</strong> como <strong><code>.pem</code></strong> (para usuários de Mac/Linux) ou <strong><code>.ppk</code></strong> (se você for usar o PuTTY no Windows).</li>
+<li>Mantenha o <strong>"Tipo de par de chaves"</strong> como <strong>RSA</strong> e o <strong>"Formato de arquivo de chave privada"</strong> como <strong><code>.pem</code></strong> (para usuários de Mac/Linux/windows(VsCode)) ou <strong><code>.ppk</code></strong> (se você for usar o PuTTY no Windows).</li>
 <li>Clique em <strong>"Criar par de chaves"</strong> .</li>
 <li><strong>IMPORTANTE:</strong> O arquivo da chave privada será baixado automaticamente para o seu computador. <strong>Guarde-o em uma pasta segura (ex: uma pasta chamada "aws-keys" dentro do seu diretório "Documentos") e não o perca.</strong> Esta é a única chance de baixar este arquivo .</li>
 </ol>
@@ -1245,8 +1316,41 @@
 <ol>
 <li>Você verá uma mensagem de sucesso. Clique no botão <strong>"Visualizar todas as instâncias"</strong> para voltar à lista de instâncias.</li>
 <li>Sua nova instância aparecerá na lista. Inicialmente, o "Status da instância" será <code>pending</code>. Aguarde um ou dois minutos até que o status mude para <strong><code>running</code></strong>.</li>
-<li>Selecione a instância (clicando no checkbox). No painel inferior, você verá os detalhes. Procure o campo <strong>"Endereço IPv4 público"</strong> . Copie este endereço IP, pois você precisará dele para se conectar via SSH .</li>
+<li>Selecione a instância (clicando no checkbox). No painel inferior, você verá os detalhes. Procure o campo <strong>"Endereço IPv4 público"</strong> . Copie este endereço IP, pois você precisará dele para se conectar via SSH.</li>
 </ol>
+<p><strong>Passo 6:</strong> Conecte-se à Instância no próprio console 
+1.  Com a instância selecionada, clique no botão <strong>"Connect"</strong> no topo da página.
+2. Escolha EC2 Instance Connect (browser-based SSH connection) e clique em <strong>"Connect"</strong>. Uma nova janela de terminal será aberta no navegador, conectando você à instância sem precisar de software adicional.
+3. Clique em <strong>"Connect"</strong>.
+4. Testar o usuário que você está, digitando o comando <code>whoami</code> no terminal. O retorno deve ser <code>ec2-user</code>, confirmando que você está logado na instância. Testar se o openssh-server está instalado, digitando o comando <code>sudo yum install openssh-server</code> no terminal. </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># teste se o openssh-server está instalado</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>openssh-server
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># teste se o serviço está rodando</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>sshd
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># iniciar o serviço caso não esteja rodando</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>sshd
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># habilitar o serviço para iniciar automaticamente no boot</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>sshd
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># reiniciar o serviço para aplicar mudanças</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>sshd
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># verificar se a porta 22 está aberta e escutando</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>sudo<span class="w"> </span>netstat<span class="w"> </span>-tuln<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:22
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># verificar se o firewall está permitindo conexões na porta 22</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--list-all
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># caso o firewall esteja ativo, permitir a porta 22</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">22</span>/tcp
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="c1"># parar o sshd</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>sshd
+</span></code></pre></div>
 <h4 id="parte-3-conectando-se-a-instancia-via-ssh"><strong>Parte 3:</strong> Conectando-se à Instância via SSH<a class="headerlink" href="#parte-3-conectando-se-a-instancia-via-ssh" title="Permanent link">&para;</a></h4>
 <p>Agora que a instância está rodando e temos o IP público, vamos nos conectar a ela usando a chave privada.</p>
 <h4 id="cenario-a-conectando-do-windows-usando-putty"><strong>Cenário A: Conectando do Windows (usando PuTTY)</strong><a class="headerlink" href="#cenario-a-conectando-do-windows-usando-putty" title="Permanent link">&para;</a></h4>
@@ -1283,13 +1387,13 @@
 <li>Navegue até a pasta onde você salvou o arquivo <code>.pem</code> usando o comando <code>cd</code>. Por exemplo: <code>cd ~/Documentos/aws-keys/</code></li>
 <li>As chaves SSH precisam ter permissões restritas para serem aceitas. Execute o seguinte comando para garantir isso:</li>
 </ol>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span>chmod<span class="w"> </span><span class="m">400</span><span class="w"> </span>Minha-Chave-EC2.pem
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span>chmod<span class="w"> </span><span class="m">400</span><span class="w"> </span>Minha-Chave-EC2.pem
 </span></code></pre></div>
 (Substitua <code>Minha-Chave-EC2.pem</code> pelo nome do seu arquivo) .</p>
 <p><strong>Passo 2:</strong> Conectar via SSH</p>
 <ol>
 <li>No mesmo terminal, execute o comando de conexão SSH:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;Minha-Chave-EC2.pem&quot;</span><span class="w"> </span>ec2-user@&lt;Endereço-IPv4-Público&gt;
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;Minha-Chave-EC2.pem&quot;</span><span class="w"> </span>ec2-user@&lt;Endereço-IPv4-Público&gt;
 </span></code></pre></div>
     (Substitua o nome do arquivo e o IP pelos seus)</li>
 <li>Na primeira conexão, você verá uma mensagem perguntando se deseja continuar conectando, pois a autenticidade do host não pode ser estabelecida. Digite <strong><code>yes</code></strong> e pressione Enter .</li>
@@ -1310,10 +1414,10 @@
 <li>Escolha ou crie o arquivo de configuração SSH (geralmente em <code>~/.ssh/config</code>).</li>
 <li>Adicione as seguintes linhas ao arquivo:</li>
 </ol>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    Host meu-ec2
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>        HostName &lt;Endereço-IPv4-Público&gt;
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        User ec2-user
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        IdentityFile &lt;Caminho-para-sua-chave&gt;.pem
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>    Host meu-ec2
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>        HostName &lt;Endereço-IPv4-Público&gt;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        User ec2-user
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        IdentityFile &lt;Caminho-para-sua-chave&gt;.pem
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code>Substitua `&lt;Endereço-IPv4-Público&gt;` pelo IP da sua instância e `&lt;Caminho-para-sua-chave&gt;` pelo caminho completo do arquivo `.pem`.
 </code></pre></div>
@@ -1329,6 +1433,37 @@
 <li>Agora você pode explorar os arquivos, editar código e executar comandos no terminal integrado do VS Code, tudo conectado à sua instância EC2!</li>
 </ol>
 <p><strong>Dica:</strong> Você pode abrir o terminal integrado (Ctrl+`) para executar comandos Linux diretamente na instância.</p>
+<h4 id="cenario-d-conectando-via-senha"><strong>Cenário D:</strong> Conectando via senha<a class="headerlink" href="#cenario-d-conectando-via-senha" title="Permanent link">&para;</a></h4>
+<p>Para conectar via senha, você precisará ter a senha da instância EC2. Isso é menos seguro e não é recomendado em ambientes de produção.</p>
+<p>Recomenda-se sempre usar o método de chave pública/privada para autenticação SSH, pois é mais seguro e evita ataques de força bruta.</p>
+<p>No config do SSH, você pode habilitar a autenticação por senha, mas isso deve ser feito com cautela e apenas em ambientes de teste.</p>
+<h1 id="como-configurar-o-ssh-para-permitir-autenticacao-por-senha">Como configurar o SSH para permitir autenticação por senha:<a class="headerlink" href="#como-configurar-o-ssh-para-permitir-autenticacao-por-senha" title="Permanent link">&para;</a></h1>
+<ol>
+<li>
+<p>Conecte-se à instância via console:</p>
+<ul>
+<li>Acesse o AWS Management Console.</li>
+<li>Vá para a seção "EC2".</li>
+<li>Selecione a instância desejada.</li>
+<li>Clique em "Conectar" e siga as instruções para obter a senha.</li>
+</ul>
+</li>
+<li>
+<p>Edite o arquivo de configuração do SSH:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
+</span></code></pre></div></p>
+</li>
+<li>Descomente ou adicione a linha:
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>PasswordAuthentication yes
+</span></code></pre></div></li>
+<li>Reinicie o serviço SSH:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Ubuntu</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>ssh
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Amazon Linux</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>sudo<span class="w"> </span>service<span class="w"> </span>sshd<span class="w"> </span>restart
+</span></code></pre></div></li>
+</ol>
 <h3 id="parte-4-explorando-e-finalizando"><strong>Parte 4:</strong> Explorando e Finalizando<a class="headerlink" href="#parte-4-explorando-e-finalizando" title="Permanent link">&para;</a></h3>
 <p><strong>O que fazer depois de conectar:</strong></p>
 <ul>
