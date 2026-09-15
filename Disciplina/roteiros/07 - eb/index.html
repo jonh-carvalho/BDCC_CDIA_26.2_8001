@@ -55,6 +55,10 @@
     
       <link rel="stylesheet" href="../../../css/extra.css">
     
+      <link rel="stylesheet" href="../../../assets/mkdocs_puml/puml.css">
+    
+      <link rel="stylesheet" href="../../../assets/mkdocs_puml/interaction.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deploy-de-api-django-rest-no-aws-elastic-beanstalk" class="md-skip">
+        <a href="#parte-0-configuracao-do-ambiente-local" class="md-skip">
           Skip to content
         </a>
       
@@ -740,8 +744,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -750,7 +752,7 @@
   <span class="md-ellipsis">
     
   
-    07 - BE
+    07 - Beanstalk
   
 
     
@@ -768,7 +770,7 @@
   <span class="md-ellipsis">
     
   
-    07 - BE
+    07 - Beanstalk
   
 
     
@@ -784,8 +786,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -797,12 +797,12 @@
   <a href="#parte-0-configuracao-do-ambiente-local" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🛠️ Parte 0: Configuração do Ambiente Local
+        Parte 0: Configuração do Ambiente Local
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ Parte 0: Configuração do Ambiente Local">
+    <nav class="md-nav" aria-label="Parte 0: Configuração do Ambiente Local">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -902,12 +902,12 @@
   <a href="#parte-1-estrutura-do-projeto-e-codigo-fonte" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📋 Parte 1: Estrutura do Projeto e Código-Fonte
+        Parte 1: Estrutura do Projeto e Código-Fonte
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📋 Parte 1: Estrutura do Projeto e Código-Fonte">
+    <nav class="md-nav" aria-label="Parte 1: Estrutura do Projeto e Código-Fonte">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -963,12 +963,12 @@
   <a href="#parte-2-arquivos-de-configuracao-do-elastic-beanstalk" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📦 Parte 2: Arquivos de Configuração do Elastic Beanstalk
+        Parte 2: Arquivos de Configuração do Elastic Beanstalk
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📦 Parte 2: Arquivos de Configuração do Elastic Beanstalk">
+    <nav class="md-nav" aria-label="Parte 2: Arquivos de Configuração do Elastic Beanstalk">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1013,7 +1013,7 @@
   <a href="#parte-3-teste-local-completo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧪 Parte 3: Teste Local Completo
+        Parte 3: Teste Local Completo
       
     </span>
   </a>
@@ -1024,12 +1024,12 @@
   <a href="#parte-4-deploy-no-aws-elastic-beanstalk" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ☁️ Parte 4: Deploy no AWS Elastic Beanstalk
+        Parte 4: Deploy no AWS Elastic Beanstalk
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="☁️ Parte 4: Deploy no AWS Elastic Beanstalk">
+    <nav class="md-nav" aria-label="Parte 4: Deploy no AWS Elastic Beanstalk">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1085,7 +1085,7 @@
   <a href="#parte-5-caminho-para-migracoes-futuras" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔄 Parte 5: Caminho para Migrações Futuras
+        Parte 5: Caminho para Migrações Futuras
       
     </span>
   </a>
@@ -1096,7 +1096,7 @@
   <a href="#checklist-final-de-deploy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ✅ Checklist Final de Deploy
+        Checklist Final de Deploy
       
     </span>
   </a>
@@ -1490,13 +1490,14 @@
   
 
 
-<h1 id="deploy-de-api-django-rest-no-aws-elastic-beanstalk">Deploy de API Django REST no AWS Elastic Beanstalk<a class="headerlink" href="#deploy-de-api-django-rest-no-aws-elastic-beanstalk" title="Permanent link">&para;</a></h1>
+  <h1>07 - Beanstalk</h1>
+
 <div class="admonition info">
 <p class="admonition-title">Objetivo do Roteiro</p>
 <p>Este roteiro orienta a criação de um <strong>projeto Django REST inicial com SQLite</strong>, configurado especificamente para rodar com alta estabilidade no <strong>AWS Elastic Beanstalk (plataforma Python 3.12)</strong>. A arquitetura foi desenhada de forma desacoplada para facilitar migrações futuras para <strong>Amazon RDS (PostgreSQL/MySQL)</strong> e <strong>Amazon S3 (mídia/arquivos estáticos)</strong>.</p>
 </div>
 <hr />
-<h2 id="parte-0-configuracao-do-ambiente-local">🛠️ Parte 0: Configuração do Ambiente Local<a class="headerlink" href="#parte-0-configuracao-do-ambiente-local" title="Permanent link">&para;</a></h2>
+<h2 id="parte-0-configuracao-do-ambiente-local">Parte 0: Configuração do Ambiente Local<a class="headerlink" href="#parte-0-configuracao-do-ambiente-local" title="Permanent link">&para;</a></h2>
 <h3 id="passo-1-instalar-python-312">Passo 1: Instalar Python 3.12+<a class="headerlink" href="#passo-1-instalar-python-312" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Certifique-se de ter o <strong>Python 3.12 ou superior</strong> instalado.</li>
@@ -1559,7 +1560,7 @@
 </ul>
 </div>
 <hr />
-<h2 id="parte-1-estrutura-do-projeto-e-codigo-fonte">📋 Parte 1: Estrutura do Projeto e Código-Fonte<a class="headerlink" href="#parte-1-estrutura-do-projeto-e-codigo-fonte" title="Permanent link">&para;</a></h2>
+<h2 id="parte-1-estrutura-do-projeto-e-codigo-fonte">Parte 1: Estrutura do Projeto e Código-Fonte<a class="headerlink" href="#parte-1-estrutura-do-projeto-e-codigo-fonte" title="Permanent link">&para;</a></h2>
 <h3 id="passo-1-estrutura-de-diretorios-recomendada">Passo 1: Estrutura de Diretórios Recomendada<a class="headerlink" href="#passo-1-estrutura-de-diretorios-recomendada" title="Permanent link">&para;</a></h3>
 <p>Organize a raiz do seu projeto conforme a árvore abaixo para garantir compatibilidade com o Elastic Beanstalk:</p>
 <div class="language-text highlight"><span class="filename">Estrutura de Pastas do Projeto</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>catalogo-produtos/
@@ -1691,7 +1692,7 @@
 </span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">static</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">document_root</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
-<h2 id="parte-2-arquivos-de-configuracao-do-elastic-beanstalk">📦 Parte 2: Arquivos de Configuração do Elastic Beanstalk<a class="headerlink" href="#parte-2-arquivos-de-configuracao-do-elastic-beanstalk" title="Permanent link">&para;</a></h2>
+<h2 id="parte-2-arquivos-de-configuracao-do-elastic-beanstalk">Parte 2: Arquivos de Configuração do Elastic Beanstalk<a class="headerlink" href="#parte-2-arquivos-de-configuracao-do-elastic-beanstalk" title="Permanent link">&para;</a></h2>
 <h3 id="passo-1-arquivos-ebextensions-e-procfile">Passo 1: Arquivos <code>.ebextensions</code> e <code>Procfile</code><a class="headerlink" href="#passo-1-arquivos-ebextensions-e-procfile" title="Permanent link">&para;</a></h3>
 <p>Crie o diretório <code>.ebextensions/</code> na raiz do projeto e adicione os seguintes arquivos:</p>
 <div class="language-yaml highlight"><span class="filename">.ebextensions/detection.config</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Garante a detecção correta da plataforma Python</span>
@@ -1768,7 +1769,7 @@
 </ul>
 </div>
 <hr />
-<h2 id="parte-3-teste-local-completo">🧪 Parte 3: Teste Local Completo<a class="headerlink" href="#parte-3-teste-local-completo" title="Permanent link">&para;</a></h2>
+<h2 id="parte-3-teste-local-completo">Parte 3: Teste Local Completo<a class="headerlink" href="#parte-3-teste-local-completo" title="Permanent link">&para;</a></h2>
 <p>Antes de realizar o empacotamento para a AWS, valide o funcionamento local completo:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Linux / macOS</label><label for="__tabbed_2_2">Windows (PowerShell)</label></div>
 <div class="tabbed-content">
@@ -1809,7 +1810,7 @@
 </ol>
 </div>
 <hr />
-<h2 id="parte-4-deploy-no-aws-elastic-beanstalk">☁️ Parte 4: Deploy no AWS Elastic Beanstalk<a class="headerlink" href="#parte-4-deploy-no-aws-elastic-beanstalk" title="Permanent link">&para;</a></h2>
+<h2 id="parte-4-deploy-no-aws-elastic-beanstalk">Parte 4: Deploy no AWS Elastic Beanstalk<a class="headerlink" href="#parte-4-deploy-no-aws-elastic-beanstalk" title="Permanent link">&para;</a></h2>
 <h3 id="passo-0-permissoes-iam-para-deploy">Passo 0: Permissões IAM para Deploy<a class="headerlink" href="#passo-0-permissoes-iam-para-deploy" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Acesse o <strong>AWS IAM Console</strong> $\to$ <strong>Users</strong>.</li>
@@ -1861,14 +1862,29 @@
 <li>Clique no <strong>Domain</strong> (link do ambiente) para testar a aplicação em produção.</li>
 </ol>
 <hr />
-<h2 id="parte-5-caminho-para-migracoes-futuras">🔄 Parte 5: Caminho para Migrações Futuras<a class="headerlink" href="#parte-5-caminho-para-migracoes-futuras" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>graph LR
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    A[Etapa 1: SQLite + EB Local Storage] --&gt;|Desacoplamento de Dados| B[Etapa 2: Migração para Amazon RDS]
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    B --&gt;|Desacoplamento de Mídia| C[Etapa 3: Migração para Amazon S3]
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    style A fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    style B fill:#fff8e1,stroke:#ff9800,stroke-width:2px
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    style C fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
+<h2 id="parte-5-caminho-para-migracoes-futuras">Parte 5: Caminho para Migrações Futuras<a class="headerlink" href="#parte-5-caminho-para-migracoes-futuras" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><span class="filename">Fluxo de Migração da Arquitetura</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>@startuml
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>skinparam backgroundColor transparent
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>skinparam defaultFontName Roboto
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>skinparam ArrowColor #193257
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>skinparam ArrowThickness 2
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>skinparam RoundCorner 8
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>skinparam rectangle {
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    BackgroundColor #F8F9FA
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>    BorderColor #193257
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>    BorderThickness 1.5
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>}
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>left to right direction
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>rectangle &quot;Etapa 1\n&lt;b&gt;SQLite + EB Local&lt;/b&gt;\n(Desenvolvimento e Teste)&quot; as E1 #E8F5E9
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>rectangle &quot;Etapa 2\n&lt;b&gt;Amazon RDS&lt;/b&gt;\n(Desacoplamento de Dados)&quot; as E2 #FFF8E1
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>rectangle &quot;Etapa 3\n&lt;b&gt;Amazon S3&lt;/b&gt;\n(Desacoplamento de Mídia)&quot; as E3 #E1F5FE
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>E1 -right-&gt; E2 : Migração de Banco\n(PostgreSQL / MySQL)
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>E2 -right-&gt; E3 : Migração de Mídia\n(Uploads / Static)
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>@enduml
 </span></code></pre></div>
 <details class="note" open="open">
 <summary>Guia de Migração: Amazon RDS (PostgreSQL / MySQL)</summary>
@@ -1916,7 +1932,7 @@
 </ol>
 </details>
 <hr />
-<h2 id="checklist-final-de-deploy">✅ Checklist Final de Deploy<a class="headerlink" href="#checklist-final-de-deploy" title="Permanent link">&para;</a></h2>
+<h2 id="checklist-final-de-deploy">Checklist Final de Deploy<a class="headerlink" href="#checklist-final-de-deploy" title="Permanent link">&para;</a></h2>
 <p>Antes de iniciar a criação do ambiente no Elastic Beanstalk, valide cada um dos itens abaixo:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>1. Plataforma</strong>: Selecionada explicitamente como <strong>Python 3.12</strong>.</li>
@@ -1998,6 +2014,12 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/mkdocs_puml/puml.js"></script>
+      
+        <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      
+        <script src="../../../assets/mkdocs_puml/interaction.js"></script>
       
     
   </body>
