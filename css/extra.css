@@ -6,6 +6,10 @@
   --md-primary-bg-color: #fab90a;
 }
 
+.md-header__topic[data-md-component="header-topic"] {
+  display: none;
+}
+
 .md-typeset table td {
   font-size: 1.2em;
 }
@@ -33,7 +37,10 @@ hr {
 
 /* Layout moderno apenas para a Home (index.md) */
 .bdcc-hero {
-  padding: 56px 16px 24px;
+  padding: 56px 16px 48px;
+  background:
+    linear-gradient(120deg, rgba(250, 185, 10, 0.13), transparent 45%),
+    repeating-linear-gradient(90deg, rgba(25, 50, 87, 0.035) 0 1px, transparent 1px 28px);
 }
 
 .bdcc-hero__content {
@@ -71,7 +78,7 @@ hr {
   font-size: clamp(2rem, 4vw, 3.25rem);
   line-height: 1.05;
   color: #193257;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   font-weight: 800;
 }
 
@@ -95,12 +102,11 @@ hr {
 }
 
 .bdcc-card {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(25, 50, 87, 0.14);
-  border-radius: 16px;
-  padding: 18px 18px;
-  box-shadow: 0 14px 40px rgba(25, 50, 87, 0.08);
-  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 10px 24px rgba(25, 50, 87, 0.08);
 }
 
 .bdcc-card--accent {
@@ -112,15 +118,16 @@ hr {
 }
 
 .bdcc-card__title {
-  margin: 0 0 12px;
-  font-size: 1.05rem;
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  line-height: 1.2;
   color: #193257;
   font-weight: 800;
 }
 
 .bdcc-list {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .bdcc-list__item {
@@ -134,10 +141,11 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 10px;
-  border-radius: 999px;
+  padding: 6px 9px;
+  border-radius: 4px;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
+  line-height: 1.2;
   border: 1px solid rgba(25, 50, 87, 0.18);
   background: rgba(25, 50, 87, 0.06);
   color: #193257;
@@ -150,15 +158,17 @@ hr {
 
 .bdcc-list__value {
   color: rgba(25, 50, 87, 0.95);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .bdcc-note {
   margin: 0;
-  color: rgba(25, 50, 87, 0.92);
-  font-size: 1rem;
-  font-weight: 600;
+  color: rgba(25, 50, 87, 0.88);
+  font-size: 1.08rem;
+  font-weight: 500;
+  line-height: 1.55;
 }
 
 .bdcc-accent-line {
@@ -167,4 +177,74 @@ hr {
   width: 100%;
   background: linear-gradient(90deg, #fab90a, rgba(250, 185, 10, 0));
   border-radius: 999px;
+}
+
+.bdcc-section {
+  margin-top: 44px;
+}
+
+.bdcc-section__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.bdcc-eyebrow {
+  margin: 0 0 4px;
+  color: #8a6100;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bdcc-section h2 {
+  margin: 0;
+  color: #193257;
+  font-size: 1.4rem;
+}
+
+.bdcc-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.bdcc-action {
+  display: grid;
+  gap: 8px;
+  min-height: 126px;
+  padding: 18px;
+  color: #193257;
+  background: #fff;
+  border: 1px solid rgba(25, 50, 87, 0.18);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.bdcc-action:hover {
+  color: #193257;
+  border-color: #fab90a;
+  box-shadow: 0 8px 20px rgba(25, 50, 87, 0.12);
+  transform: translateY(-2px);
+}
+
+.bdcc-action__label {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.bdcc-action__description {
+  color: rgba(25, 50, 87, 0.78);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 860px) {
+  .bdcc-actions {
+    grid-template-columns: 1fr;
+  }
 }
