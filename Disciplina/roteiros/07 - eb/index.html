@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Criação e deploy de uma API Django REST no AWS Elastic Beanstalk com arquitetura pronta para migração">
+      
       
         <meta name="author" content="Jonh Carvalho">
       
@@ -25,7 +27,7 @@
     
     
       
-        <title>07 - BE - BDCC_CDIA_26.2_8001</title>
+        <title>Elastic Beanstalk (Django REST) - BDCC_CDIA_26.2_8001</title>
       
     
     
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#app-django-rest-inicial-com-sqlite-base-para-migracao-futura-para-rds-e-s3" class="md-skip">
+        <a href="#deploy-de-api-django-rest-no-aws-elastic-beanstalk" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              07 - BE
+              Elastic Beanstalk (Django REST)
             
           </span>
         </div>
@@ -738,6 +740,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -780,6 +784,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -788,26 +794,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#app-django-rest-inicial-com-sqlite-base-para-migracao-futura-para-rds-e-s3" class="md-nav__link">
+  <a href="#parte-0-configuracao-do-ambiente-local" class="md-nav__link">
     <span class="md-ellipsis">
       
-        App Django REST Inicial com SQLite (Base para Migração Futura para RDS e S3)
+        🛠️ Parte 0: Configuração do Ambiente Local
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parte-0-configuracao-do-ambiente-vs-code-python-django-rest" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🛠️ Parte 0: Configuração do Ambiente (VS Code + Python + Django REST)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🛠️ Parte 0: Configuração do Ambiente (VS Code + Python + Django REST)">
+    <nav class="md-nav" aria-label="🛠️ Parte 0: Configuração do Ambiente Local">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -822,10 +817,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-2-preparar-vs-code" class="md-nav__link">
+  <a href="#passo-2-preparar-o-vs-code" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 2: Preparar VS Code
+        Passo 2: Preparar o VS Code
       
     </span>
   </a>
@@ -833,10 +828,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-3-criar-pasta-do-projeto-e-abrir-no-vs-code" class="md-nav__link">
+  <a href="#passo-3-criar-a-pasta-do-projeto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 3: Criar pasta do projeto e abrir no VS Code
+        Passo 3: Criar a pasta do projeto
       
     </span>
   </a>
@@ -844,10 +839,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-4-criar-e-ativar-virtual-environment" class="md-nav__link">
+  <a href="#passo-4-criar-e-ativar-o-ambiente-virtual" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 4: Criar e ativar virtual environment
+        Passo 4: Criar e ativar o ambiente virtual
       
     </span>
   </a>
@@ -855,10 +850,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-5-selecionar-interpretador-no-vs-code" class="md-nav__link">
+  <a href="#passo-5-selecionar-o-interpretador-no-vs-code" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 5: Selecionar interpretador no VS Code
+        Passo 5: Selecionar o interpretador no VS Code
       
     </span>
   </a>
@@ -877,10 +872,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-7-criar-projeto-django-e-app-rest" class="md-nav__link">
+  <a href="#passo-7-criar-projeto-django-e-aplicativo-rest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 7: Criar projeto Django e app REST
+        Passo 7: Criar projeto Django e aplicativo REST
       
     </span>
   </a>
@@ -904,22 +899,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-1-criacao-do-projeto-local-30-minutos" class="md-nav__link">
+  <a href="#parte-1-estrutura-do-projeto-e-codigo-fonte" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📋 Parte 1: Criação do Projeto Local (30 minutos)
+        📋 Parte 1: Estrutura do Projeto e Código-Fonte
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📋 Parte 1: Criação do Projeto Local (30 minutos)">
+    <nav class="md-nav" aria-label="📋 Parte 1: Estrutura do Projeto e Código-Fonte">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#passo-1-estrutura-basica-do-projeto" class="md-nav__link">
+  <a href="#passo-1-estrutura-de-diretorios-recomendada" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 1: Estrutura Básica do Projeto
+        Passo 1: Estrutura de Diretórios Recomendada
       
     </span>
   </a>
@@ -927,10 +922,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-2-configuracao-basica-sqlite" class="md-nav__link">
+  <a href="#passo-2-configuracoes-do-django-settingspy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 2: Configuração Básica (SQLite)
+        Passo 2: Configurações do Django (settings.py)
       
     </span>
   </a>
@@ -938,10 +933,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-3-modelo-simples-de-produtos" class="md-nav__link">
+  <a href="#passo-3-modelo-de-dados-modelspy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 3: Modelo Simples de Produtos
+        Passo 3: Modelo de Dados (models.py)
       
     </span>
   </a>
@@ -949,10 +944,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-4-api-rest-basica" class="md-nav__link">
+  <a href="#passo-4-serializer-viewset-e-urls-da-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 4: API REST Básica
+        Passo 4: Serializer, ViewSet e URLs da API
       
     </span>
   </a>
@@ -965,22 +960,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-2-preparacao-para-elastic-beanstalk-2026-20-minutos" class="md-nav__link">
+  <a href="#parte-2-arquivos-de-configuracao-do-elastic-beanstalk" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📦 Parte 2: Preparação para Elastic Beanstalk 2026 (20 minutos)
+        📦 Parte 2: Arquivos de Configuração do Elastic Beanstalk
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📦 Parte 2: Preparação para Elastic Beanstalk 2026 (20 minutos)">
+    <nav class="md-nav" aria-label="📦 Parte 2: Arquivos de Configuração do Elastic Beanstalk">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#passo-1-arquivos-essenciais-para-python-312" class="md-nav__link">
+  <a href="#passo-1-arquivos-ebextensions-e-procfile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 1: Arquivos essenciais para Python 3.12+
+        Passo 1: Arquivos .ebextensions e Procfile
       
     </span>
   </a>
@@ -988,10 +983,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-2-requisitos-do-projeto-django-6-com-python-312" class="md-nav__link">
+  <a href="#passo-2-dependencias-do-projeto-requirementstxt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 2: Requisitos do projeto (Django 6 com Python 3.12+)
+        Passo 2: Dependências do Projeto (requirements.txt)
       
     </span>
   </a>
@@ -999,10 +994,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-3-variaveis-de-ambiente-no-eb-importante" class="md-nav__link">
+  <a href="#passo-3-variaveis-de-ambiente-no-console-eb" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 3: Variáveis de ambiente no EB (importante)
+        Passo 3: Variáveis de Ambiente no Console EB
       
     </span>
   </a>
@@ -1015,22 +1010,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-3-teste-local-antes-do-deploy-15-minutos" class="md-nav__link">
+  <a href="#parte-3-teste-local-completo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧪 Parte 3: Teste Local Antes do Deploy (15 minutos)
+        🧪 Parte 3: Teste Local Completo
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🧪 Parte 3: Teste Local Antes do Deploy (15 minutos)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-4-deploy-no-aws-elastic-beanstalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ☁️ Parte 4: Deploy no AWS Elastic Beanstalk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="☁️ Parte 4: Deploy no AWS Elastic Beanstalk">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#passo-1-configuracao-inicial" class="md-nav__link">
+  <a href="#passo-0-permissoes-iam-para-deploy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 1: Configuração Inicial
+        Passo 0: Permissões IAM para Deploy
       
     </span>
   </a>
@@ -1038,10 +1044,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#passo-2-teste-de-funcionamento" class="md-nav__link">
+  <a href="#passo-1-preparar-o-pacote-zip-para-deploy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Passo 2: Teste de Funcionamento
+        Passo 1: Preparar o Pacote ZIP para Deploy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-2-assistente-de-criacao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 2: Assistente de Criação da Aplicação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-3-criar-e-acompanhar-o-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo 3: Criar e Acompanhar o Ambiente
       
     </span>
   </a>
@@ -1054,110 +1082,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parte-4-deploy-no-elastic-beanstalk-2026-20-minutos" class="md-nav__link">
+  <a href="#parte-5-caminho-para-migracoes-futuras" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ☁️ Parte 4: Deploy no Elastic Beanstalk 2026 (20 minutos)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="☁️ Parte 4: Deploy no Elastic Beanstalk 2026 (20 minutos)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#passo0-configuracao-da-politica-iam-para-deploy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Passo0: Configuração da Política IAM para Deploy
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#passo-1-preparar-o-pacote-para-deploy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Passo 1: Preparar o Pacote para Deploy
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#passo-2-fluxo-correto-para-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Passo 2: Fluxo Correto para 2026
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#passo-3-selecione-e-valide-a-plataforma" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Passo 3: Selecione e valide a plataforma
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#passo-4-finalize-e-acompanhe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Passo 4: Finalize e Acompanhe
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parte-5-caminho-para-migracoes-futuras-documentacao-para-voce" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔄 Parte 5: Caminho para Migrações Futuras (Documentação para Você)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🔄 Parte 5: Caminho para Migrações Futuras (Documentação para Você)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#migracao-para-rds-postgresql" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Migração para RDS (PostgreSQL)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#migracao-para-s3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Migração para S3
+        🔄 Parte 5: Caminho para Migrações Futuras
       
     </span>
   </a>
@@ -1165,43 +1093,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#material-de-apoio" class="md-nav__link">
+  <a href="#checklist-final-de-deploy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Material de Apoio
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#checklist-visual-para-deploy-2026" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Checklist Visual para Deploy 2026
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fluxo-de-migracao-futura" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fluxo de Migração Futura
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#checklist-final-de-deploy-10-itens" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ✅ Checklist Final de Deploy (10 itens)
+        ✅ Checklist Final de Deploy
       
     </span>
   </a>
@@ -1595,65 +1490,79 @@
   
 
 
-  <h1>07 - BE</h1>
-
-<h3 id="app-django-rest-inicial-com-sqlite-base-para-migracao-futura-para-rds-e-s3">App Django REST Inicial com SQLite (Base para Migração Futura para RDS e S3)<a class="headerlink" href="#app-django-rest-inicial-com-sqlite-base-para-migracao-futura-para-rds-e-s3" title="Permanent link">&para;</a></h3>
-<p>Este roteiro cria um <strong>projeto Django REST inicial simples com SQLite</strong> que funciona perfeitamente no Elastic Beanstalk (versão 2026), <strong>projetado especificamente para facilitar migrações futuras</strong> para RDS e S3. </p>
-<h3 id="parte-0-configuracao-do-ambiente-vs-code-python-django-rest">🛠️ Parte 0: Configuração do Ambiente (VS Code + Python + Django REST)<a class="headerlink" href="#parte-0-configuracao-do-ambiente-vs-code-python-django-rest" title="Permanent link">&para;</a></h3>
-<h4 id="passo-1-instalar-python-312">Passo 1: Instalar Python 3.12+<a class="headerlink" href="#passo-1-instalar-python-312" title="Permanent link">&para;</a></h4>
+<h1 id="deploy-de-api-django-rest-no-aws-elastic-beanstalk">Deploy de API Django REST no AWS Elastic Beanstalk<a class="headerlink" href="#deploy-de-api-django-rest-no-aws-elastic-beanstalk" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Objetivo do Roteiro</p>
+<p>Este roteiro orienta a criação de um <strong>projeto Django REST inicial com SQLite</strong>, configurado especificamente para rodar com alta estabilidade no <strong>AWS Elastic Beanstalk (plataforma Python 3.12)</strong>. A arquitetura foi desenhada de forma desacoplada para facilitar migrações futuras para <strong>Amazon RDS (PostgreSQL/MySQL)</strong> e <strong>Amazon S3 (mídia/arquivos estáticos)</strong>.</p>
+</div>
+<hr />
+<h2 id="parte-0-configuracao-do-ambiente-local">🛠️ Parte 0: Configuração do Ambiente Local<a class="headerlink" href="#parte-0-configuracao-do-ambiente-local" title="Permanent link">&para;</a></h2>
+<h3 id="passo-1-instalar-python-312">Passo 1: Instalar Python 3.12+<a class="headerlink" href="#passo-1-instalar-python-312" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Instale o Python 3.12 ou superior.</li>
-<li>Verifique no terminal:</li>
+<li>Certifique-se de ter o <strong>Python 3.12 ou superior</strong> instalado.</li>
+<li>Verifique a versão no seu terminal:</li>
 </ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>--version
 </span></code></pre></div>
-<h4 id="passo-2-preparar-vs-code">Passo 2: Preparar VS Code<a class="headerlink" href="#passo-2-preparar-vs-code" title="Permanent link">&para;</a></h4>
+<h3 id="passo-2-preparar-o-vs-code">Passo 2: Preparar o VS Code<a class="headerlink" href="#passo-2-preparar-o-vs-code" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Instale o Visual Studio Code.</li>
-<li>Em Extensions, instale:</li>
-<li><code>Python</code> (Microsoft)</li>
-<li><code>Pylance</code> (Microsoft)</li>
+<li>Abra o Visual Studio Code.</li>
+<li>No menu de <strong>Extensions</strong> (<code>Ctrl+Shift+X</code>), instale:<ul>
+<li><strong>Python</strong> (<em>Microsoft</em>)</li>
+<li><strong>Pylance</strong> (<em>Microsoft</em>)</li>
+</ul>
+</li>
 </ol>
-<h4 id="passo-3-criar-pasta-do-projeto-e-abrir-no-vs-code">Passo 3: Criar pasta do projeto e abrir no VS Code<a class="headerlink" href="#passo-3-criar-pasta-do-projeto-e-abrir-no-vs-code" title="Permanent link">&para;</a></h4>
+<h3 id="passo-3-criar-a-pasta-do-projeto">Passo 3: Criar a pasta do projeto<a class="headerlink" href="#passo-3-criar-a-pasta-do-projeto" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdir<span class="w"> </span>catalogo-produtos
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>catalogo-produtos
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>code<span class="w"> </span>.
 </span></code></pre></div>
-<h4 id="passo-4-criar-e-ativar-virtual-environment">Passo 4: Criar e ativar virtual environment<a class="headerlink" href="#passo-4-criar-e-ativar-virtual-environment" title="Permanent link">&para;</a></h4>
+<h3 id="passo-4-criar-e-ativar-o-ambiente-virtual">Passo 4: Criar e ativar o ambiente virtual<a class="headerlink" href="#passo-4-criar-e-ativar-o-ambiente-virtual" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux / macOS</label><label for="__tabbed_1_2">Windows (PowerShell)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </span></code></pre></div>
-<p>Ativação:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Linux/Mac</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Windows (PowerShell)</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>.venv<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">python</span> <span class="n">-m</span> <span class="n">venv</span> <span class="p">.</span><span class="n">venv</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">.</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
 </span></code></pre></div>
-<h4 id="passo-5-selecionar-interpretador-no-vs-code">Passo 5: Selecionar interpretador no VS Code<a class="headerlink" href="#passo-5-selecionar-interpretador-no-vs-code" title="Permanent link">&para;</a></h4>
+</div>
+</div>
+</div>
+<h3 id="passo-5-selecionar-o-interpretador-no-vs-code">Passo 5: Selecionar o interpretador no VS Code<a class="headerlink" href="#passo-5-selecionar-o-interpretador-no-vs-code" title="Permanent link">&para;</a></h3>
 <ol>
-<li><code>Ctrl+Shift+P</code> -&gt; <code>Python: Select Interpreter</code></li>
-<li>Escolha o interpretador da <code>.venv</code></li>
+<li>Pressione <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (ou <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> no macOS).</li>
+<li>Digite e selecione: <code>Python: Select Interpreter</code>.</li>
+<li>Escolha o interpretador correspondente à pasta <code>.venv</code>.</li>
 </ol>
-<h4 id="passo-6-instalar-dependencias-iniciais">Passo 6: Instalar dependências iniciais<a class="headerlink" href="#passo-6-instalar-dependencias-iniciais" title="Permanent link">&para;</a></h4>
+<h3 id="passo-6-instalar-dependencias-iniciais">Passo 6: Instalar dependências iniciais<a class="headerlink" href="#passo-6-instalar-dependencias-iniciais" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>django<span class="w"> </span>djangorestframework<span class="w"> </span>pillow<span class="w"> </span>gunicorn
 </span></code></pre></div>
-<h4 id="passo-7-criar-projeto-django-e-app-rest">Passo 7: Criar projeto Django e app REST<a class="headerlink" href="#passo-7-criar-projeto-django-e-app-rest" title="Permanent link">&para;</a></h4>
+<h3 id="passo-7-criar-projeto-django-e-aplicativo-rest">Passo 7: Criar projeto Django e aplicativo REST<a class="headerlink" href="#passo-7-criar-projeto-django-e-aplicativo-rest" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>django-admin<span class="w"> </span>startproject<span class="w"> </span>catalogo<span class="w"> </span>.
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>python<span class="w"> </span>manage.py<span class="w"> </span>startapp<span class="w"> </span>produtos
 </span></code></pre></div>
-<h4 id="passo-8-inicializar-banco-local-e-validar-subida">Passo 8: Inicializar banco local e validar subida<a class="headerlink" href="#passo-8-inicializar-banco-local-e-validar-subida" title="Permanent link">&para;</a></h4>
+<h3 id="passo-8-inicializar-banco-local-e-validar-subida">Passo 8: Inicializar banco local e validar subida<a class="headerlink" href="#passo-8-inicializar-banco-local-e-validar-subida" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
 </span></code></pre></div>
-<p>Valide:</p>
-<ol>
-<li><code>http://127.0.0.1:8000/</code></li>
-<li><code>http://127.0.0.1:8000/admin/</code></li>
-</ol>
-<h3 id="parte-1-criacao-do-projeto-local-30-minutos">📋 Parte 1: Criação do Projeto Local (30 minutos)<a class="headerlink" href="#parte-1-criacao-do-projeto-local-30-minutos" title="Permanent link">&para;</a></h3>
-<h4 id="passo-1-estrutura-basica-do-projeto">Passo 1: Estrutura Básica do Projeto<a class="headerlink" href="#passo-1-estrutura-basica-do-projeto" title="Permanent link">&para;</a></h4>
-<p>Crie esta estrutura de diretórios (fundamental para detecção automática do Elastic Beanstalk 2026):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>catalogo-produtos/
+<div class="admonition success">
+<p class="admonition-title">Validação Local</p>
+<p>Acesse no seu navegador:</p>
+<ul>
+<li>Aplicação: <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></li>
+<li>Painel Admin: <a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a></li>
+</ul>
+</div>
+<hr />
+<h2 id="parte-1-estrutura-do-projeto-e-codigo-fonte">📋 Parte 1: Estrutura do Projeto e Código-Fonte<a class="headerlink" href="#parte-1-estrutura-do-projeto-e-codigo-fonte" title="Permanent link">&para;</a></h2>
+<h3 id="passo-1-estrutura-de-diretorios-recomendada">Passo 1: Estrutura de Diretórios Recomendada<a class="headerlink" href="#passo-1-estrutura-de-diretorios-recomendada" title="Permanent link">&para;</a></h3>
+<p>Organize a raiz do seu projeto conforme a árvore abaixo para garantir compatibilidade com o Elastic Beanstalk:</p>
+<div class="language-text highlight"><span class="filename">Estrutura de Pastas do Projeto</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>catalogo-produtos/
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── .ebextensions/
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│   ├── django.config
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│   └── detection.config
@@ -1663,12 +1572,12 @@
 </span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>├── media/
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>├── requirements.txt
 </span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>├── Procfile
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>└── catalogo/
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    ├── __init__.py
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    ├── settings.py
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    ├── urls.py
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    ├── wsgi.py
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    └── asgi.py
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>├── catalogo/
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>│   ├── __init__.py
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>│   ├── settings.py
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>│   ├── urls.py
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>│   ├── wsgi.py
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>│   └── asgi.py
 </span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>└── produtos/
 </span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    ├── __init__.py
 </span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>    ├── admin.py
@@ -1678,55 +1587,50 @@
 </span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    ├── views.py
 </span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>    └── urls.py
 </span></code></pre></div>
-<h4 id="passo-2-configuracao-basica-sqlite">Passo 2: Configuração Básica (SQLite)<a class="headerlink" href="#passo-2-configuracao-basica-sqlite" title="Permanent link">&para;</a></h4>
-<p><strong><code>catalogo/settings.py</code></strong> (partes relevantes):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<h3 id="passo-2-configuracoes-do-django-settingspy">Passo 2: Configurações do Django (<code>settings.py</code>)<a class="headerlink" href="#passo-2-configuracoes-do-django-settingspy" title="Permanent link">&para;</a></h3>
+<p>Edite o arquivo <code>catalogo/settings.py</code> com as configurações preparadas para ambiente local e nuvem:</p>
+<div class="language-python highlight"><span class="filename">catalogo/settings.py</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Configuração de DEBUG - True para desenvolvimento</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DJANGO_DEBUG&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span> <span class="k">else</span> <span class="kc">False</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># Configuração do banco de dados</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># Database</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># https://docs.djangoproject.com/en/6.0/ref/settings/#databases</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s1">&#39;db.sqlite3&#39;</span><span class="p">,</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    <span class="p">}</span>
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="p">}</span>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="c1"># Configuração de arquivos de mídia</span>
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="c1"># SQLite não suporta S3, mas já preparamos o caminho</span>
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>    <span class="c1"># Armazenamento local para desenvolvimento</span>
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>    <span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/&#39;</span>
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>    <span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">)</span>
-</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="k">else</span><span class="p">:</span>
-</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>    <span class="c1"># Configuração preparada para S3 (será ativada depois)</span>
-</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>    <span class="n">USE_S3</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;USE_S3&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span>
-</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>    <span class="k">if</span> <span class="n">USE_S3</span><span class="p">:</span>
-</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>        <span class="c1"># Configurações S3 serão ativadas posteriormente</span>
-</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>        <span class="k">pass</span>
-</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>        <span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/&#39;</span>
-</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>        <span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">)</span>
-</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>
-</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="c1"># Hosts permitidos (importante para Elastic Beanstalk)</span>
-</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span>
-</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>    <span class="s1">&#39;DJANGO_ALLOWED_HOSTS&#39;</span><span class="p">,</span>
-</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>    <span class="s1">&#39;localhost,127.0.0.1,.elasticbeanstalk.com&#39;</span>
-</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>
-</span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a><span class="c1"># Arquivos estáticos para deploy</span>
-</span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a><span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
-</span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a><span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s1">&#39;staticfiles&#39;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># Configuração de DEBUG - False em produção no Elastic Beanstalk</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DJANGO_DEBUG&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span> <span class="k">else</span> <span class="kc">False</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># Hosts permitidos (essencial para o Elastic Beanstalk)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="s1">&#39;DJANGO_ALLOWED_HOSTS&#39;</span><span class="p">,</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="s1">&#39;localhost,127.0.0.1,.elasticbeanstalk.com&#39;</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="c1"># Configuração do Banco de Dados</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s1">&#39;db.sqlite3&#39;</span><span class="p">,</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>    <span class="p">}</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="p">}</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="c1"># Configuração de Arquivos de Mídia (Uploads)</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>    <span class="c1"># Armazenamento local durante o desenvolvimento</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>    <span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/&#39;</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>    <span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">)</span>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="k">else</span><span class="p">:</span>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>    <span class="c1"># Arquitetura preparada para ativação posterior do AWS S3</span>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>    <span class="n">USE_S3</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;USE_S3&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>    <span class="k">if</span> <span class="n">USE_S3</span><span class="p">:</span>
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>        <span class="k">pass</span>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>        <span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/&#39;</span>
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>        <span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;media&#39;</span><span class="p">)</span>
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>
+</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="c1"># Configuração de Arquivos Estáticos</span>
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
+</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s1">&#39;staticfiles&#39;</span>
 </span></code></pre></div>
-<h4 id="passo-3-modelo-simples-de-produtos">Passo 3: Modelo Simples de Produtos<a class="headerlink" href="#passo-3-modelo-simples-de-produtos" title="Permanent link">&para;</a></h4>
-<p><strong><code>produtos/models.py</code></strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+<h3 id="passo-3-modelo-de-dados-modelspy">Passo 3: Modelo de Dados (<code>models.py</code>)<a class="headerlink" href="#passo-3-modelo-de-dados-modelspy" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">produtos/models.py</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Produto</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">nome</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -1738,18 +1642,16 @@
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 </span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nome</span>
 </span></code></pre></div>
-<h4 id="passo-4-api-rest-basica">Passo 4: API REST Básica<a class="headerlink" href="#passo-4-api-rest-basica" title="Permanent link">&para;</a></h4>
-<p><strong><code>produtos/serializers.py</code></strong>:
-<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">serializers</span>
+<h3 id="passo-4-serializer-viewset-e-urls-da-api">Passo 4: Serializer, ViewSet e URLs da API<a class="headerlink" href="#passo-4-serializer-viewset-e-urls-da-api" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">produtos/serializers.py</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">serializers</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Produto</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">ProdutoSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Produto</span>
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;nome&#39;</span><span class="p">,</span> <span class="s1">&#39;descricao&#39;</span><span class="p">,</span> <span class="s1">&#39;preco&#39;</span><span class="p">,</span> <span class="s1">&#39;imagem&#39;</span><span class="p">,</span> <span class="s1">&#39;data_criacao&#39;</span><span class="p">]</span>
-</span></code></pre></div></p>
-<p><strong><code>produtos/views.py</code></strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">viewsets</span>
+</span></code></pre></div>
+<div class="language-python highlight"><span class="filename">produtos/views.py</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">viewsets</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Produto</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.serializers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProdutoSerializer</span>
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
@@ -1757,10 +1659,9 @@
 </span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Produto</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">ProdutoSerializer</span>
 </span></code></pre></div>
-<p><strong><code>produtos/urls.py</code></strong>:
-<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProdutoViewSet</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.routers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefaultRouter</span>
+<div class="language-python highlight"><span class="filename">produtos/urls.py</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.routers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefaultRouter</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProdutoViewSet</span>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">router</span> <span class="o">=</span> <span class="n">DefaultRouter</span><span class="p">()</span>
 </span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">router</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;produtos&#39;</span><span class="p">,</span> <span class="n">ProdutoViewSet</span><span class="p">)</span>
@@ -1768,38 +1669,38 @@
 </span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
 </span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">router</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
 </span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="p">]</span>
-</span></code></pre></div></p>
-<p><strong><code>catalogo/urls.py</code></strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
+</span></code></pre></div>
+<div class="language-python highlight"><span class="filename">catalogo/urls.py</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonResponse</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.conf</span><span class="w"> </span><span class="kn">import</span> <span class="n">settings</span>
 </span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">django.conf.urls.static</span><span class="w"> </span><span class="kn">import</span> <span class="n">static</span>
 </span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
 </span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">healthcheck</span><span class="p">(</span><span class="n">_request</span><span class="p">):</span>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;ok&#39;</span><span class="p">})</span>
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">healthcheck</span><span class="p">),</span>  <span class="c1"># Health check do EB retorna 200</span>
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
-</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;produtos.urls&#39;</span><span class="p">)),</span>
-</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="p">]</span>
-</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>
-</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="c1"># Configuração para servir arquivos de mídia em desenvolvimento</span>
-</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
-</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">static</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">document_root</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">)</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Endpoint de health check essencial para o Elastic Beanstalk (retorna status 200)&quot;&quot;&quot;</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;ok&#39;</span><span class="p">})</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">healthcheck</span><span class="p">),</span>  <span class="c1"># Rota raiz monitorada pelo load balancer / health check do EB</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;produtos.urls&#39;</span><span class="p">)),</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="p">]</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="c1"># Servir arquivos de mídia em modo de desenvolvimento</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">static</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">document_root</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="parte-2-preparacao-para-elastic-beanstalk-2026-20-minutos">📦 Parte 2: Preparação para Elastic Beanstalk 2026 (20 minutos)<a class="headerlink" href="#parte-2-preparacao-para-elastic-beanstalk-2026-20-minutos" title="Permanent link">&para;</a></h3>
-<h4 id="passo-1-arquivos-essenciais-para-python-312">Passo 1: Arquivos essenciais para Python 3.12+<a class="headerlink" href="#passo-1-arquivos-essenciais-para-python-312" title="Permanent link">&para;</a></h4>
-<p><strong><code>.ebextensions/detection.config</code></strong>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Força a detecção correta como app Python/Django</span>
+<hr />
+<h2 id="parte-2-arquivos-de-configuracao-do-elastic-beanstalk">📦 Parte 2: Arquivos de Configuração do Elastic Beanstalk<a class="headerlink" href="#parte-2-arquivos-de-configuracao-do-elastic-beanstalk" title="Permanent link">&para;</a></h2>
+<h3 id="passo-1-arquivos-ebextensions-e-procfile">Passo 1: Arquivos <code>.ebextensions</code> e <code>Procfile</code><a class="headerlink" href="#passo-1-arquivos-ebextensions-e-procfile" title="Permanent link">&para;</a></h3>
+<p>Crie o diretório <code>.ebextensions/</code> na raiz do projeto e adicione os seguintes arquivos:</p>
+<div class="language-yaml highlight"><span class="filename">.ebextensions/detection.config</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Garante a detecção correta da plataforma Python</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">option_settings</span><span class="p">:</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">aws:elasticbeanstalk:application:environment</span><span class="p">:</span>
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="nt">AWS_EB_PLATFORM_DETECTION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python&quot;</span>
 </span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="nt">AWS_EB_PLATFORM_OVERRIDE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Python</span><span class="nv"> </span><span class="s">3.12&quot;</span>
 </span></code></pre></div>
-<p><strong><code>.ebextensions/django.config</code></strong>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">option_settings</span><span class="p">:</span>
+<div class="language-yaml highlight"><span class="filename">.ebextensions/django.config</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">option_settings</span><span class="p">:</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">aws:elasticbeanstalk:container:python</span><span class="p">:</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="nt">WSGIPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalogo/wsgi.py</span>
 </span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="nt">aws:elasticbeanstalk:application:environment</span><span class="p">:</span>
@@ -1808,25 +1709,24 @@
 </span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span><span class="nt">aws:elasticbeanstalk:environment:proxy:staticfiles</span><span class="p">:</span>
 </span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="nt">/static</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staticfiles</span>
 </span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="nt">/media</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">media</span>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="nt">container_commands</span><span class="p">:</span>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">  </span><span class="nt">01_migrate</span><span class="p">:</span>
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">manage.py</span><span class="nv"> </span><span class="s">migrate</span><span class="nv"> </span><span class="s">--noinput&quot;</span>
-</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">    </span><span class="nt">leader_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">  </span><span class="nt">02_collectstatic</span><span class="p">:</span>
-</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">manage.py</span><span class="nv"> </span><span class="s">collectstatic</span><span class="nv"> </span><span class="s">--noinput&quot;</span>
-</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">    </span><span class="nt">leader_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">  </span><span class="nt">03_create_media_dir</span><span class="p">:</span>
-</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mkdir</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">media/produtos&quot;</span>
-</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">  </span><span class="nt">04_permissao_arquivo_sqlite</span><span class="p">:</span>
-</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;chmod</span><span class="nv"> </span><span class="s">666</span><span class="nv"> </span><span class="s">db.sqlite3&quot;</span>
-</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">  </span><span class="nt">05_permissao_pasta_sqlite</span><span class="p">:</span>
-</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;chmod</span><span class="nv"> </span><span class="s">777</span><span class="nv"> </span><span class="s">.&quot;</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="nt">container_commands</span><span class="p">:</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">  </span><span class="nt">01_migrate</span><span class="p">:</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">manage.py</span><span class="nv"> </span><span class="s">migrate</span><span class="nv"> </span><span class="s">--noinput&quot;</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">    </span><span class="nt">leader_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">  </span><span class="nt">02_collectstatic</span><span class="p">:</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python</span><span class="nv"> </span><span class="s">manage.py</span><span class="nv"> </span><span class="s">collectstatic</span><span class="nv"> </span><span class="s">--noinput&quot;</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">    </span><span class="nt">leader_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">  </span><span class="nt">03_create_media_dir</span><span class="p">:</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mkdir</span><span class="nv"> </span><span class="s">-p</span><span class="nv"> </span><span class="s">media/produtos&quot;</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">  </span><span class="nt">04_permissao_arquivo_sqlite</span><span class="p">:</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;chmod</span><span class="nv"> </span><span class="s">666</span><span class="nv"> </span><span class="s">db.sqlite3&quot;</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">  </span><span class="nt">05_permissao_pasta_sqlite</span><span class="p">:</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;chmod</span><span class="nv"> </span><span class="s">777</span><span class="nv"> </span><span class="s">.&quot;</span>
 </span></code></pre></div>
-<p><strong><code>Procfile</code></strong>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>web: gunicorn catalogo.wsgi:application --bind 127.0.0.1:8000
+<div class="language-text highlight"><span class="filename">Procfile</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>web: gunicorn catalogo.wsgi:application --bind 127.0.0.1:8000
 </span></code></pre></div>
-<p><strong><code>.elasticbeanstalk/config.yml</code></strong> (usado no fluxo com EB CLI):</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">branch-defaults</span><span class="p">:</span>
+<div class="language-yaml highlight"><span class="filename">.elasticbeanstalk/config.yml</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">branch-defaults</span><span class="p">:</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="nt">main</span><span class="p">:</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="nt">group_suffix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
@@ -1845,9 +1745,8 @@
 </span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">  </span><span class="nt">sc</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
 </span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">  </span><span class="nt">workspace_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application</span>
 </span></code></pre></div>
-<h4 id="passo-2-requisitos-do-projeto-django-6-com-python-312">Passo 2: Requisitos do projeto (Django 6 com Python 3.12+)<a class="headerlink" href="#passo-2-requisitos-do-projeto-django-6-com-python-312" title="Permanent link">&para;</a></h4>
-<p><strong><code>requirements.txt</code></strong>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>asgiref==3.11.1
+<h3 id="passo-2-dependencias-do-projeto-requirementstxt">Passo 2: Dependências do Projeto (<code>requirements.txt</code>)<a class="headerlink" href="#passo-2-dependencias-do-projeto-requirementstxt" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">requirements.txt</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>asgiref==3.11.1
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Django==6.0.4
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>djangorestframework==3.17.1
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>pillow==12.2.0
@@ -1858,167 +1757,188 @@
 </span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a># boto3==1.28.56          # Para futura migração para S3
 </span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a># django-storages==1.13.3 # Para futura migração para S3
 </span></code></pre></div>
-<h4 id="passo-3-variaveis-de-ambiente-no-eb-importante">Passo 3: Variáveis de ambiente no EB (importante)<a class="headerlink" href="#passo-3-variaveis-de-ambiente-no-eb-importante" title="Permanent link">&para;</a></h4>
-<p>No primeiro deploy, o Elastic Beanstalk instala dependências e aplica <code>.ebextensions</code>, mas ele <strong>não cria automaticamente</strong> variáveis como <code>RDS_*</code>, <code>USE_S3</code> ou <code>DJANGO_ALLOWED_HOSTS</code> só porque elas aparecem no <code>settings.py</code>.</p>
-<p>Defina manualmente no console (Configuration &gt; Software &gt; Environment properties), pelo menos:</p>
+<h3 id="passo-3-variaveis-de-ambiente-no-console-eb">Passo 3: Variáveis de Ambiente no Console EB<a class="headerlink" href="#passo-3-variaveis-de-ambiente-no-console-eb" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Importante: Configuração de Variáveis</p>
+<p>No primeiro deploy, o Elastic Beanstalk <strong>não infere automaticamente</strong> variáveis como <code>DJANGO_ALLOWED_HOSTS</code> do arquivo <code>settings.py</code>.</p>
+<p>Acesse no console AWS: <strong>Configuration</strong> $\to$ <strong>Software</strong> $\to$ <strong>Environment properties</strong> e defina:</p>
 <ul>
-<li><code>DJANGO_DEBUG=False</code> (produção)</li>
-<li><code>DJANGO_ALLOWED_HOSTS=&lt;seu-dominio-eb&gt;,.elasticbeanstalk.com</code></li>
+<li><code>DJANGO_DEBUG</code> = <code>False</code></li>
+<li><code>DJANGO_ALLOWED_HOSTS</code> = <code>&lt;seu-dominio-eb&gt;,.elasticbeanstalk.com</code></li>
 </ul>
-<h3 id="parte-3-teste-local-antes-do-deploy-15-minutos">🧪 Parte 3: Teste Local Antes do Deploy (15 minutos)<a class="headerlink" href="#parte-3-teste-local-antes-do-deploy-15-minutos" title="Permanent link">&para;</a></h3>
-<h4 id="passo-1-configuracao-inicial">Passo 1: Configuração Inicial<a class="headerlink" href="#passo-1-configuracao-inicial" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Crie e ative um ambiente virtual</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># Linux/Mac</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">    </span><span class="c1"># Windows</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="c1"># Instale dependências</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</div>
+<hr />
+<h2 id="parte-3-teste-local-completo">🧪 Parte 3: Teste Local Completo<a class="headerlink" href="#parte-3-teste-local-completo" title="Permanent link">&para;</a></h2>
+<p>Antes de realizar o empacotamento para a AWS, valide o funcionamento local completo:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Linux / macOS</label><label for="__tabbed_2_2">Windows (PowerShell)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Ativação do ambiente e instalação</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1"># Aplicação das migrações e superusuário</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
 </span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="c1"># Crie o banco de dados SQLite</span>
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="c1"># Crie um superusuário (opcional)</span>
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="c1"># Execução local</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
 </span></code></pre></div>
-<h4 id="passo-2-teste-de-funcionamento">Passo 2: Teste de Funcionamento<a class="headerlink" href="#passo-2-teste-de-funcionamento" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c"># Ativação do ambiente e instalação</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="p">.</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c"># Aplicação das migrações e superusuário</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">migrate</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="c"># Execução local</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">runserver</span>
 </span></code></pre></div>
-<p>Verifique:
-1. Acesse <code>http://localhost:8000/admin/</code> (se criou superusuário)
-2. Acesse <code>http://localhost:8000/api/produtos/</code> - deve ver JSON vazio
-3. Teste o upload de uma imagem via POST (use Postman ou curl)</p>
-<h3 id="parte-4-deploy-no-elastic-beanstalk-2026-20-minutos">☁️ Parte 4: Deploy no Elastic Beanstalk 2026 (20 minutos)<a class="headerlink" href="#parte-4-deploy-no-elastic-beanstalk-2026-20-minutos" title="Permanent link">&para;</a></h3>
-<h4 id="passo0-configuracao-da-politica-iam-para-deploy">Passo0: Configuração da Política IAM para Deploy<a class="headerlink" href="#passo0-configuracao-da-politica-iam-para-deploy" title="Permanent link">&para;</a></h4>
-<p>Entre no IAM, selecione o usuário que usará para deploy e adicione a seguinte política gerenciada:</p>
-<ul>
-<li>Add Permissions &gt; Attach policies diretly &gt; Pesquise por "Elastic Beanstalk" e selecione:</li>
+</div>
+</div>
+</div>
+<div class="admonition check">
+<p class="admonition-title">Roteiro de Validação Rápida</p>
+<ol>
+<li>Acesse <a href="http://localhost:8000/admin/">http://localhost:8000/admin/</a> e realize o login com o superusuário criado.</li>
+<li>Acesse <a href="http://localhost:8000/api/produtos/">http://localhost:8000/api/produtos/</a> e verifique o retorno JSON vazio <code>[]</code>.</li>
+<li>Teste o cadastro de um produto com foto via interface navegável da API ou pelo Admin.</li>
+</ol>
+</div>
+<hr />
+<h2 id="parte-4-deploy-no-aws-elastic-beanstalk">☁️ Parte 4: Deploy no AWS Elastic Beanstalk<a class="headerlink" href="#parte-4-deploy-no-aws-elastic-beanstalk" title="Permanent link">&para;</a></h2>
+<h3 id="passo-0-permissoes-iam-para-deploy">Passo 0: Permissões IAM para Deploy<a class="headerlink" href="#passo-0-permissoes-iam-para-deploy" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Acesse o <strong>AWS IAM Console</strong> $\to$ <strong>Users</strong>.</li>
+<li>Selecione o usuário que executará o deploy.</li>
+<li>Clique em <strong>Add permissions</strong> $\to$ <strong>Attach policies directly</strong> e vincule:<ul>
 <li><code>AdministratorAccess-AWSElasticBeanstalk</code></li>
 </ul>
-<h4 id="passo-1-preparar-o-pacote-para-deploy">Passo 1: Preparar o Pacote para Deploy<a class="headerlink" href="#passo-1-preparar-o-pacote-para-deploy" title="Permanent link">&para;</a></h4>
-<ol>
-<li><strong>Certifique-se de que todos os arquivos estão na raiz</strong> do ZIP</li>
-<li><strong>Não inclua</strong>:</li>
-<li>Diretório <code>venv/</code> ou <code>.venv/</code></li>
-<li>Arquivo <code>db.sqlite3</code></li>
-<li>Diretório <code>.git/</code></li>
-<li>Diretórios <code>__pycache__/</code></li>
-<li>Arquivos <code>.env</code></li>
+</li>
 </ol>
-<h4 id="passo-2-fluxo-correto-para-2026">Passo 2: Fluxo Correto para 2026<a class="headerlink" href="#passo-2-fluxo-correto-para-2026" title="Permanent link">&para;</a></h4>
-<ol>
-<li>Elastic Beanstalk &gt; <strong>Create Application</strong></li>
-<li>Preencha apenas:</li>
-<li><strong>Application name</strong>: <code>catalogo-produtos</code></li>
-<li><strong>Description</strong>: "Catálogo de produtos para aula"</li>
-<li>Role até <strong>Application code</strong> &gt; <strong>Upload your code</strong></li>
-<li>Clique em <strong>Local file</strong> &gt; <strong>Choose file</strong></li>
-<li>Selecione <strong>TODOS</strong> os arquivos do projeto (não a pasta, os arquivos diretamente)</li>
-<li>Clique em <strong>Zip</strong> para criar um ZIP temporário</li>
-<li>Clique em <strong>Upload</strong></li>
-</ol>
-<h4 id="passo-3-selecione-e-valide-a-plataforma">Passo 3: Selecione e valide a plataforma<a class="headerlink" href="#passo-3-selecione-e-valide-a-plataforma" title="Permanent link">&para;</a></h4>
+<h3 id="passo-1-preparar-o-pacote-zip-para-deploy">Passo 1: Preparar o Pacote ZIP para Deploy<a class="headerlink" href="#passo-1-preparar-o-pacote-zip-para-deploy" title="Permanent link">&para;</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Atenção Crítica aos Arquivos do ZIP</p>
 <ul>
-<li>Na criação do ambiente, selecione explicitamente <code>Python 3.12</code></li>
-<li>
-<p>Não dependa da versão do Django para o EB inferir a plataforma</p>
-</li>
-<li>
-<p><strong>Espere 1-2 minutos</strong> enquanto a AWS analisa seu código</p>
-</li>
-<li><strong>Não clique em nada</strong> durante este tempo</li>
-<li>Você verá: "Analyzing your code..."</li>
-<li>Confirme que o ambiente foi criado em <strong>Python 3.12</strong></li>
+<li>Os arquivos e pastas (<code>.ebextensions</code>, <code>catalogo</code>, <code>produtos</code>, <code>Procfile</code>, <code>requirements.txt</code>, etc.) devem estar na <strong>raiz do arquivo ZIP</strong>, sem uma pasta pai englobando tudo.</li>
+<li><strong>NÃO inclua no arquivo ZIP:</strong><ul>
+<li>Pastas virtuais: <code>.venv/</code> ou <code>venv/</code></li>
+<li>Banco local: <code>db.sqlite3</code></li>
+<li>Versionamento: <code>.git/</code> ou <code>.gitignore</code></li>
+<li>Caches: pastas <code>__pycache__/</code></li>
+<li>Arquivos locais de segredo: <code>.env</code></li>
 </ul>
-<h4 id="passo-4-finalize-e-acompanhe">Passo 4: Finalize e Acompanhe<a class="headerlink" href="#passo-4-finalize-e-acompanhe" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+</div>
+<h3 id="passo-2-assistente-de-criacao-da-aplicacao">Passo 2: Assistente de Criação da Aplicação<a class="headerlink" href="#passo-2-assistente-de-criacao-da-aplicacao" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Clique em <strong>Create application</strong></li>
-<li>Aguarde 8-10 minutos para o deploy completo</li>
-<li>Clique em <strong>Environment health</strong> para monitorar</li>
-<li>Quando estiver verde, clique em <strong>Domain</strong> para acessar seu app</li>
+<li>Acesse <strong>Elastic Beanstalk</strong> no AWS Console e clique em <strong>Create Application</strong>.</li>
+<li>Preencha os campos básicos:<ul>
+<li><strong>Application name</strong>: <code>catalogo-produtos</code></li>
+<li><strong>Description</strong>: <code>Catálogo de produtos - API Django REST</code></li>
+</ul>
+</li>
+<li>Na seção <strong>Platform</strong>:<ul>
+<li><strong>Platform</strong>: <code>Python</code></li>
+<li><strong>Platform branch</strong>: <code>Python 3.12 running on 64bit Amazon Linux 2023</code></li>
+</ul>
+</li>
+<li>Na seção <strong>Application code</strong>:<ul>
+<li>Selecione <strong>Upload your code</strong>.</li>
+<li>Em <strong>Source code origin</strong>, escolha <strong>Local file</strong> e faça o upload do seu <code>app.zip</code>.</li>
+</ul>
+</li>
 </ol>
-<h3 id="parte-5-caminho-para-migracoes-futuras-documentacao-para-voce">🔄 Parte 5: Caminho para Migrações Futuras (Documentação para Você)<a class="headerlink" href="#parte-5-caminho-para-migracoes-futuras-documentacao-para-voce" title="Permanent link">&para;</a></h3>
-<h4 id="migracao-para-rds-postgresql">Migração para RDS (PostgreSQL)<a class="headerlink" href="#migracao-para-rds-postgresql" title="Permanent link">&para;</a></h4>
-<p><strong>Quando estiverem prontos, siga estes passos:</strong></p>
+<h3 id="passo-3-criar-e-acompanhar-o-ambiente">Passo 3: Criar e Acompanhar o Ambiente<a class="headerlink" href="#passo-3-criar-e-acompanhar-o-ambiente" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Crie uma instância RDS</strong> no console AWS</li>
-<li><strong>Atualize as variáveis de ambiente</strong> no Elastic Beanstalk:</li>
-<li><code>RDS_DB_NAME</code> = nome do banco</li>
-<li><code>RDS_USERNAME</code> = usuário</li>
-<li><code>RDS_PASSWORD</code> = senha</li>
-<li><code>RDS_HOSTNAME</code> = endpoint do RDS</li>
-<li><code>RDS_PORT</code> = 5432</li>
-<li><strong>Remova o arquivo db.sqlite3</strong> do projeto</li>
-<li><strong>Execute migrações</strong>:
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>eb<span class="w"> </span>ssh<span class="w">  </span><span class="c1"># Conecte-se à instância</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nb">source</span><span class="w"> </span>/var/app/venv/*/bin/activate
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nb">cd</span><span class="w"> </span>/var/app/current
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
-</span></code></pre></div></li>
+<li>Clique em <strong>Next / Create application</strong>.</li>
+<li>Aguarde de <strong>6 a 10 minutos</strong> enquanto o Elastic Beanstalk provisiona a instância EC2, grupos de segurança e executa o deployment.</li>
+<li>No painel do ambiente, acompanhe até que o <strong>Health</strong> fique com status <strong>OK (Verde)</strong>.</li>
+<li>Clique no <strong>Domain</strong> (link do ambiente) para testar a aplicação em produção.</li>
 </ol>
-<h3 id="migracao-para-s3">Migração para S3<a class="headerlink" href="#migracao-para-s3" title="Permanent link">&para;</a></h3>
-<p><strong>Quando estiverem prontos, siga estes passos:</strong></p>
-<ol>
-<li><strong>Crie o bucket S3</strong> conforme discutido anteriormente</li>
-<li><strong>Crie o usuário IAM</strong> com grupo correto</li>
-<li><strong>Atualize as variáveis de ambiente</strong>:</li>
-<li><code>USE_S3</code> = True</li>
-<li><code>AWS_ACCESS_KEY_ID</code> = sua chave</li>
-<li><code>AWS_SECRET_ACCESS_KEY</code> = sua secret</li>
-<li><code>AWS_STORAGE_BUCKET_NAME</code> = nome do bucket</li>
-<li><code>AWS_S3_REGION_NAME</code> = região</li>
-<li><strong>Atualize <code>settings.py</code></strong> (descomente a seção S3)</li>
-<li><strong>Adicione este código</strong> a <code>settings.py</code>:
-   <div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">DEBUG</span> <span class="ow">and</span> <span class="n">USE_S3</span><span class="p">:</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="c1"># Configurações AWS S3 atualizadas para 2026</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="n">AWS_S3_ADDRESSING_STYLE</span> <span class="o">=</span> <span class="s2">&quot;virtual&quot;</span>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="n">AWS_S3_FILE_OVERWRITE</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">AWS_DEFAULT_ACL</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="n">AWS_QUERYSTRING_AUTH</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="n">AWS_S3_SIGNATURE_VERSION</span> <span class="o">=</span> <span class="s1">&#39;s3v4&#39;</span>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>    <span class="n">AWS_S3_CUSTOM_DOMAIN</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">AWS_STORAGE_BUCKET_NAME</span><span class="si">}</span><span class="s1">.s3.</span><span class="si">{</span><span class="n">AWS_S3_REGION_NAME</span><span class="si">}</span><span class="s1">.amazonaws.com&#39;</span>
-</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>    <span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://</span><span class="si">{</span><span class="n">AWS_S3_CUSTOM_DOMAIN</span><span class="si">}</span><span class="s1">/media/&#39;</span>
-</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>    <span class="n">DEFAULT_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;storages.backends.s3boto3.S3Boto3Storage&#39;</span>
-</span></code></pre></div></li>
-</ol>
-<h3 id="material-de-apoio">📚 Material de Apoio<a class="headerlink" href="#material-de-apoio" title="Permanent link">&para;</a></h3>
-<h3 id="checklist-visual-para-deploy-2026">Checklist Visual para Deploy 2026<a class="headerlink" href="#checklist-visual-para-deploy-2026" title="Permanent link">&para;</a></h3>
-<p><img alt="Checklist Elastic Beanstalk 2026" src="https://i.imgur.com/elasticbeanstalk-2026-checklist.png" /></p>
-<h3 id="fluxo-de-migracao-futura">Fluxo de Migração Futura<a class="headerlink" href="#fluxo-de-migracao-futura" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>graph LR
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>    A[SQLite Local] --&gt;|Fase 1| B[App Funcionando no Elastic Beanstalk]
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    B --&gt;|Fase 2| C[Migração para RDS]
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    C --&gt;|Fase 3| D[Migração para S3]
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
-</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>    style A fill:#e8f5e9,stroke:#4caf50
-</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>    style B fill:#e8f5e9,stroke:#4caf50
-</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>    style C fill:#fff8e1,stroke:#ff9800
-</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>    style D fill:#ffebee,stroke:#f44336
-</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>
-</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>classDef current fill:#e8f5e9,stroke:#4caf50;
-</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>    class A,B current;
+<hr />
+<h2 id="parte-5-caminho-para-migracoes-futuras">🔄 Parte 5: Caminho para Migrações Futuras<a class="headerlink" href="#parte-5-caminho-para-migracoes-futuras" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>graph LR
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    A[Etapa 1: SQLite + EB Local Storage] --&gt;|Desacoplamento de Dados| B[Etapa 2: Migração para Amazon RDS]
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    B --&gt;|Desacoplamento de Mídia| C[Etapa 3: Migração para Amazon S3]
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    style A fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    style B fill:#fff8e1,stroke:#ff9800,stroke-width:2px
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    style C fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
 </span></code></pre></div>
-<h3 id="checklist-final-de-deploy-10-itens">✅ Checklist Final de Deploy (10 itens)<a class="headerlink" href="#checklist-final-de-deploy-10-itens" title="Permanent link">&para;</a></h3>
-<p>Antes de clicar em <strong>Create environment</strong>, valide:</p>
+<details class="note" open="open">
+<summary>Guia de Migração: Amazon RDS (PostgreSQL / MySQL)</summary>
+<p>Quando for migrar o armazenamento relacional para o RDS gerenciado:</p>
 <ol>
-<li>Plataforma selecionada no EB: <strong>Python 3.12</strong>.</li>
-<li><code>requirements.txt</code> com versões corretas (<code>Django==6.0.4</code>, DRF e <code>gunicorn</code>).</li>
-<li><code>Procfile</code> presente na raiz com <code>web: gunicorn catalogo.wsgi:application --bind 127.0.0.1:8000</code>.</li>
-<li><code>.ebextensions/django.config</code> contém <code>WSGIPath</code>, <code>DJANGO_SETTINGS_MODULE</code> e <code>container_commands</code> (<code>migrate</code> + <code>collectstatic</code>).</li>
-<li><code>catalogo/urls.py</code> possui rota <code>/</code> de healthcheck retornando <code>200</code>.</li>
-<li><code>catalogo/settings.py</code> com <code>ALLOWED_HOSTS</code> via <code>DJANGO_ALLOWED_HOSTS</code>.</li>
-<li>Variáveis no EB definidas: <code>DJANGO_DEBUG=False</code> e <code>DJANGO_ALLOWED_HOSTS=&lt;dominio-do-ambiente&gt;,.elasticbeanstalk.com</code>.</li>
-<li>ZIP com arquivos na raiz (sem pasta pai) e sem <code>venv/</code>, <code>.venv/</code>, <code>.git/</code>, <code>db.sqlite3</code>, <code>__pycache__/</code>, <code>.env</code>.</li>
-<li>Usuário IAM com permissão para política de criar ambiente EB.</li>
-<li>Após criar, ambiente deve ficar <strong>Green</strong> e endpoints <code>https://&lt;dominio&gt;/</code> e <code>https://&lt;dominio&gt;/api/produtos/</code> devem responder.</li>
+<li><strong>Criar a instância RDS</strong> (PostgreSQL ou MySQL) na mesma VPC do Elastic Beanstalk.</li>
+<li><strong>Configurar as variáveis de ambiente</strong> no Elastic Beanstalk (Software Configuration):<ul>
+<li><code>RDS_DB_NAME</code> = <code>&lt;nome_banco&gt;</code></li>
+<li><code>RDS_USERNAME</code> = <code>&lt;usuario&gt;</code></li>
+<li><code>RDS_PASSWORD</code> = <code>&lt;senha&gt;</code></li>
+<li><code>RDS_HOSTNAME</code> = <code>&lt;endpoint_rds&gt;</code></li>
+<li><code>RDS_PORT</code> = <code>5432</code> (PostgreSQL) ou <code>3306</code> (MySQL)</li>
+</ul>
+</li>
+<li><strong>Atualizar dependências</strong>: descomentar <code>psycopg2-binary</code> no <code>requirements.txt</code>.</li>
+<li><strong>Remover referência ao arquivo <code>db.sqlite3</code></strong> e aplicar migrações diretamente na instância.</li>
 </ol>
+</details>
+<details class="note" open="open">
+<summary>Guia de Migração: Amazon S3 (Upload de Arquivos e Fotos)</summary>
+<p>Quando for transferir o upload de mídias para um bucket S3:</p>
+<ol>
+<li><strong>Criar o bucket S3</strong> com permissões adequadas.</li>
+<li><strong>Descomentar dependências</strong> no <code>requirements.txt</code> (<code>boto3</code> e <code>django-storages</code>).</li>
+<li><strong>Definir variáveis de ambiente no EB</strong>:<ul>
+<li><code>USE_S3</code> = <code>True</code></li>
+<li><code>AWS_ACCESS_KEY_ID</code> = <code>&lt;sua_key&gt;</code></li>
+<li><code>AWS_SECRET_ACCESS_KEY</code> = <code>&lt;sua_secret&gt;</code></li>
+<li><code>AWS_STORAGE_BUCKET_NAME</code> = <code>&lt;nome_bucket&gt;</code></li>
+<li><code>AWS_S3_REGION_NAME</code> = <code>us-east-1</code></li>
+</ul>
+</li>
+<li><strong>Ativar o bloco de configuração S3 no <code>catalogo/settings.py</code></strong>:
+    <div class="language-python highlight"><span class="filename">catalogo/settings.py (Configuração S3)</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">DEBUG</span> <span class="ow">and</span> <span class="n">USE_S3</span><span class="p">:</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="n">AWS_S3_ADDRESSING_STYLE</span> <span class="o">=</span> <span class="s2">&quot;virtual&quot;</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="n">AWS_S3_FILE_OVERWRITE</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="n">AWS_DEFAULT_ACL</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">AWS_QUERYSTRING_AUTH</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="n">AWS_S3_SIGNATURE_VERSION</span> <span class="o">=</span> <span class="s1">&#39;s3v4&#39;</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    <span class="n">AWS_S3_CUSTOM_DOMAIN</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">AWS_STORAGE_BUCKET_NAME</span><span class="si">}</span><span class="s1">.s3.</span><span class="si">{</span><span class="n">AWS_S3_REGION_NAME</span><span class="si">}</span><span class="s1">.amazonaws.com&#39;</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>    <span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://</span><span class="si">{</span><span class="n">AWS_S3_CUSTOM_DOMAIN</span><span class="si">}</span><span class="s1">/media/&#39;</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>    <span class="n">DEFAULT_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;storages.backends.s3boto3.S3Boto3Storage&#39;</span>
+</span></code></pre></div></li>
+</ol>
+</details>
+<hr />
+<h2 id="checklist-final-de-deploy">✅ Checklist Final de Deploy<a class="headerlink" href="#checklist-final-de-deploy" title="Permanent link">&para;</a></h2>
+<p>Antes de iniciar a criação do ambiente no Elastic Beanstalk, valide cada um dos itens abaixo:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>1. Plataforma</strong>: Selecionada explicitamente como <strong>Python 3.12</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>2. Dependências</strong>: Arquivo <code>requirements.txt</code> com <code>Django</code>, <code>djangorestframework</code> e <code>gunicorn</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>3. Procfile</strong>: Criado na raiz com a instrução <code>web: gunicorn catalogo.wsgi:application --bind 127.0.0.1:8000</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>4. Configuração EB</strong>: <code>.ebextensions/django.config</code> contendo <code>WSGIPath</code>, <code>DJANGO_SETTINGS_MODULE</code> e os <code>container_commands</code> (<code>migrate</code> + <code>collectstatic</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>5. Health Check</strong>: <code>catalogo/urls.py</code> possui a rota raiz <code>/</code> retornando status HTTP <code>200</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>6. Configuração de Hosts</strong>: <code>catalogo/settings.py</code> utiliza <code>DJANGO_ALLOWED_HOSTS</code> configurável.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>7. Variáveis no EB</strong>: <code>DJANGO_DEBUG=False</code> e <code>DJANGO_ALLOWED_HOSTS</code> configurados no Console AWS.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>8. Estrutura do ZIP</strong>: Arquivos empacotados a partir da raiz (sem pasta pai) e sem <code>.venv/</code>, <code>.git/</code>, <code>db.sqlite3</code> e <code>__pycache__/</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>9. Permissões IAM</strong>: Usuário com política <code>AdministratorAccess-AWSElasticBeanstalk</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>10. Status Operacional</strong>: Ambiente com Health <strong>OK (Verde)</strong> e respostas válidas nas rotas <code>/</code> e <code>/api/produtos/</code>.</li>
+</ul>
 
 
 
 
 
 
+
+  
+  
 
 
 
