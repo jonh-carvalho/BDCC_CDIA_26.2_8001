@@ -6,8 +6,8 @@ Adicionar duas classes relativas ao aplicativo Django Rest sendo planejado na di
 
 ### Entrega
 
+- Repositório Github - Código-fonte do projeto atualizado, incluindo as novas classes e as APIs relacionadas professor adicionado como colaborador.
 - **Não é necessário a presença do Grupo no Lab 212**, se até o início da aula o projeto já estiver atualizado e o deploy realizado. O envio deve ser feito adicionando o professor ao repositório, e no readme do projeto deve conter o link da API publicada. 
-- Repositório Github - Código-fonte do projeto atualizado, incluindo as novas classes e as APIs relacionadas.
 - Retire o app e a classe produtos
 - Crie um app conforme o Tema que conterá as duas classes desenvolvidas
 - Readme atualizado. 
