@@ -1247,18 +1247,23 @@
 
 <h1 id="ap1">AP1<a class="headerlink" href="#ap1" title="Permanent link">&para;</a></h1>
 <h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
-<p>Adicionar uma nova classe ao aplicativo Django Rest existente, que já possui uma classe <code>Produto</code>, e realizar o deploy do projeto na AWS utilizando o Elastic Beanstalk com o arquivo <code>app.zip</code> segundo roteiro de aula.</p>
+<p>Adicionar duas classes relativas ao aplicativo Django Rest sendo planejado na disciplina de Projeto de Cloud com relação ao TEMA, e realizar o deploy do projeto na AWS utilizando o Elastic Beanstalk com o arquivo <code>app.zip</code> segundo roteiro de aula.</p>
 <h3 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Não é necessário a presença do Grupo no Lab 308</strong> se até o início da aula o projeto já estiver  atualizado e o deploy realizado. O envio deve ser feito adicionando o professor ao repositório e no readme do projeto deve conter o link da API publicada. </li>
-<li>Repositório Github - Código-fonte do projeto atualizado, incluindo a nova classe e as APIs relacionadas.</li>
-<li>Readme atualizado - Nome de todos integrantes do Grupo. </li>
+<li><strong>Não é necessário a presença do Grupo no Lab 212</strong>, se até o início da aula o projeto já estiver atualizado e o deploy realizado. O envio deve ser feito adicionando o professor ao repositório, e no readme do projeto deve conter o link da API publicada. </li>
+<li>Repositório Github - Código-fonte do projeto atualizado, incluindo as novas classes e as APIs relacionadas.</li>
+<li>Retire o app e a classe produtos</li>
+<li>Crie um app conforme o Tema que conterá as duas classes desenvolvidas</li>
+<li>Readme atualizado. </li>
 <li>Instruções claras sobre como configurar e executar o projeto localmente, bem como detalhes sobre as alterações realizadas.</li>
 <li>Documentação das etapas realizadas para a implementação e deploy.</li>
 <li>Link para o projeto deployado na AWS Elastic Beanstalk.</li>
+<li>O App.zip para o deploy pode ser baseado no fornecido em aula com as devidas alterações no app django adicionado e os models, valendo 80% da nota.</li>
+<li>Para o 100% é necessário que o nome do projeto django e o app estejam no contexto do Tema do Projeto de Cloud</li>
+<li>Crie o superusuário(admin) para operar na interface do Django-Admin</li>
 </ul>
 <h3 id="cenario">Cenário<a class="headerlink" href="#cenario" title="Permanent link">&para;</a></h3>
-<p>Você possui um projeto Django Rest com uma classe <code>Produto</code>. Seu objetivo é criar uma nova classe (por exemplo, <code>Categoria</code>), relacioná-la adequadamente com <code>Produto</code> e garantir que as APIs estejam funcionando corretamente. Após as alterações, faça o deploy do projeto na AWS Elastic Beanstalk utilizando um arquivo <code>app.zip</code>. Você deverá alterar os arquivos de configuração necessários para garantir que o deploy seja bem-sucedido, seguindo o roteiro de aula fornecido acrescentando as instruções específicas para a configuração do ambiente para a criação do usuário admin(root), para que seja possivel logar no django-admin com administrador.</p>
+<p>Você possui um projeto Django Rest com uma classe <code>Produto</code>. Seu objetivo é criar duas novas classes referentes ao Tema da disciplina de Projeto de Cloude e garantir que os endpoints da APIs estejam funcionando corretamente. Após as alterações, faça o deploy do projeto na AWS Elastic Beanstalk utilizando um arquivo <code>app.zip</code>. Você deverá alterar os arquivos de configuração necessários para garantir que o deploy seja bem-sucedido, seguindo o roteiro de aula fornecido acrescentando as instruções específicas para a configuração do ambiente para a criação do usuário admin(root), para que seja possivel logar no django-admin com administrador.</p>
 <h3 id="referencias">Referências<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://www.django-rest-framework.org/">Documentação Django Rest Framework</a></li>
@@ -1268,7 +1273,9 @@
 </ul>
 <h2 id="criterios-de-correcao">Critérios de Correção<a class="headerlink" href="#criterios-de-correcao" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Implementação correta da nova classe e relacionamento com <code>Produto</code></li>
+<li>Implementação correta das duas novas classes e relacionamento</li>
+<li>admin(Django Admin)</li>
+<li>Projeto e Models (Projeto Cloud)</li>
 <li>APIs funcionando conforme esperado</li>
 <li>Deploy realizado com sucesso na AWS Elastic Beanstalk usando <code>app.zip</code></li>
 <li>Documentação clara das etapas realizadas</li>
