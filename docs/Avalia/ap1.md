@@ -2,21 +2,26 @@
 
 ## Objetivo 
 
-Adicionar uma nova classe ao aplicativo Django Rest existente, que já possui uma classe `Produto`, e realizar o deploy do projeto na AWS utilizando o Elastic Beanstalk com o arquivo `app.zip` segundo roteiro de aula.
+Adicionar duas classes relativas ao aplicativo Django Rest sendo planejado na disciplina de Projeto de Cloud com relação ao TEMA, e realizar o deploy do projeto na AWS utilizando o Elastic Beanstalk com o arquivo `app.zip` segundo roteiro de aula.
 
 ### Entrega
 
-- **Não é necessário a presença do Grupo no Lab 308** se até o início da aula o projeto já estiver  atualizado e o deploy realizado. O envio deve ser feito adicionando o professor ao repositório e no readme do projeto deve conter o link da API publicada. 
-- Repositório Github - Código-fonte do projeto atualizado, incluindo a nova classe e as APIs relacionadas.
-- Readme atualizado - Nome de todos integrantes do Grupo. 
+- **Não é necessário a presença do Grupo no Lab 212**, se até o início da aula o projeto já estiver atualizado e o deploy realizado. O envio deve ser feito adicionando o professor ao repositório, e no readme do projeto deve conter o link da API publicada. 
+- Repositório Github - Código-fonte do projeto atualizado, incluindo as novas classes e as APIs relacionadas.
+- Retire o app e a classe produtos
+- Crie um app conforme o Tema que conterá as duas classes desenvolvidas
+- Readme atualizado. 
 - Instruções claras sobre como configurar e executar o projeto localmente, bem como detalhes sobre as alterações realizadas.
 - Documentação das etapas realizadas para a implementação e deploy.
 - Link para o projeto deployado na AWS Elastic Beanstalk.
+- O App.zip para o deploy pode ser baseado no fornecido em aula com as devidas alterações no app django adicionado e os models, valendo 80% da nota.
+- Para o 100% é necessário que o nome do projeto django e o app estejam no contexto do Tema do Projeto de Cloud
+- Crie o superusuário(admin) para operar na interface do Django-Admin
 
 
 ### Cenário
 
-Você possui um projeto Django Rest com uma classe `Produto`. Seu objetivo é criar uma nova classe (por exemplo, `Categoria`), relacioná-la adequadamente com `Produto` e garantir que as APIs estejam funcionando corretamente. Após as alterações, faça o deploy do projeto na AWS Elastic Beanstalk utilizando um arquivo `app.zip`. Você deverá alterar os arquivos de configuração necessários para garantir que o deploy seja bem-sucedido, seguindo o roteiro de aula fornecido acrescentando as instruções específicas para a configuração do ambiente para a criação do usuário admin(root), para que seja possivel logar no django-admin com administrador.
+Você possui um projeto Django Rest com uma classe `Produto`. Seu objetivo é criar duas novas classes referentes ao Tema da disciplina de Projeto de Cloude e garantir que os endpoints da APIs estejam funcionando corretamente. Após as alterações, faça o deploy do projeto na AWS Elastic Beanstalk utilizando um arquivo `app.zip`. Você deverá alterar os arquivos de configuração necessários para garantir que o deploy seja bem-sucedido, seguindo o roteiro de aula fornecido acrescentando as instruções específicas para a configuração do ambiente para a criação do usuário admin(root), para que seja possivel logar no django-admin com administrador.
 
 ### Referências
 
@@ -27,7 +32,9 @@ Você possui um projeto Django Rest com uma classe `Produto`. Seu objetivo é cr
 
 ## Critérios de Correção
 
-- Implementação correta da nova classe e relacionamento com `Produto`
+- Implementação correta das duas novas classes e relacionamento
+- admin(Django Admin)
+- Projeto e Models (Projeto Cloud)
 - APIs funcionando conforme esperado
 - Deploy realizado com sucesso na AWS Elastic Beanstalk usando `app.zip`
 - Documentação clara das etapas realizadas
