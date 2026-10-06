@@ -91,6 +91,8 @@ docker exec -it meu-postgres psql -U admin -d aula -c "SELECT * FROM alunos;"
 
 Os dados devem continuar disponíveis, pois estão no volume `pgdata`.
 
+---
+
 ## Parte 5 - Usando Docker Compose
 
 Crie o arquivo `docker-compose.yml`:
