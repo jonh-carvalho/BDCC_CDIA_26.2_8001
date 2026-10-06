@@ -1,4 +1,4 @@
-# 🔄 Script de Transações ACID — `02_transactions.sql`
+## 🔄 Script de Transações ACID — `02_transactions.sql`
 
 Este script é o **coração do desafio da Semana 1**. Ele demonstra, passo a passo, como o PostgreSQL garante Atomicidade, Consistência, Isolamento e Durabilidade — e, principalmente, **o que acontece quando algo dá errado**.
 

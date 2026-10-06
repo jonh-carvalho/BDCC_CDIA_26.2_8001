@@ -2,7 +2,7 @@ O grande "pulo do gato" deste caso é apresentar o conceito de **"Post-Modern Da
 
 ---
 
-# Case de Exemplo: Food Delivery & IA – "FoodDash AI"
+## Case de Exemplo: Food Delivery & IA – "FoodDash AI"
 
 **Desafio Detalhado:** O grupo atuará no redesenho da arquitetura de dados de uma plataforma de delivery de alimentos (estilo iFood/Uber Eats) que sofre com a "explosão de microserviços e bancos de dados" (Database Sprawl). A equipe de arquitetura de dados recebeu a missão de consolidar o ecossistema em uma arquitetura **Data Lakehouse Unificada**, utilizando o **PostgreSQL como motor multimodelo central**, capaz de substituir silos de Documentos, Grafos, Vetores (IA) e processamento Big Data, mantendo o Object Storage (MinIO) apenas como repositório físico de baixo custo.
 

@@ -1,4 +1,4 @@
-# Django REST com RDS MySQL integrado ao Elastic Beanstalk
+## Django REST com RDS MySQL integrado ao Elastic Beanstalk
 
 Este roteiro explica as alterações necessárias no projeto Django REST para usar um banco de dados MySQL no RDS acoplado ao Elastic Beanstalk.
 

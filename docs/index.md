@@ -8,9 +8,9 @@ hide:
 <div class="bdcc-hero">
   <div class="bdcc-hero__content">
 
-    <h1 class="bdcc-title">
+    <h2 class="bdcc-title">
       Big Data e Cloud Computing
-    </h1>
+    </h2>
 
     <div class="bdcc-grid">
       <section class="bdcc-card">

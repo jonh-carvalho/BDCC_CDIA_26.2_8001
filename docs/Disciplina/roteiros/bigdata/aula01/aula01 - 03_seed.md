@@ -1,4 +1,4 @@
-# Script de Seed — `03_seed.sql` (1.000 Entregas + Dados Relacionados)
+## Script de Seed — `03_seed.sql` (1.000 Entregas + Dados Relacionados)
 
 Este script demonstra como gerar **dados sintéticos em escala** usando apenas SQL nativo do PostgreSQL — sem Python, sem ferramentas externas. É uma das técnicas mais poderosas e subestimadas do Postgres.
 
