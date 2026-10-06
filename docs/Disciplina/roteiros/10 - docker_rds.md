@@ -1,10 +1,10 @@
-# Roteiro 10 - PostgreSQL no Docker
+## Roteiro 10 - PostgreSQL no Docker
 
-## Objetivo
+### Objetivo
 
 Subir um banco PostgreSQL com suporte à extensão pgvector usando a imagem `pgvector/pgvector:pg16` em um container Docker, persistir os dados e conectar-se a ele (simulando um serviço gerenciado como o RDS).
 
-## Pré-requisitos
+### Pré-requisitos
 
 - Docker instalado (`docker --version`)
 *   **Amazon Linux 2023**
@@ -16,7 +16,7 @@ sudo usermod -a -G docker ec2-user
 ```
 - Cliente `psql` (opcional) ou DBeaver/pgAdmin
 
-## Parte 1 - Executando o PostgreSQL com `docker run`
+### Parte 1 - Executando o PostgreSQL com `docker run`
 
 1. Baixe a imagem:
 
@@ -43,7 +43,7 @@ docker ps
 docker logs meu-postgres
 ```
 
-## Parte 2 - Acessando o banco
+### Parte 2 - Acessando o banco
 
 Via container:
 
@@ -57,7 +57,7 @@ Via cliente local:
 psql -h localhost -p 5432 -U admin -d aula
 ```
 
-## Parte 3 - Criando dados de teste
+### Parte 3 - Criando dados de teste
 
 ```sql
 CREATE TABLE alunos (
@@ -84,7 +84,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 Saia com `\q`.
 
-## Parte 4 - Testando a persistência
+### Parte 4 - Testando a persistência
 
 ```bash
 docker stop meu-postgres
@@ -100,7 +100,7 @@ Os dados devem continuar disponíveis, pois estão no volume `pgdata`.
 
 ---
 
-## Parte 5 - Usando Docker Compose
+### Parte 5 - Usando Docker Compose
 
 Crie o arquivo `docker-compose.yml`:
 
@@ -149,7 +149,14 @@ docker compose down -v   # remove também o volume
 
 Acesse o pgAdmin em `http://localhost:8080` e registre o servidor com host `db`, porta `5432`, usuário `admin`.
 
-## Parte 6 - Executando na AWS EC2
+### Parte 6 - Backup e restore
+
+```bash
+docker exec meu-postgres pg_dump -U admin aula > backup.sql
+docker exec -i meu-postgres psql -U admin -d aula < backup.sql
+```
+
+### Parte 7 - Executando na AWS EC2
 
 O mesmo Docker Compose pode ser usado em uma instância EC2 Linux, com alguns cuidados:
 
@@ -185,7 +192,7 @@ Evite expor o pgAdmin publicamente; se necessário, proteja-o com HTTPS e contro
 
 Para desenvolvimento, acesse o banco sem abrir a porta publicamente usando um túnel SSH local, por exemplo `ssh -L 5433:localhost:5432 usuario@IP_PUBLICO_EC2`, e conecte o cliente a `localhost:5433`.
 
-## Parte 7 - Backup e restore
+## Parte 8 - Backup e restore
 
 ```bash
 docker exec meu-postgres pg_dump -U admin aula > backup.sql
