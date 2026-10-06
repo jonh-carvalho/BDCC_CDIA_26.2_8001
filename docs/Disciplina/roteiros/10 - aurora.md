@@ -1,7 +1,6 @@
+## Criação de MySQL no AWS Aurora
 
-# Criação de MySQL no AWS Aurora
-
-## 1. Criar Cluster Aurora
+### 1. Criar Cluster Aurora
 
 1. Acesse o console AWS RDS
 2. Clique em "Create database"
@@ -13,16 +12,16 @@
     - **Master password**: defina uma senha
 6. Clique em "Create database"
 
-## 2. Aguardar Disponibilidade
+### 2. Aguardar Disponibilidade
 
 - Espere o status mudar para "Available" (5-10 minutos)
 - Copie o **endpoint** da instância
 
-## 3. Conectar ao Banco (por onde?)
+### 3. Conectar ao Banco (por onde?)
 
 Você pode conectar de **3 lugares**:
 
-1. **AWS CloudShell** (mais fácil, sem instalar nada)
+#### I. **AWS CloudShell** (mais fácil, sem instalar nada)
 
 
 > Antes de conectar, no **Security Group** do Aurora, libere a porta **3306** para a origem correta (EC2, CloudShell ou seu IP).
@@ -41,7 +40,7 @@ sudo apt update && sudo apt install -y mysql-client
 sudo dnf install -y mariadb105
 ```
 
-## 4. Criar Tabela
+##### 4. Criar Tabela
 
 ```sql
 CREATE DATABASE meubanco;
@@ -54,7 +53,7 @@ CREATE TABLE usuarios (
 );
 ```
 
-## 5. Operações Básicas
+##### 5. Operações Básicas
 
 **Inserir dados:**
 ```sql
@@ -76,7 +75,9 @@ UPDATE usuarios SET nome='João Silva' WHERE id=1;
 DELETE FROM usuarios WHERE id=1;
 ```
 
-2. **EC2 na mesma VPC** do Aurora (recomendado para laboratório)
+---
+
+#### II. **EC2 na mesma VPC** do Aurora (recomendado para laboratório)
   
    **Passo a passo (via EC2):**
    1. Acesse a instância:
@@ -105,7 +106,7 @@ DELETE FROM usuarios WHERE id=1;
   
 
 
-3. **Seu computador local** (se liberar acesso no Security Group)
+#### III. **Seu computador local** (se liberar acesso no Security Group)
   
    **Passo a passo (via computador local):**
    1. Instale o cliente MySQL:
