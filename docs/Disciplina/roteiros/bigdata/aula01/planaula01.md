@@ -45,14 +45,14 @@ Compreender, modelar e implementar um banco de dados relacional transacional rob
     *   Cardinalidade e Relacionamentos (1:N, N:N).
 *   **Quando o Relacional é OBRIGATÓRIO?**
     *   Discussão: Por que não usar NoSQL para faturamento? 
-        -  Consistência forte é mandatória para evitar *double billing*.
-        -  Transações financeiras exigem rollback e atomicidade.
-        -  Auditoria e rastreabilidade são requisitos legais.
-        -  Cenários de alta concorrência e integridade de dados.
+        - Consistência forte é mandatória para evitar *double billing*.
+        - Transações financeiras exigem rollback e atomicidade.
+        - Auditoria e rastreabilidade são requisitos legais.
+        - Cenários de alta concorrência e integridade de dados.
     *   Conceitos de Auditoria, SLA, Contratos e Dinheiro. O custo do *data loss* ou *double billing*.
-        -   Exemplo de falha: Se uma entrega é faturada duas vezes, o cliente pode processar a empresa judicialmente.
-        -   Exemplo de falha: Se uma entrega é faturada e o motorista não recebe, ele pode entrar com ação trabalhista.
-        -  Exemplo de falha: Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.
+        - Exemplo de falha: Se uma entrega é faturada duas vezes, o cliente pode processar a empresa judicialmente.
+        - Exemplo de falha: Se uma entrega é faturada e o motorista não recebe, ele pode entrar com ação trabalhista.
+        - Exemplo de falha: Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.
         - Exemplo de falha: Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.
 *   **Dúvidas e Transição para a Prática**
     *   Apresentação do diagrama ER final que será codificado.
@@ -64,7 +64,7 @@ Compreender, modelar e implementar um banco de dados relacional transacional rob
 *   **Setup do PostgreSQL 16 (Docker)**
     *   Subindo o container:
       ```bash
-      docker run --name swifttrack-pg -e POSTGRES_PASSWORD=secret -e POSTGRES_DB=swifttrack_core -p 5432:5432 -d postgres:16
+      docker run -d --name swifttrack-pg -e POSTGRES_PASSWORD=12345678 -e POSTGRES_DB=swifttrack_core -p 5432:5432 -v pgdata:/var/lib/postgresql/data pgvector/pgvector:pg16
       ```
     *   Conexão via DBeaver/pgAdmin e criação do schema `swifttrack_core`.
 *   **Criação do Schema (DDL) e Constraints**
