@@ -7,6 +7,13 @@ Subir um banco PostgreSQL com suporte à extensão pgvector usando a imagem `pgv
 ## Pré-requisitos
 
 - Docker instalado (`docker --version`)
+*   **Amazon Linux 2023**
+```bash
+sudo yum update -y
+sudo yum install docker -y
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+```
 - Cliente `psql` (opcional) ou DBeaver/pgAdmin
 
 ## Parte 1 - Executando o PostgreSQL com `docker run`
