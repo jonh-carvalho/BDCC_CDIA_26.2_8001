@@ -1,4 +1,4 @@
-## Roteiro 10 - PostgreSQL no Docker
+## PostgreSQL no Docker
 
 ### Objetivo
 
