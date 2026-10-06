@@ -774,8 +774,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -818,8 +816,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -828,6 +824,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#roteiro-10-postgresql-no-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roteiro 10 - PostgreSQL no Docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roteiro 10 - PostgreSQL no Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#objetivo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -837,8 +845,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#pre-requisitos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -848,8 +856,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#parte-1-executando-o-postgresql-com-docker-run" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -859,8 +867,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#parte-2-acessando-o-banco" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -870,8 +878,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#parte-3-criando-dados-de-teste" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -881,8 +889,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#parte-4-testando-a-persistencia" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -892,8 +900,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#parte-5-usando-docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -903,23 +911,39 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#parte-6-executando-na-aws-ec2" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#parte-6-backup-e-restore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Parte 6 - Executando na AWS EC2
+        Parte 6 - Backup e restore
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#parte-7-backup-e-restore" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#parte-7-executando-na-aws-ec2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Parte 7 - Backup e restore
+        Parte 7 - Executando na AWS EC2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-8-backup-e-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte 8 - Backup e restore
       
     </span>
   </a>
@@ -1363,10 +1387,12 @@
   
 
 
-<h1 id="roteiro-10-postgresql-no-docker">Roteiro 10 - PostgreSQL no Docker<a class="headerlink" href="#roteiro-10-postgresql-no-docker" title="Permanent link">&para;</a></h1>
-<h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
+  <h1>10 - RDS no docker EC2</h1>
+
+<h2 id="roteiro-10-postgresql-no-docker">Roteiro 10 - PostgreSQL no Docker<a class="headerlink" href="#roteiro-10-postgresql-no-docker" title="Permanent link">&para;</a></h2>
+<h3 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h3>
 <p>Subir um banco PostgreSQL com suporte à extensão pgvector usando a imagem <code>pgvector/pgvector:pg16</code> em um container Docker, persistir os dados e conectar-se a ele (simulando um serviço gerenciado como o RDS).</p>
-<h2 id="pre-requisitos">Pré-requisitos<a class="headerlink" href="#pre-requisitos" title="Permanent link">&para;</a></h2>
+<h3 id="pre-requisitos">Pré-requisitos<a class="headerlink" href="#pre-requisitos" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Docker instalado (<code>docker --version</code>)</li>
 <li><strong>Amazon Linux 2023</strong>
@@ -1377,7 +1403,7 @@
 </span></code></pre></div></li>
 <li>Cliente <code>psql</code> (opcional) ou DBeaver/pgAdmin</li>
 </ul>
-<h2 id="parte-1-executando-o-postgresql-com-docker-run">Parte 1 - Executando o PostgreSQL com <code>docker run</code><a class="headerlink" href="#parte-1-executando-o-postgresql-com-docker-run" title="Permanent link">&para;</a></h2>
+<h3 id="parte-1-executando-o-postgresql-com-docker-run">Parte 1 - Executando o PostgreSQL com <code>docker run</code><a class="headerlink" href="#parte-1-executando-o-postgresql-com-docker-run" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Baixe a imagem:</li>
 </ol>
@@ -1399,14 +1425,14 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>ps
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span>logs<span class="w"> </span>meu-postgres
 </span></code></pre></div>
-<h2 id="parte-2-acessando-o-banco">Parte 2 - Acessando o banco<a class="headerlink" href="#parte-2-acessando-o-banco" title="Permanent link">&para;</a></h2>
+<h3 id="parte-2-acessando-o-banco">Parte 2 - Acessando o banco<a class="headerlink" href="#parte-2-acessando-o-banco" title="Permanent link">&para;</a></h3>
 <p>Via container:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>meu-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>-d<span class="w"> </span>aula
 </span></code></pre></div>
 <p>Via cliente local:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>psql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span><span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>-d<span class="w"> </span>aula
 </span></code></pre></div>
-<h2 id="parte-3-criando-dados-de-teste">Parte 3 - Criando dados de teste<a class="headerlink" href="#parte-3-criando-dados-de-teste" title="Permanent link">&para;</a></h2>
+<h3 id="parte-3-criando-dados-de-teste">Parte 3 - Criando dados de teste<a class="headerlink" href="#parte-3-criando-dados-de-teste" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">alunos</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">nome</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
@@ -1423,7 +1449,7 @@
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">vector</span><span class="p">;</span>
 </span></code></pre></div>
 <p>Saia com <code>\q</code>.</p>
-<h2 id="parte-4-testando-a-persistencia">Parte 4 - Testando a persistência<a class="headerlink" href="#parte-4-testando-a-persistencia" title="Permanent link">&para;</a></h2>
+<h3 id="parte-4-testando-a-persistencia">Parte 4 - Testando a persistência<a class="headerlink" href="#parte-4-testando-a-persistencia" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>meu-postgres
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>docker<span class="w"> </span>rm<span class="w"> </span>meu-postgres
 </span></code></pre></div>
@@ -1432,7 +1458,7 @@
 </span></code></pre></div>
 <p>Os dados devem continuar disponíveis, pois estão no volume <code>pgdata</code>.</p>
 <hr />
-<h2 id="parte-5-usando-docker-compose">Parte 5 - Usando Docker Compose<a class="headerlink" href="#parte-5-usando-docker-compose" title="Permanent link">&para;</a></h2>
+<h3 id="parte-5-usando-docker-compose">Parte 5 - Usando Docker Compose<a class="headerlink" href="#parte-5-usando-docker-compose" title="Permanent link">&para;</a></h3>
 <p>Crie o arquivo <code>docker-compose.yml</code>:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">services</span><span class="p">:</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
@@ -1473,25 +1499,29 @@
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v<span class="w">   </span><span class="c1"># remove também o volume</span>
 </span></code></pre></div>
 <p>Acesse o pgAdmin em <code>http://localhost:8080</code> e registre o servidor com host <code>db</code>, porta <code>5432</code>, usuário <code>admin</code>.</p>
-<h2 id="parte-6-executando-na-aws-ec2">Parte 6 - Executando na AWS EC2<a class="headerlink" href="#parte-6-executando-na-aws-ec2" title="Permanent link">&para;</a></h2>
+<h3 id="parte-6-backup-e-restore">Parte 6 - Backup e restore<a class="headerlink" href="#parte-6-backup-e-restore" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>meu-postgres<span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>aula<span class="w"> </span>&gt;<span class="w"> </span>backup.sql
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span>meu-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>-d<span class="w"> </span>aula<span class="w"> </span>&lt;<span class="w"> </span>backup.sql
+</span></code></pre></div>
+<h3 id="parte-7-executando-na-aws-ec2">Parte 7 - Executando na AWS EC2<a class="headerlink" href="#parte-7-executando-na-aws-ec2" title="Permanent link">&para;</a></h3>
 <p>O mesmo Docker Compose pode ser usado em uma instância EC2 Linux, com alguns cuidados:</p>
 <ol>
 <li>Crie a instância em uma VPC e instale Docker e o plugin Docker Compose conforme as instruções da distribuição escolhida. Restrinja o acesso SSH (porta 22) ao seu IP.</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Amazon Linux 2023 </span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># Install docker</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>sudo<span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </span>-y
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>docker<span class="w"> </span>-y
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>docker
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1"># Install plugin docker compose v2</span>
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>docker-compose-plugin<span class="w"> </span>-y
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Amazon Linux 2023 </span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="c1"># Install docker</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>sudo<span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </span>-y
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>docker<span class="w"> </span>-y
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>docker
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1"># Install plugin docker compose v2</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>docker-compose-plugin<span class="w"> </span>-y
 </span></code></pre></div>
 <ol>
 <li>Transfira o <code>docker-compose.yml</code> para a instância e inicie os serviços com: </li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </span></code></pre></div>
 <p>Publique apenas as portas necessárias.</p>
 <ol>
@@ -1504,9 +1534,9 @@
 <li>Atualize o sistema e as imagens, monitore espaço em disco e logs. Uma única EC2 não oferece, por si só, alta disponibilidade nem backups gerenciados como o Amazon RDS.</li>
 </ol>
 <p>Para desenvolvimento, acesse o banco sem abrir a porta publicamente usando um túnel SSH local, por exemplo <code>ssh -L 5433:localhost:5432 usuario@IP_PUBLICO_EC2</code>, e conecte o cliente a <code>localhost:5433</code>.</p>
-<h2 id="parte-7-backup-e-restore">Parte 7 - Backup e restore<a class="headerlink" href="#parte-7-backup-e-restore" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>meu-postgres<span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>aula<span class="w"> </span>&gt;<span class="w"> </span>backup.sql
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span>meu-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>-d<span class="w"> </span>aula<span class="w"> </span>&lt;<span class="w"> </span>backup.sql
+<h2 id="parte-8-backup-e-restore">Parte 8 - Backup e restore<a class="headerlink" href="#parte-8-backup-e-restore" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>meu-postgres<span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>aula<span class="w"> </span>&gt;<span class="w"> </span>backup.sql
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span>meu-postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>-d<span class="w"> </span>aula<span class="w"> </span>&lt;<span class="w"> </span>backup.sql
 </span></code></pre></div>
 <h2 id="desafios">Desafios<a class="headerlink" href="#desafios" title="Permanent link">&para;</a></h2>
 <ol>
@@ -1516,9 +1546,9 @@
 <li>Conecte uma aplicação (Python/Java) ao banco no container.</li>
 </ol>
 <h2 id="limpeza">Limpeza<a class="headerlink" href="#limpeza" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>meu-postgres
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>pgdata
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>meu-postgres
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>pgdata
 </span></code></pre></div>
 
 
