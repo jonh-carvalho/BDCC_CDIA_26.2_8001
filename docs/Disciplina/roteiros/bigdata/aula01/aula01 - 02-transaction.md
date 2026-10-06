@@ -323,13 +323,13 @@ As constraints `CHECK` que criamos no `01_schema.sql` são a **última linha de 
 
 ---
 
-## Variações Didáticas (Para o Instrutor)
+## Teste de Variações
 
 ### Variação 1: Mostrar o "Estado de Erro"
 Peça para os alunos **comentarem** a linha do `ROLLBACK` na Cena 3 e tentarem rodar um `SELECT` depois do erro. Eles verão a mensagem de "transaction is aborted". Isso fixa o conceito.
 
 ### Variação 2: Transação Aninhada (SAVEPOINT)
-Para alunos avançados, mostre como usar `SAVEPOINT` para fazer rollback parcial:
+Como usar `SAVEPOINT` para fazer rollback parcial:
 
 ```sql
 BEGIN;
@@ -341,4 +341,5 @@ COMMIT;                                   -- mantém o primeiro
 ```
 
 ### Variação 3: Simulação de Concorrência
+
 Abra **dois terminais** conectados ao mesmo banco. No Terminal 1, dê `BEGIN; UPDATE deliveries...` (sem COMMIT). No Terminal 2, tente dar `SELECT` ou `UPDATE` na mesma linha. Mostre o comportamento de **Isolamento**.
