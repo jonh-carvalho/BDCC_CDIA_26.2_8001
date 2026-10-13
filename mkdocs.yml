@@ -79,6 +79,8 @@ markdown_extensions:
   - pymdownx.snippets
   # Admonitions, Annotations, Code Blocks, Content Tabs
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   # Content Tabs
   - pymdownx.tabbed:
       alternate_style: true
@@ -93,6 +95,9 @@ markdown_extensions:
       permalink: true
 
 plugins:
+  - pygments: 
+      light: murphy
+      dark: solarized-dark
   - search
   - plantuml:
       puml_url: https://www.plantuml.com/plantuml/
