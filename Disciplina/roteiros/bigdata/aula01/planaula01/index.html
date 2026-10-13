@@ -509,6 +509,8 @@
       
         
       
+        
+      
     
     
     
@@ -799,6 +801,156 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_10" id="__nav_2_2_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Big Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Big Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aula01%20-%2001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 - Transacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aula01%20-%2002_transaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 - Analítico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aula01%20-%2003_seed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 - Data Lake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1236,10 +1388,10 @@ Compreender, modelar e implementar um banco de dados relacional transacional rob
 </ul>
 </li>
 <li>Conceitos de Auditoria, SLA, Contratos e Dinheiro. O custo do <em>data loss</em> ou <em>double billing</em>.<ul>
-<li>Exemplo de falha: Se uma entrega é faturada duas vezes, o cliente pode processar a empresa judicialmente.</li>
-<li>Exemplo de falha: Se uma entrega é faturada e o motorista não recebe, ele pode entrar com ação trabalhista.</li>
-<li>Exemplo de falha: Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.</li>
-<li>Exemplo de falha: Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.</li>
+<li>Se uma entrega é faturada duas vezes, o cliente pode processar a empresa judicialmente.</li>
+<li>Se uma entrega é faturada e o motorista não recebe, ele pode entrar com ação trabalhista.</li>
+<li>Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.</li>
+<li>Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.</li>
 </ul>
 </li>
 </ul>
@@ -1254,7 +1406,7 @@ Compreender, modelar e implementar um banco de dados relacional transacional rob
 <ul>
 <li><strong>Setup do PostgreSQL 16 (Docker)</strong><ul>
 <li>Subindo o container:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>swifttrack-pg<span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>secret<span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>swifttrack_core<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span>-d<span class="w"> </span>postgres:16
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>swifttrack-pg<span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span><span class="m">12345678</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>swifttrack_core<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span>-v<span class="w"> </span>pgdata:/var/lib/postgresql/data<span class="w"> </span>pgvector/pgvector:pg16
 </span></code></pre></div></li>
 <li>Conexão via DBeaver/pgAdmin e criação do schema <code>swifttrack_core</code>.</li>
 </ul>
