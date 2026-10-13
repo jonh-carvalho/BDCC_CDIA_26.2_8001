@@ -12,9 +12,9 @@ Aula 07 - 15/09/2026 | :material-check: [Introdução ao Elastic Beanstalk](http
 Aula 08 - 22/09/2026 | :material-check: |
 Aula 09 - 29/09/2026 | :material-check: AP1 |
 Aula 10 - 06/10/2026 | :material-check: [RDS](https://awseducate.instructure.com/courses/1119/modules/items/19068) - Postgresql e Mysql |
-Aula 11 - 13/10/2026 | :material-check: Colunar e Orientado a Documentos(Repositórios)|
-Aula 12 - 20/10/2026 | :material-check: Documentos |
-Aula 13 - 27/10/2026 | :material-check:  |
+Aula 11 - 13/10/2026 | :material-check: Postgresql |
+Aula 12 - 20/10/2026 | :material-check: Colunar e Orientado a Documentos(Repositórios) |
+Aula 13 - 27/10/2026 | :material-check: Documentos |
 Aula 14 - 03/11/2026 | :material-check: [Rest RDS e Rest S3](https://github.com/jonh-carvalho/apiawsEB)|
 Aula 15 - 10/11/2026 | :material-check: Feriado |
 Aula 16 - 17/11/2026 | :material-check: AP2 |
