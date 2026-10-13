@@ -50,10 +50,10 @@ Compreender, modelar e implementar um banco de dados relacional transacional rob
         - Auditoria e rastreabilidade são requisitos legais.
         - Cenários de alta concorrência e integridade de dados.
     *   Conceitos de Auditoria, SLA, Contratos e Dinheiro. O custo do *data loss* ou *double billing*.
-        - Exemplo de falha: Se uma entrega é faturada duas vezes, o cliente pode processar a empresa judicialmente.
-        - Exemplo de falha: Se uma entrega é faturada e o motorista não recebe, ele pode entrar com ação trabalhista.
-        - Exemplo de falha: Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.
-        - Exemplo de falha: Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.
+        - Se uma entrega é faturada duas vezes, o cliente pode processar a empresa judicialmente.
+        - Se uma entrega é faturada e o motorista não recebe, ele pode entrar com ação trabalhista.
+        - Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.
+        - Se o sistema não consegue garantir que uma transação foi concluída, a empresa perde credibilidade.
 *   **Dúvidas e Transição para a Prática**
     *   Apresentação do diagrama ER final que será codificado.
 
