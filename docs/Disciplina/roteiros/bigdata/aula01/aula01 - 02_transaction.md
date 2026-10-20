@@ -1,345 +1,84 @@
-## Script de Transações ACID — `02_transactions.sql`
+## Script de Transações ACID — cenas separadas
 
-Este script é o **coração do desafio da Semana 1**. Ele demonstra, passo a passo, como o PostgreSQL garante Atomicidade, Consistência, Isolamento e Durabilidade — e, principalmente, **o que acontece quando algo dá errado**.
+Este conjunto de scripts demonstra como o PostgreSQL garante Atomicidade, Consistência, Isolamento e Durabilidade — e o que acontece quando uma operação falha.
 
----
+## Estrutura
 
-## Estrutura do Script
+As cenas foram separadas em arquivos SQL para que cada etapa possa ser executada e avaliada individualmente:
 
-O script é dividido em **5 cenas**:
+| Cena | Arquivo | Objetivo | Resultado esperado |
+| :--- | :--- | :--- | :--- |
+| **1** | `02_transactions/01_setup.sql` | Preparar cliente, motorista, veículo e três entregas | Duas entregas pendentes e uma cancelada |
+| **2** | `02_transactions/02_commit.sql` | Faturar uma entrega em uma transação bem-sucedida | Entrega `DELIVERED` e uma fatura persistida |
+| **3** | `02_transactions/03_rollback_constraint.sql` | Tentar inserir uma fatura com valor negativo | A constraint rejeita a fatura e o `ROLLBACK` restaura a entrega para `PENDING` |
+| **4** | `02_transactions/04_rollback_business_rule.sql` | Tentar faturar uma entrega cancelada | A regra de negócio gera erro; o `ROLLBACK` mantém a entrega `CANCELED` |
+| **5** | `02_transactions/05_verification.sql` | Conferir o estado consolidado da demonstração | Três entregas: uma `DELIVERED`, uma `PENDING`, uma `CANCELED`; uma fatura |
 
-| Cena | Objetivo | Conceito ACID |
-| :--- | :--- | :--- |
-| **1** | Preparar dados base (cliente, motorista, veículo, entrega) | — |
-| **2** | Transação bem-sucedida (faturamento normal) | Atomicidade + Durabilidade |
-| **3** | Transação com falha (valor negativo) → ROLLBACK | Atomicidade + Consistência |
-| **4** | Transação com falha (entrega cancelada) → ROLLBACK | Consistência (regra de negócio) |
-| **5** | Verificação final do estado do banco | Isolamento (nada "vazou") |
+Os scripts 2–5 localizam os registros da demonstração pelos dados de negócio, em vez de depender de variáveis `psql` criadas em outra sessão. Assim, cada arquivo pode ser executado em uma conexão separada, desde que a Cena 1 tenha sido preparada.
 
----
+## Como executar
 
-## Script Completo (`02_transactions.sql`)
-
-```sql
--- =====================================================================
--- SWIFTTRACK CORE - Transações ACID com ROLLBACK
--- Disciplina: Arquiteturas de Dados e Big Data
--- Módulo I - Semana 1
--- =====================================================================
--- OBJETIVO: Demonstrar como o PostgreSQL garante integridade em cenários
--- de sucesso e falha, usando BEGIN, COMMIT e ROLLBACK.
--- =====================================================================
-
--- Configura o search_path para não precisar prefixar "swifttrack_core."
-SET search_path TO swifttrack_core;
-
--- =====================================================================
--- CENA 1: SETUP — Criando dados base para os testes
--- =====================================================================
--- Vamos inserir um cliente, um motorista, um veículo e uma entrega.
--- Usamos \gset para capturar os IDs gerados e reutilizá-los depois.
-
-\echo '=========================================='
-\echo 'CENA 1: SETUP DE DADOS BASE'
-\echo '=========================================='
-
--- 1.1 Cliente
-INSERT INTO customers (document, name, email, address)
-VALUES ('12.345.678/0001-99', 'Logística Veloz LTDA', 'contato@veloz.com.br', 'Av. Paulista, 1000 - SP')
-RETURNING id AS customer_id \gset
-
-\echo 'Cliente criado com ID: :'customer_id
-
--- 1.2 Motorista
-INSERT INTO drivers (name, cpf, cnh_number, cnh_category, hired_at)
-VALUES ('Carlos Silva', '123.456.789-00', '00123456789', 'E', '2023-03-15')
-RETURNING id AS driver_id \gset
-
-\echo 'Motorista criado com ID: :'driver_id
-
--- 1.3 Veículo
-INSERT INTO vehicles (plate, model, manufacturer, year, capacity_kg)
-VALUES ('ABC-1D23', 'FH 540', 'Volvo', 2024, 25000.00)
-RETURNING id AS vehicle_id \gset
-
-\echo 'Veículo criado com ID: :'vehicle_id
-
--- 1.4 Entrega (duas, para termos cenários diferentes)
-INSERT INTO deliveries (customer_id, driver_id, vehicle_id, origin_address, destination_address, weight_kg, status, scheduled_at)
-VALUES 
-    (:'customer_id', :'driver_id', :'vehicle_id, 'São Paulo - SP', 'Rio de Janeiro - RJ', 5000.00, 'PENDING', NOW() + INTERVAL '1 day'),
-    (:'customer_id', :'driver_id', :'vehicle_id', 'São Paulo - SP', 'Curitiba - PR', 8000.00, 'PENDING', NOW() + INTERVAL '2 days')
-RETURNING id AS delivery_id_1 \gset
-
--- Captura o ID da segunda entrega separadamente
-INSERT INTO deliveries (customer_id, driver_id, vehicle_id, origin_address, destination_address, weight_kg, status, scheduled_at)
-VALUES (:'customer_id', :'driver_id', :'vehicle_id', 'Campinas - SP', 'Belo Horizonte - MG', 3000.00, 'PENDING', NOW() + INTERVAL '3 days')
-RETURNING id AS delivery_id_2 \gset
-
--- Captura uma terceira entrega que vamos CANCELAR para o Cenário 4
-INSERT INTO deliveries (customer_id, driver_id, vehicle_id, origin_address, destination_address, weight_kg, status, scheduled_at)
-VALUES (:'customer_id', :'driver_id', :'vehicle_id', 'Santos - SP', 'Porto Alegre - RS', 10000.00, 'PENDING', NOW() + INTERVAL '4 days')
-RETURNING id AS delivery_id_3 \gset
-
-\echo 'Entregas criadas. IDs: :'delivery_id_1', :'delivery_id_2', :'delivery_id_3
-
--- Cancela a entrega 3 para o Cenário 4
-UPDATE deliveries SET status = 'CANCELED' WHERE id = :'delivery_id_3';
-\echo 'Entrega :'delivery_id_3' foi CANCELADA (será usada no Cenário 4)'
-
-\echo ''
-
--- =====================================================================
--- CENA 2: TRANSAÇÃO BEM-SUCEDIDA (COMMIT)
--- =====================================================================
--- Cenário: A entrega 1 foi concluída. Vamos faturá-la normalmente.
--- Esperado: Fatura criada + status da entrega muda para 'DELIVERED' + 'BILLED'
-
-\echo '=========================================='
-\echo 'CENA 2: FATURAMENTO BEM-SUCEDIDO'
-\echo '=========================================='
-
--- Estado ANTES da transação
-\echo 'Estado ANTES:'
-SELECT id, status FROM deliveries WHERE id = :'delivery_id_1';
-SELECT COUNT(*) AS total_invoices_before FROM invoices;
-
--- Inicia a transação
-BEGIN;
-
--- Passo 1: Atualiza status da entrega para DELIVERED
-UPDATE deliveries 
-SET status = 'DELIVERED', delivered_at = NOW()
-WHERE id = :'delivery_id_1';
-
--- Passo 2: Cria a fatura
-INSERT INTO invoices (
-    delivery_id, customer_id, invoice_number, series,
-    total_value, tax_value, net_value, status, due_date
-) VALUES (
-    :'delivery_id_1', :'customer_id', 'NF-2026-0001', '001',
-    3500.00, 525.00, 2975.00, 'ISSUED', CURRENT_DATE + INTERVAL '30 days'
-);
-
--- Passo 3: Marca a entrega como faturada (regra de negócio adicional)
-UPDATE deliveries SET status = 'BILLED' WHERE id = :'delivery_id_1';
-
--- Confirma tudo
-COMMIT;
-
-\echo 'Transação COMMITADA com sucesso!'
-
--- Estado DEPOIS da transação
-\echo 'Estado DEPOIS:'
-SELECT id, status, delivered_at FROM deliveries WHERE id = :'delivery_id_1';
-SELECT COUNT(*) AS total_invoices_after FROM invoices;
-
-\echo ''
-
--- =====================================================================
--- CENA 3: TRANSAÇÃO COM FALHA — VALOR NEGATIVO (ROLLBACK)
--- =====================================================================
--- Cenário: Tentamos faturar a entrega 2 com valor NEGATIVO.
--- A constraint chk_invoices_total_value VAI REJEITAR.
--- Esperado: NADA é persistido. O ROLLBACK desfaz tudo.
-
-\echo '=========================================='
-\echo 'CENA 3: FALHA — VALOR NEGATIVO (ROLLBACK)'
-\echo '=========================================='
-
--- Estado ANTES
-\echo 'Estado ANTES (entrega 2 ainda PENDING):'
-SELECT id, status FROM deliveries WHERE id = :'delivery_id_2';
-SELECT COUNT(*) AS total_invoices FROM invoices;
-
-BEGIN;
-
--- Passo 1: Tenta atualizar a entrega
-UPDATE deliveries 
-SET status = 'DELIVERED', delivered_at = NOW()
-WHERE id = :'delivery_id_2';
-
-\echo 'Entrega atualizada (ainda dentro da transação)...'
-
--- Passo 2: Tenta criar fatura com VALOR NEGATIVO → VAI FALHAR!
-INSERT INTO invoices (
-    delivery_id, customer_id, invoice_number, series,
-    total_value, tax_value, net_value, status, due_date
-) VALUES (
-    :'delivery_id_2', :'customer_id', 'NF-2026-0002', '001',
-    -500.00, 0, -500.00, 'ISSUED', CURRENT_DATE + INTERVAL '30 days'
-);
-
--- A LINHA ACIMA VAI GERAR ERRO:
--- ERROR: new row for relation "invoices" violates check constraint "chk_invoices_total_value"
--- DETAIL: Failing row contains (... -500.00 ...)
-
--- Se chegasse aqui (não chega), faríamos COMMIT.
--- Como deu erro, precisamos dar ROLLBACK para liberar a transação.
-ROLLBACK;
-
-\echo 'ROLLBACK executado — nenhuma alteração foi persistida!'
-
--- Estado DEPOIS — deve ser IGUAL ao estado ANTES
-\echo 'Estado DEPOIS (deve estar igual ao ANTES):'
-SELECT id, status FROM deliveries WHERE id = :'delivery_id_2';
-SELECT COUNT(*) AS total_invoices FROM invoices;
-
-\echo ''
-
--- =====================================================================
--- CENA 4: TRANSAÇÃO COM FALHA — ENTREGA CANCELADA (ROLLBACK)
--- =====================================================================
--- Cenário: Tentamos faturar a entrega 3, que foi CANCELADA.
--- Isso viola uma regra de negócio implícita (não faturamos entregas canceladas).
--- Vamos simular isso com uma constraint CHECK adicional via aplicação,
--- mas aqui vamos forçar um erro de FK/estado.
-
-\echo '=========================================='
-\echo 'CENA 4: FALHA — ENTREGA CANCELADA (ROLLBACK)'
-\echo '=========================================='
-
--- Estado ANTES
-\echo 'Estado ANTES (entrega 3 está CANCELED):'
-SELECT id, status FROM deliveries WHERE id = :'delivery_id_3';
-
-BEGIN;
-
--- Passo 1: Tenta "reativar" a entrega e faturá-la
-UPDATE deliveries 
-SET status = 'DELIVERED', delivered_at = NOW()
-WHERE id = :'delivery_id_3';
-
--- Passo 2: Tenta criar fatura
-INSERT INTO invoices (
-    delivery_id, customer_id, invoice_number, series,
-    total_value, tax_value, net_value, status, due_date
-) VALUES (
-    :'delivery_id_3', :'customer_id', 'NF-2026-0003', '001',
-    5000.00, 750.00, 4250.00, 'ISSUED', CURRENT_DATE + INTERVAL '30 days'
-);
-
--- Aqui entra a regra de negócio: em um sistema real, a aplicação
--- verificaria que a entrega estava cancelada e lançaria uma exceção.
--- Para fins didáticos, vamos SIMULAR essa detecção com um DO block:
-
-DO $$
-DECLARE
-    v_status VARCHAR;
-BEGIN
-    SELECT status INTO v_status FROM deliveries WHERE id = :'delivery_id_3';
-    -- Em um cenário real, a entrega original estava CANCELED.
-    -- Vamos forçar um erro se detectarmos inconsistência:
-    IF v_status = 'DELIVERED' THEN
-        -- Simula detecção de fraude: entrega estava cancelada mas foi "reativada"
-        RAISE EXCEPTION 'REGRA DE NEGÓCIO VIOLADA: Não é permitido faturar entrega previamente cancelada (ID: %)', :'delivery_id_3';
-    END IF;
-END $$;
-
--- Se chegasse aqui, faríamos COMMIT.
--- Como o DO block lançou exceção, a transação entra em estado de erro.
-ROLLBACK;
-
-\echo 'ROLLBACK executado — entrega continua CANCELED, nenhuma fatura criada!'
-
--- Estado DEPOIS
-\echo 'Estado DEPOIS:'
-SELECT id, status FROM deliveries WHERE id = :'delivery_id_3';
-SELECT COUNT(*) AS total_invoices FROM invoices;
-
-\echo ''
-
--- =====================================================================
--- CENA 5: VERIFICAÇÃO FINAL — O ESTADO CONSOLIDADO
--- =====================================================================
-
-\echo '=========================================='
-\echo 'CENA 5: VERIFICAÇÃO FINAL'
-\echo '=========================================='
-
-\echo 'Entregas e seus status finais:'
-SELECT id, customer_id, status, delivered_at 
-FROM deliveries 
-ORDER BY id;
-
-\echo ''
-\echo 'Faturas emitidas (apenas a Cena 2 deve ter persistido):'
-SELECT id, delivery_id, invoice_number, total_value, net_value, status 
-FROM invoices 
-ORDER BY id;
-
-\echo ''
-\echo 'Resumo:'
-SELECT 
-    (SELECT COUNT(*) FROM deliveries) AS total_deliveries,
-    (SELECT COUNT(*) FROM deliveries WHERE status = 'BILLED') AS billed_deliveries,
-    (SELECT COUNT(*) FROM deliveries WHERE status = 'CANCELED') AS canceled_deliveries,
-    (SELECT COUNT(*) FROM deliveries WHERE status = 'PENDING') AS pending_deliveries,
-    (SELECT COUNT(*) FROM invoices) AS total_invoices,
-    (SELECT SUM(total_value) FROM invoices) AS total_billed_value;
-
-\echo ''
-\echo 'FIM DO SCRIPT DE TRANSAÇÕES'
-\echo 'Lição: Quando uma constraint falha, o PostgreSQL aborta a transação.'
-\echo '   É OBRIGATÓRIO dar ROLLBACK antes de iniciar uma nova transação.'
-```
-
----
-
-## Como Executar
-
-Usando o mesmo padrão da aula anterior (pipe direto):
+Execute os arquivos em ordem, a partir da pasta `aula01`. Cada comando abre uma sessão `psql` própria:
 
 ```bash
-cat 02_transactions.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 02_transactions/01_setup.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 02_transactions/02_commit.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 02_transactions/03_rollback_constraint.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 02_transactions/04_rollback_business_rule.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 02_transactions/05_verification.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
 ```
 
----
+A Cena 1 pode ser executada novamente para recriar os dados de demonstração e limpar as faturas associadas a eles. Para avaliar uma cena isoladamente, execute primeiro a Cena 1 e depois o arquivo desejado. As Cenas 3 e 4 exibem erros intencionais; deixe o `psql` continuar a execução para que o `ROLLBACK` seja executado.
 
-## O Que os Alunos Devem Observar
+## O que observar
 
-### 1. **A Atomicidade em Ação**
-Na **Cena 3**, o `UPDATE` da entrega **foi executado** antes do `INSERT` da fatura. Mas quando o `INSERT` falhou, **AMBOS foram desfeitos**. A entrega voltou ao status `PENDING`. Isso é Atomicidade: "tudo ou nada".
+### 1. Atomicidade em ação
 
-### 2. **O Estado de Erro da Transação**
-Quando uma constraint falha dentro de um `BEGIN`, o PostgreSQL entra em um estado chamado **"aborted transaction"**. Nesse estado:
-- ❌ Você **NÃO** pode executar mais nenhum comando (nem `SELECT`)
-- ❌ Você **NÃO** pode dar `COMMIT`
-- ✅ A **ÚNICA** coisa que você pode fazer é `ROLLBACK`
+Na Cena 3, o `UPDATE` da entrega acontece antes do `INSERT` da fatura. A constraint `chk_invoices_total_value` rejeita o valor negativo; o `ROLLBACK` desfaz também o `UPDATE`, e a entrega permanece `PENDING`.
 
-Se o aluno esquecer de dar `ROLLBACK` e tentar rodar outra query, verá:
-```
+### 2. Estado de erro da transação
+
+Quando uma constraint ou regra gera erro dentro de um `BEGIN`, o PostgreSQL marca a transação como abortada. Nesse estado:
+
+- Não é possível executar outros comandos nem confirmar a transação com `COMMIT`.
+- É necessário executar `ROLLBACK` para encerrar a transação.
+
+Se o `ROLLBACK` for removido da Cena 3, um comando posterior na mesma sessão mostrará:
+
+```text
 ERROR: current transaction is aborted, commands ignored until end of transaction block
 ```
 
-### 3. **A Diferença Entre COMMIT e ROLLBACK**
+### 3. Diferença entre `COMMIT` e `ROLLBACK`
+
 | Comando | Efeito | Quando usar |
 | :--- | :--- | :--- |
-| `COMMIT` | Torna as alterações **permanentes** | Quando tudo deu certo |
-| `ROLLBACK` | **Desfaz** todas as alterações do `BEGIN` | Quando algo deu errado |
+| `COMMIT` | Torna permanentes as alterações da transação | Quando todas as operações deram certo |
+| `ROLLBACK` | Desfaz as alterações feitas desde o `BEGIN` | Quando alguma operação falhou |
 
-### 4. **O Poder das Constraints**
-As constraints `CHECK` que criamos no `01_schema.sql` são a **última linha de defesa**. Mesmo que a aplicação tenha um bug e envie um valor negativo, o banco **rejeita**. Isso é a **Consistência** do ACID.
+### 4. Poder das constraints
 
----
+As constraints `CHECK` criadas no script de schema são a última linha de defesa do banco: mesmo que a aplicação envie um valor negativo por engano, o PostgreSQL rejeita a gravação. Isso demonstra Consistência.
 
-## Teste de Variações
+## Testes de variações
 
-### Variação 1: Mostrar o "Estado de Erro"
-Peça para os alunos **comentarem** a linha do `ROLLBACK` na Cena 3 e tentarem rodar um `SELECT` depois do erro. Eles verão a mensagem de "transaction is aborted". Isso fixa o conceito.
+### Variação 1: mostrar o estado de erro
 
-### Variação 2: Transação Aninhada (SAVEPOINT)
-Como usar `SAVEPOINT` para fazer rollback parcial:
+Peça aos alunos que removam temporariamente o `ROLLBACK` da Cena 3 e tentem executar outro comando na mesma transação. A sessão mostrará o erro de transação abortada.
+
+### Variação 2: transação com `SAVEPOINT`
+
+Use `SAVEPOINT` para desfazer apenas parte de uma transação:
 
 ```sql
 BEGIN;
 INSERT INTO invoices (...) VALUES (...);
 SAVEPOINT sp_invoice;
 INSERT INTO invoices (...) VALUES (...);  -- falha
-ROLLBACK TO SAVEPOINT sp_invoice;         -- desfaz só o segundo INSERT
-COMMIT;                                   -- mantém o primeiro
+ROLLBACK TO SAVEPOINT sp_invoice;         -- desfaz apenas o segundo INSERT
+COMMIT;                                   -- mantém o primeiro INSERT
 ```
 
-### Variação 3: Simulação de Concorrência
+### Variação 3: simular concorrência
 
-Abra **dois terminais** conectados ao mesmo banco. No Terminal 1, dê `BEGIN; UPDATE deliveries...` (sem COMMIT). No Terminal 2, tente dar `SELECT` ou `UPDATE` na mesma linha. Mostre o comportamento de **Isolamento**.
+Abra dois terminais conectados ao mesmo banco. No Terminal 1, execute `BEGIN; UPDATE deliveries ...` sem `COMMIT`. No Terminal 2, tente consultar ou atualizar a mesma linha e observe o comportamento de isolamento.

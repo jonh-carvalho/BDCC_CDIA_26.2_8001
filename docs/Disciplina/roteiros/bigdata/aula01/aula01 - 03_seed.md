@@ -1,547 +1,89 @@
-## Script de Seed — `03_seed.sql` (1.000 Entregas + Dados Relacionados)
+# Script de Seed — 1.000 entregas
 
-Este script demonstra como gerar **dados sintéticos em escala** usando apenas SQL nativo do PostgreSQL — sem Python, sem ferramentas externas. É uma das técnicas mais poderosas e subestimadas do Postgres.
+Este material demonstra a geração de dados sintéticos em escala usando SQL nativo do PostgreSQL. O script foi organizado em **sete cenas executáveis**, cada uma em um arquivo SQL separado, para facilitar a execução e a avaliação dos resultados.
 
----
+## Estratégia de geração
 
-## Estratégia de Geração
-
-| Tabela | Quantidade | Justificativa |
+| Tabela | Quantidade esperada | Objetivo |
 | :--- | :---: | :--- |
-| `customers` | 80 | Base realista de clientes B2B |
-| `drivers` | 25 | Frota de motoristas ativos |
-| `vehicles` | 12 | Frota de veículos |
-| `deliveries` | **1.000** | **Meta da aula** |
-| `invoices` | ~700 | Apenas entregas `DELIVERED` são faturadas |
+| `customers` | 80 | Base de clientes B2B |
+| `drivers` | 25 | Motoristas da frota |
+| `vehicles` | 12 | Veículos da frota |
+| `deliveries` | 1.000 | Meta principal da aula |
+| `invoices` | Aproximadamente 700 | Faturas de entregas concluídas |
 
-### Distribuição de Status das Entregas (realista):
-| Status | % | Quantidade |
-| :--- | :---: | :---: |
-| `DELIVERED` | 70% | 700 |
-| `IN_TRANSIT` | 15% | 150 |
-| `PENDING` | 10% | 100 |
-| `CANCELED` | 5% | 50 |
+A distribuição de status das entregas é probabilística, com proporções aproximadas de 70% `DELIVERED`, 15% `IN_TRANSIT`, 10% `PENDING` e 5% `CANCELED`. Portanto, as contagens variam a cada execução.
 
----
+## Cenas
 
-## Técnicas do PostgreSQL que Vamos Usar
+Os arquivos estão na pasta [`03_seed/`](./03_seed/).
 
-Antes do código, vale entender as "ferramentas" que tornam isso possível:
+| Cena | Arquivo | O que faz | Pré-requisito |
+| :---: | :--- | :--- | :--- |
+| 1 | [`01_customers.sql`](./03_seed/01_customers.sql) | Cria as funções auxiliares e insere clientes | Schema `swifttrack_core` criado |
+| 2 | [`02_drivers.sql`](./03_seed/02_drivers.sql) | Insere motoristas | Schema criado |
+| 3 | [`03_vehicles.sql`](./03_seed/03_vehicles.sql) | Insere veículos | Schema criado |
+| 4 | [`04_deliveries.sql`](./03_seed/04_deliveries.sql) | Insere 1.000 entregas | Cenas 1, 2 e 3 |
+| 5 | [`05_invoices.sql`](./03_seed/05_invoices.sql) | Emite faturas para entregas concluídas | Cena 4 |
+| 6 | [`06_cleanup.sql`](./03_seed/06_cleanup.sql) | Remove as funções auxiliares | Cenas 1 e 4 |
+| 7 | [`07_validation.sql`](./03_seed/07_validation.sql) | Mostra contagens, status, resumo financeiro e integridade referencial | Cenas 1 a 5 |
 
-| Função | O que faz | Exemplo |
-| :--- | :--- | :--- |
-| `generate_series(1, N)` | Gera N números em sequência | `SELECT * FROM generate_series(1, 1000)` → 1.000 linhas |
-| `random()` | Número aleatório entre 0 e 1 | `random()` → `0.7382...` |
-| `floor(x)` | Arredonda para baixo | `floor(3.7)` → `3` |
-| `md5(text)` | Gera hash MD5 de uma string | Útil para gerar "nomes" únicos |
-| `ARRAY[...][idx]` | Acessa elemento de um array | `ARRAY['A','B','C'][2]` → `'B'` |
-| `NOW() - (x * INTERVAL '1 day')` | Data aleatória no passado | Distribui entregas nos últimos 90 dias |
+Todos os arquivos definem o `search_path` no início. Assim, cada cena pode ser executada em uma conexão `psql` separada, sem depender de configurações da sessão anterior. As cenas 2 e 3 podem ser executadas em qualquer ordem depois da criação do schema; a ordem indicada facilita a avaliação.
 
----
+## Como executar
 
-## Script Completo (`03_seed.sql`)
-
-```sql
--- =====================================================================
--- SWIFTTRACK CORE - Seed de Dados (1.000 Entregas)
--- Disciplina: Arquiteturas de Dados e Big Data
--- Módulo I - Semana 1
--- =====================================================================
--- OBJETIVO: Popular o banco com dados sintéticos realistas usando
--- APENAS SQL nativo do PostgreSQL (sem Python, sem ferramentas externas).
--- =====================================================================
-
-SET search_path TO swifttrack_core;
-
--- =====================================================================
--- FUNÇÕES AUXILIARES (para gerar dados realistas)
--- =====================================================================
-
--- Gera um CPF fictício (apenas formato, não válido matematicamente)
-CREATE OR REPLACE FUNCTION fake_cpf() RETURNS VARCHAR AS $$
-BEGIN
-    RETURN lpad(floor(random()*1e9)::bigint::text, 9, '0');
-END;
-$$ LANGUAGE SQL;
-
--- Gera um CNPJ fictício
-CREATE OR REPLACE FUNCTION fake_cnpj() RETURNS VARCHAR AS $$
-BEGIN
-    RETURN lpad(floor(random()*1e14)::bigint::text, 14, '0');
-END;
-$$ LANGUAGE SQL;
-
--- Gera uma placa no padrão Mercosul (ABC1D23)
-CREATE OR REPLACE FUNCTION fake_plate() RETURNS VARCHAR AS $$
-DECLARE
-    letras VARCHAR := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    placa VARCHAR;
-BEGIN
-    placa := substr(letras, floor(random()*26)+1::int, 1)
-          || substr(letras, floor(random()*26)+1::int, 1)
-          || substr(letras, floor(random()*26)+1::int, 1)
-          || '-'
-          || floor(random()*10)::int::text
-          || substr(letras, floor(random()*26)+1::int, 1)
-          || lpad(floor(random()*100)::int::text, 2, '0');
-    RETURN placa;
-END;
-$$ LANGUAGE SQL;
-
--- Gera um nome de cidade brasileira fictício (combina prefixo + sufixo)
-CREATE OR REPLACE FUNCTION fake_city() RETURNS VARCHAR AS $$
-DECLARE
-    prefixos VARCHAR[] := ARRAY['São','Rio','Nova','Porto','Santa','Vila','Campo','Belo','Alto','Boa'];
-    sufixos  VARCHAR[] := ARRAY['Paulo','Janeiro','Horizonte','Alegre','Vitória','Grande','Verde','Branca','Terra','Vista'];
-BEGIN
-    RETURN prefixos[floor(random()*10)+1] || ' ' || sufixos[floor(random()*10)+1];
-END;
-$$ LANGUAGE SQL;
-
-\echo 'Funções auxiliares criadas.'
-
--- =====================================================================
--- 1. SEED DE CLIENTES (80 registros)
--- =====================================================================
-\echo ' Inserindo 80 clientes...'
-
-INSERT INTO customers (document, name, email, address)
-SELECT
-    -- Alterna entre CPF e CNPJ (70% CNPJ, 30% CPF — cenário B2B realista)
-    CASE WHEN random() < 0.7 
-         THEN lpad(floor(random()*1e14)::bigint::text, 14, '0')
-         ELSE lpad(floor(random()*1e9)::bigint::text, 9, '0')
-    END AS document,
-    
-    -- Nome da empresa: "Transportes [Hash]" ou "Logística [Hash]"
-    (ARRAY['Transportes','Logística','Distribuidora','Express','Cargas'])[floor(random()*5)+1] 
-    || ' ' || 
-    (ARRAY['Veloz','Rápida','Brasil','Sul','Norte','Central','Prime','Max','Gold','Top'])[floor(random()*10)+1]
-    || ' LTDA',
-    
-    -- Email único baseado no hash
-    'contato' || i || '@empresa' || i || '.com.br',
-    
-    -- Endereço
-    (ARRAY['Av. Paulista','Rua Augusta','Av. Brasil','Rua das Flores','Av. Central'])[floor(random()*5)+1]
-    || ', ' || floor(random()*3000+1)::int::text
-    || ' - ' || fake_city()
-    
-FROM generate_series(1, 80) AS s(i)
--- Garante unicidade de document e email com ON CONFLICT (caso haja colisão)
-ON CONFLICT (document) DO NOTHING;
-
-\echo '   → ' || (SELECT COUNT(*) FROM customers) || ' clientes no banco.'
-
--- =====================================================================
--- 2. SEED DE MOTORISTAS (25 registros)
--- =====================================================================
-\echo '  Inserindo 25 motoristas...'
-
-INSERT INTO drivers (name, cpf, cnh_number, cnh_category, phone, is_active, hired_at)
-SELECT
-    -- Nome brasileiro fictício
-    (ARRAY['Carlos','João','Pedro','Lucas','Marcos','Antônio','José','Paulo','Ricardo','André'])[floor(random()*10)+1]
-    || ' ' ||
-    (ARRAY['Silva','Santos','Oliveira','Souza','Lima','Pereira','Costa','Ferreira','Almeida','Rodrigues'])[floor(random()*10)+1],
-    
-    -- CPF único (9 dígitos + sufixo do índice para garantir unicidade)
-    lpad((floor(random()*1e9)::bigint + i)::text, 11, '0'),
-    
-    -- CNH única
-    lpad((floor(random()*1e9)::bigint + i)::text, 11, '0'),
-    
-    -- Categoria: 60% E (bitrem), 30% D (truck), 10% C (van)
-    (ARRAY['C','D','D','E','E','E'])[floor(random()*6)+1],
-    
-    -- Telefone
-    '(11) 9' || lpad(floor(random()*1e8)::bigint::text, 8, '0'),
-    
-    -- 90% ativos
-    random() < 0.9,
-    
-    -- Data de contratação: entre 2020 e hoje
-    (DATE '2020-01-01' + (random() * (CURRENT_DATE - DATE '2020-01-01'))::int)::date
-    
-FROM generate_series(1, 25) AS s(i);
-
-\echo '   → ' || (SELECT COUNT(*) FROM drivers) || ' motoristas no banco.'
-
--- =====================================================================
--- 3. SEED DE VEÍCULOS (12 registros)
--- =====================================================================
-\echo 'Inserindo 12 veículos...'
-
-INSERT INTO vehicles (plate, model, manufacturer, year, capacity_kg, status)
-SELECT
-    -- Placa única (usando função + índice para evitar colisão)
-    substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ', floor(random()*26)+1::int, 1)
-    || substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ', floor(random()*26)+1::int, 1)
-    || substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ', floor(random()*26)+1::int, 1)
-    || '-'
-    || floor(random()*10)::int::text
-    || substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ', floor(random()*26)+1::int, 1)
-    || lpad((floor(random()*100)::int + i)::text, 2, '0'),
-    
-    -- Modelo
-    (ARRAY['FH 540','XC60','VM 270','Constellation','Actros','Daf XF','Volvo FH','Scania R','Iveco Stralis','Mercedes Axor'])[floor(random()*10)+1],
-    
-    -- Fabricante (casado com o modelo)
-    (ARRAY['Volvo','Volvo','VW','VW','Mercedes','Daf','Volvo','Scania','Iveco','Mercedes'])[floor(random()*10)+1],
-    
-    -- Ano: entre 2018 e 2025
-    2018 + floor(random()*8)::int,
-    
-    -- Capacidade: entre 5.000 e 30.000 kg
-    5000 + floor(random()*25000)::int,
-    
-    -- Status: 70% AVAILABLE, 20% IN_USE, 10% MAINTENANCE
-    (ARRAY['AVAILABLE','AVAILABLE','AVAILABLE','AVAILABLE','AVAILABLE','AVAILABLE','AVAILABLE','IN_USE','IN_USE','MAINTENANCE'])[floor(random()*10)+1]
-    
-FROM generate_series(1, 12) AS s(i);
-
-\echo '   → ' || (SELECT COUNT(*) FROM vehicles) || ' veículos no banco.'
-
--- =====================================================================
--- 4. SEED DE ENTREGAS (1.000 registros — META PRINCIPAL)
--- =====================================================================
-\echo 'Inserindo 1.000 entregas (META PRINCIPAL)...'
-
-INSERT INTO deliveries (
-    customer_id, driver_id, vehicle_id,
-    origin_address, destination_address, weight_kg,
-    status, scheduled_at, picked_up_at, delivered_at
-)
-SELECT
-    -- Cliente aleatório (ID entre 1 e o máximo existente)
-    (SELECT id FROM customers ORDER BY random() LIMIT 1),
-    
-    -- Motorista aleatório (90% das entregas têm motorista)
-    CASE WHEN random() < 0.9 
-         THEN (SELECT id FROM drivers ORDER BY random() LIMIT 1)
-         ELSE NULL 
-    END,
-    
-    -- Veículo aleatório (85% das entregas têm veículo)
-    CASE WHEN random() < 0.85 
-         THEN (SELECT id FROM vehicles ORDER BY random() LIMIT 1)
-         ELSE NULL 
-    END,
-    
-    -- Endereço de origem
-    fake_city() || ' - ' || (ARRAY['SP','RJ','MG','RS','PR','SC','BA','PE'])[floor(random()*8)+1],
-    
-    -- Endereço de destino (diferente da origem)
-    fake_city() || ' - ' || (ARRAY['SP','RJ','MG','RS','PR','SC','BA','PE'])[floor(random()*8)+1],
-    
-    -- Peso: entre 100 e 15.000 kg (distribuição realista)
-    100 + floor(random() * 14900)::int,
-    
-    -- Status: distribuição realista (70/15/10/5)
-    (ARRAY[
-        'DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED',
-        'IN_TRANSIT','IN_TRANSIT','IN_TRANSIT',
-        'PENDING','PENDING',
-        'CANCELED'
-    ])[floor(random()*14)+1],
-    
-    -- scheduled_at: nos últimos 90 dias
-    NOW() - (random() * INTERVAL '90 days'),
-    
-    -- picked_up_at: 1 a 3 dias após agendamento (só se status != PENDING)
-    CASE WHEN (ARRAY[
-        'DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED',
-        'IN_TRANSIT','IN_TRANSIT','IN_TRANSIT',
-        'PENDING','PENDING',
-        'CANCELED'
-    ])[floor(random()*14)+1] <> 'PENDING'
-    THEN NOW() - (random() * INTERVAL '88 days')
-    ELSE NULL
-    END,
-    
-    -- delivered_at: 1 a 5 dias após coleta (só se status = DELIVERED)
-    CASE WHEN (ARRAY[
-        'DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED','DELIVERED',
-        'IN_TRANSIT','IN_TRANSIT','IN_TRANSIT',
-        'PENDING','PENDING',
-        'CANCELED'
-    ])[floor(random()*14)+1] = 'DELIVERED'
-    THEN NOW() - (random() * INTERVAL '85 days')
-    ELSE NULL
-    END
-    
-FROM generate_series(1, 1000) AS s(i);
-
-\echo '   → ' || (SELECT COUNT(*) FROM deliveries) || ' entregas no banco.'
-
--- =====================================================================
--- 5. SEED DE FATURAS (apenas para entregas DELIVERED)
--- =====================================================================
-\echo 'Gerando faturas para entregas DELIVERED...'
-
-INSERT INTO invoices (
-    delivery_id, customer_id, invoice_number, series,
-    total_value, tax_value, net_value, status,
-    issued_at, due_date, paid_at
-)
-SELECT
-    d.id AS delivery_id,
-    d.customer_id,
-    
-    -- Número da NF único
-    'NF-' || EXTRACT(YEAR FROM d.delivered_at)::text || '-' || lpad(d.id::text, 6, '0'),
-    
-    '001',
-    
-    -- Valor total: baseado no peso (R$ 1,50 a R$ 4,00 por kg)
-    ROUND((d.weight_kg * (1.5 + random() * 2.5))::numeric, 2),
-    
-    -- Imposto: 15% do valor total
-    ROUND((d.weight_kg * (1.5 + random() * 2.5) * 0.15)::numeric, 2),
-    
-    -- Valor líquido: total - imposto (calculado para bater com a constraint)
-    ROUND((d.weight_kg * (1.5 + random() * 2.5) * 0.85)::numeric, 2),
-    
-    -- Status: 80% PAID, 15% ISSUED, 5% OVERDUE
-    (ARRAY['PAID','PAID','PAID','PAID','PAID','PAID','PAID','PAID','ISSUED','ISSUED','ISSUED','OVERDUE'])[floor(random()*12)+1],
-    
-    -- issued_at: na data da entrega
-    d.delivered_at,
-    
-    -- due_date: 30 dias após emissão
-    (d.delivered_at + INTERVAL '30 days')::date,
-    
-    -- paid_at: se PAID, entre 1 e 30 dias após emissão
-    CASE 
-        WHEN (ARRAY['PAID','PAID','PAID','PAID','PAID','PAID','PAID','PAID','ISSUED','ISSUED','ISSUED','OVERDUE'])[floor(random()*12)+1] = 'PAID'
-        THEN d.delivered_at + (random() * INTERVAL '30 days')
-        ELSE NULL
-    END
-    
-FROM deliveries d
-WHERE d.status = 'DELIVERED' AND d.delivered_at IS NOT NULL;
-
-\echo '   → ' || (SELECT COUNT(*) FROM invoices) || ' faturas no banco.'
-
--- =====================================================================
--- 🧹 6. LIMPEZA — Remove funções auxiliares
--- =====================================================================
-DROP FUNCTION IF EXISTS fake_cpf();
-DROP FUNCTION IF EXISTS fake_cnpj();
-DROP FUNCTION IF EXISTS fake_plate();
-DROP FUNCTION IF EXISTS fake_city();
-
--- =====================================================================
--- 7. VALIDAÇÃO FINAL — Relatório do Seed
--- =====================================================================
-\echo ''
-\echo '=========================================='
-\echo 'RELATÓRIO FINAL DO SEED'
-\echo '=========================================='
-
-\echo ''
-\echo 'Contagem por tabela:'
-SELECT 'customers'  AS tabela, COUNT(*) AS total FROM customers
-UNION ALL
-SELECT 'drivers',    COUNT(*) FROM drivers
-UNION ALL
-SELECT 'vehicles',   COUNT(*) FROM vehicles
-UNION ALL
-SELECT 'deliveries', COUNT(*) FROM deliveries
-UNION ALL
-SELECT 'invoices',   COUNT(*) FROM invoices
-ORDER BY tabela;
-
-\echo ''
-\echo 'Distribuição de status das entregas:'
-SELECT status, COUNT(*) AS total, 
-       ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM deliveries), 1) AS percentual
-FROM deliveries
-GROUP BY status
-ORDER BY total DESC;
-
-\echo ''
-\echo 'Resumo financeiro:'
-SELECT 
-    COUNT(*) AS total_faturas,
-    SUM(total_value) AS faturamento_total,
-    AVG(total_value) AS ticket_medio,
-    MIN(total_value) AS menor_fatura,
-    MAX(total_value) AS maior_fatura
-FROM invoices;
-
-\echo ''
-\echo 'Distribuição temporal (últimos 90 dias):'
-SELECT 
-    DATE_TRUNC('week', scheduled_at)::date AS semana,
-    COUNT(*) AS entregas
-FROM deliveries
-GROUP BY semana
-ORDER BY semana DESC
-LIMIT 8;
-
-\echo ''
-\echo 'Integridade referencial (FKs órfãs — deve retornar 0):'
-SELECT 
-    (SELECT COUNT(*) FROM deliveries d LEFT JOIN customers c ON d.customer_id = c.id WHERE c.id IS NULL) AS entregas_sem_cliente,
-    (SELECT COUNT(*) FROM deliveries d LEFT JOIN drivers dr ON d.driver_id = dr.id WHERE dr.id IS NULL AND d.driver_id IS NOT NULL) AS entregas_sem_motorista,
-    (SELECT COUNT(*) FROM deliveries d LEFT JOIN vehicles v ON d.vehicle_id = v.id WHERE v.id IS NULL AND d.vehicle_id IS NOT NULL) AS entregas_sem_veiculo,
-    (SELECT COUNT(*) FROM invoices i LEFT JOIN deliveries d ON i.delivery_id = d.id WHERE d.id IS NULL) AS faturas_sem_entrega;
-
-\echo ''
-\echo 'SEED CONCLUÍDO COM SUCESSO!'
-\echo 'O banco está populado com 1.000 entregas e dados relacionados coerentes.'
-```
-
----
-
-## 🐳 Como Executar
+Execute a partir da pasta `aula01`, com o container `swifttrack-pg` em funcionamento e o schema criado pelo roteiro [`aula01 - 01.md`](./aula01%20-%2001.md). Os exemplos abaixo usam Bash:
 
 ```bash
-cat 03_seed.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 03_seed/01_customers.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 03_seed/02_drivers.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 03_seed/03_vehicles.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 03_seed/04_deliveries.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 03_seed/05_invoices.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 03_seed/06_cleanup.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
+cat 03_seed/07_validation.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
 ```
 
----
+Para avaliar uma cena isoladamente, prepare o banco e execute também as cenas listadas como pré-requisito na tabela. A cena 7 pode ser repetida para consultar os resultados sem alterar os dados.
 
-## Saída Esperada (Exemplo)
+## Resultados para avaliar
 
-```
-Funções auxiliares criadas.
-Inserindo 80 clientes...
-→ 80 clientes no banco.
- Inserindo 25 motoristas...
-→ 25 motoristas no banco.
-Inserindo 12 veículos...
-→ 12 veículos no banco.
-Inserindo 1.000 entregas (META PRINCIPAL)...
-→ 1000 entregas no banco.
-Gerando faturas para entregas DELIVERED...
-→ 703 faturas no banco.
+Na saída da cena 7, confira:
 
-==========================================
-RELATÓRIO FINAL DO SEED
-==========================================
+- `deliveries`: 1.000 registros.
+- `customers`, `drivers` e `vehicles`: 80, 25 e 12 registros, respectivamente, em uma execução inicial.
+- `invoices`: uma fatura para cada entrega `DELIVERED` que possua `delivered_at`; a quantidade varia conforme a geração aleatória.
+- As quatro contagens de chaves estrangeiras órfãs: todas devem ser zero.
+- A distribuição de status: próxima das proporções definidas, mas não necessariamente igual a cada execução.
 
-Contagem por tabela:
-  tabela   | total 
------------+-------
- customers |    80
- deliveries|  1000
- drivers   |    25
- invoices  |   703
- vehicles  |    12
+As contagens de clientes, motoristas, veículos e faturas também incluem quaisquer registros que já existiam. Para comparar com os valores esperados, use um banco limpo ou recrie o schema conforme as instruções do roteiro de criação do schema antes de executar as cenas.
 
-Distribuição de status das entregas:
-   status   | total | percentual 
-------------+-------+------------
- DELIVERED  |   703 |       70.3
- IN_TRANSIT |   148 |       14.8
- PENDING    |   101 |       10.1
- CANCELED   |    48 |        4.8
+## Técnicas didáticas exploradas
 
-Resumo financeiro:
- total_faturas | faturamento_total | ticket_medio | menor_fatura | maior_fatura 
----------------+-------------------+--------------+--------------+--------------
-           703 |      2847562.40 |      4050.59 |       187.50 |      58432.00
-
-Integridade referencial (FKs órfãs — deve retornar 0):
- entregas_sem_cliente | entregas_sem_motorista | entregas_sem_veiculo | faturas_sem_entrega 
-----------------------+------------------------+----------------------+---------------------
-                    0 |                      0 |                    0 |                   0
-
-SEED CONCLUÍDO COM SUCESSO!
-```
-
----
-
-## Técnicas Didáticas Exploradas
-
-### 1. **`generate_series` como "motor" de geração**
-É a função mais poderosa do Postgres para geração de dados. Ela cria uma tabela virtual com N linhas, que pode ser cruzada com qualquer expressão.
-
-### 2. **Sorteio de arrays com `ARRAY[...][floor(random()*N)+1]`**
-Essa técnica permite sortear valores de uma lista — essencial para distribuir status, categorias, cidades etc.
-
-### 3. **`CASE WHEN random() < 0.7` para distribuição percentual**
-Simula distribuições realistas (70% CNPJ, 30% CPF; 80% PAID, 20% ISSUED etc.).
-
-### 4. **Subqueries correlacionadas para FKs**
-`(SELECT id FROM customers ORDER BY random() LIMIT 1)` sorteia um ID válido — garante integridade referencial sem precisar saber os IDs de antemão.
-
-### 5. **Funções auxiliares com `CREATE OR REPLACE FUNCTION`**
-Encapsula lógica de geração (CPF, placa, cidade) para reutilização e limpeza do código principal.
-
----
-
-## 🔄 Alternativa: Reset Total (Re-executar do Zero)
-
-Se o aluno quiser rodar o seed novamente (para testes), crie um `reset_and_seed.sh`:
-
-```bash
-#!/bin/bash
-echo "Resetando schema..."
-docker exec swifttrack-pg psql -U postgres -d swifttrack_core -c "DROP SCHEMA IF EXISTS swifttrack_core CASCADE;"
-
-echo "Recriando schema..."
-cat 01_schema.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
-
-echo "Executando seed..."
-cat 03_seed.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
-
-echo "Ambiente pronto!"
-```
-
----
-
-## Problemas Comuns e Soluções
-
-| Erro | Causa | Solução |
-| :--- | :--- | :--- |
-| `duplicate key value violates unique constraint` | Colisão de CPF/CNPJ/placa | O script já usa `ON CONFLICT DO NOTHING` para clientes. Para outros, o sufixo `+ i` garante unicidade. |
-| `null value in column "customer_id" violates not-null constraint` | Subquery retornou NULL | Verifique se a tabela `customers` foi populada antes. |
-| `violates check constraint "chk_deliveries_delivered_at"` | Datas incoerentes | O script já trata isso com `CASE WHEN`. Se persistir, revise a lógica de status. |
-
----
-
-## Checklist de Entrega para o Aluno
-
-O aluno deve submeter:
-- [ ] `03_seed.sql` funcionando e gerando 1.000 entregas
-- [ ] Relatório final (output do bloco de validação) mostrando as contagens
-- [ ] Confirmação de que **nenhuma FK órfã** existe (todos os valores = 0)
-- [ ] (Bônus) Comentário no script explicando **uma** técnica que ele achou interessante
-
----
-
-## Dica para o Instrutor: Gancho para a Semana 2
-
-No final da aula, mostre aos alunos o tempo de execução:
-
-```bash
-time cat 03_seed.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
-```
-
-Com 1.000 entregas, deve levar **menos de 5 segundos**. Diga:
-
-> *"Na Semana 2, vamos multiplicar isso por 10.000 — teremos 10 MILHÕES de entregas. E aí vamos descobrir onde o B-Tree começa a chorar, onde o `JOIN` vira gargalo, e quando é hora de pensar em **outra arquitetura**. O relacional é poderoso, mas tem limites."*
-
----
-
-## Fechamento do Módulo I — Semana 1
-
-Com estes três scripts, o aluno tem:
-
-| Arquivo | O que entrega |
+| Técnica | Uso |
 | :--- | :--- |
-| `01_schema.sql` | Schema relacional robusto com constraints e índices |
-| `02_transactions.sql` | Demonstração prática do ACID com ROLLBACK |
-| `03_seed.sql` | 1.000 entregas + dados relacionados coerentes |
+| `generate_series(1, N)` | Gera as linhas para inserção em lote |
+| `random()`, `floor()` e arrays | Sorteiam valores e simulam distribuições |
+| `NOW() - INTERVAL` | Distribui datas no passado |
+| Subconsultas para chaves estrangeiras | Escolhem IDs existentes e preservam a integridade |
+| `CREATE OR REPLACE FUNCTION` | Encapsula a geração de dados auxiliares |
 
-**Objetivos da Semana 1 atingidos:**
-- PostgreSQL 16 rodando no Docker  
-- Schema `swifttrack_core` modelado e implementado  
-- Constraints `CHECK` validando regras de negócio  
-- Índices B-Tree otimizando consultas  
-- Transações ACID com `BEGIN`, `COMMIT` e `ROLLBACK`  
-- Seed de 1.000 entregas com dados realistas  
+## Problemas comuns
 
+| Erro | Causa provável | O que verificar |
+| :--- | :--- | :--- |
+| `duplicate key value violates unique constraint` | As cenas de inserção foram executadas mais de uma vez | Recrie o schema em um ambiente de teste ou limpe os dados antes de repetir |
+| `null value in column "customer_id" violates not-null constraint` | A tabela de clientes está vazia | Execute a cena 1 e confirme que o schema contém os dados |
+| `violates check constraint` | Um valor inserido não respeita uma regra do schema | Confira o schema e os dados retornados pela cena correspondente |
+
+## Checklist de entrega
+
+- [ ] Executar as sete cenas na ordem indicada.
+- [ ] Confirmar 1.000 entregas no relatório de validação.
+- [ ] Confirmar que as contagens de FKs órfãs são zero.
+- [ ] Registrar ou entregar a saída da cena 7.
+- [ ] (Bônus) Explicar uma técnica de geração usada nos scripts.
+
+## Gancho para a Semana 2
+
+Com o seed executado, a base pode ser usada para investigar o desempenho de consultas, índices e junções em conjuntos de dados maiores.
