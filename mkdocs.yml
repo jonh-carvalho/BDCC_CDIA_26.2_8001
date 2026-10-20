@@ -96,7 +96,7 @@ markdown_extensions:
 
 plugins:
   - pygments: 
-      light: murphy
+      light: tango
       dark: solarized-dark
   - search
   - plantuml:
