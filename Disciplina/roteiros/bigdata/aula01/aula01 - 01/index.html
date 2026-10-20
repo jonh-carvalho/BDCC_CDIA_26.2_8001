@@ -1733,7 +1733,6 @@
 
 <h2 id="schema-ddl-completo-swifttrack-core">Schema DDL Completo — SwiftTrack Core<a class="headerlink" href="#schema-ddl-completo-swifttrack-core" title="Permanent link">&para;</a></h2>
 <p>Abaixo está o script SQL completo e comentado para a criação do schema <code>swifttrack_core</code>. Ele foi desenhado para ser <strong>didático</strong> (com explicações embutidas) e <strong>robusto</strong> (pronto para produção).</p>
-<hr />
 <h3 id="pre-requisitos">Pré-requisitos<a class="headerlink" href="#pre-requisitos" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Docker instalado (<code>docker --version</code>)</li>
@@ -1747,7 +1746,7 @@
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Adiciona o usuário padrão ao grupo docker para não precisar de sudo</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>docker<span class="w"> </span>ec2-user
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Configurar servidor para aceitar conexões SSH com senha (opcional, mas útil para testes) </span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Configurar servidor para aceitar conexões SSH com senha:</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Edite o arquivo de configuração do SSH:</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
