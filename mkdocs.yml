@@ -29,8 +29,8 @@ nav:
         - Index: Avalia/index.md
         - AC1: Avalia/AC01.md
         - AC2: Avalia/AC02.md
-#        - AC3: Avalia/AC03.md
-#        - AC4: Avalia/AC04.md
+        - AC3: Avalia/AC03.md
+        - AC4: Avalia/AC04.md
       - AP:
         - AP1: Avalia/ap1.md
         - AP2: Avalia/ap2.md

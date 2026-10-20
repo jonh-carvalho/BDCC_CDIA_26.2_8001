@@ -1,8 +1,9 @@
-## AP2 - APRESENTAÇÃO no LABORATÓRIO { style="background-color:#FF0000; color:white;" }
-### Apresentação destacando os principais pontos do Deploy/Aplicação - importante um slide  com os destaques e todos membros do grupo devem apresentar algum aspectos. { style="background-color:#FF6600; color:white;" }
-### Prazo de Entrega: 11/06/2026 { style="background-color:#FFFF00; color:black;" }
+## AP2 - APRESENTAÇÃO no LABORATÓRIO 
+### Apresentação destacando os principais pontos do Deploy/Aplicação - importante um slide  com os destaques e todos membros do grupo devem apresentar algum aspecto. 
 
-<!-->
+### Prazo de Entrega: 17/11/2026 
+
+<!--
 **Envio pelo GitHub no mesmo repositório da AP1**
 
 ## Objetivo
@@ -182,3 +183,4 @@ Evidências desta parte opcional:
 - [Amazon S3](https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/Welcome.html)
 - [Roteiro de aula - Elastic Beanstalk](https://jonh-carvalho.github.io/BDCC_CDIA_26.1_8001/Disciplina/roteiros/07%20-%20eb/)
 
+-->
