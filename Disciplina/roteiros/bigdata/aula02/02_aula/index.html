@@ -21,7 +21,7 @@
     
     
       
-        <title>Plano de Aula: Módulo 1 — Semana 2 - BDCC_CDIA_26.2_8001</title>
+        <title>02 aula - BDCC_CDIA_26.2_8001</title>
       
     
     
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Plano de Aula: Módulo 1 — Semana 2
+              02 aula
             
           </span>
         </div>
@@ -823,6 +823,8 @@
       
         
       
+        
+      
     
     
     
@@ -908,7 +910,7 @@
   <span class="md-ellipsis">
     
   
-    11 - Analítico
+    12 - Analítico
   
 
     
@@ -936,7 +938,35 @@
   <span class="md-ellipsis">
     
   
-    11 - Data Lake
+    12 - Data Lake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../13 -" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
   
 
     
@@ -1396,6 +1426,7 @@
   
 
 
+<p>-- Active: 1792551606560@@127.0.0.1@5432</p>
 <h1 id="plano-de-aula-modulo-1-semana-2">Plano de Aula: Módulo 1 — Semana 2<a class="headerlink" href="#plano-de-aula-modulo-1-semana-2" title="Permanent link">&para;</a></h1>
 <h2 id="tema-o-paradigma-documento-catalogos-flexiveis">Tema: O Paradigma Documento — Catálogos Flexíveis<a class="headerlink" href="#tema-o-paradigma-documento-catalogos-flexiveis" title="Permanent link">&para;</a></h2>
 <p><strong>Duração Total:</strong> 4 horas (1h Teoria + 3h Prática)
@@ -1469,22 +1500,46 @@
 </span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s1">    &quot;assembly_required&quot;: true</span>
 </span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s1">}&#39;</span><span class="p">);</span>
 </span></code></pre></div>
-*   </em>Mini-desafio rápido:</em> Peça para eles escreverem uma query que retorne apenas o <code>manifest_type</code> e o <code>name</code> do primeiro item do JSON.</p>
-<hr />
-<h4 id="bloco-3-pratica-indices-e-performance">BLOCO 3: Prática — Índices e Performance<a class="headerlink" href="#bloco-3-pratica-indices-e-performance" title="Permanent link">&para;</a></h4>
-<p><em><em>3.1. O Problema da Busca Linear **
-*   Rodar uma query filtrando o JSON </em>sem índice</em> e mostrar o <code>EXPLAIN ANALYZE</code> (Seq Scan).
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Query ineficiente sem índice</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">delivery_manifests</span><span class="w"> </span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="o">@&gt;</span><span class="w"> </span><span class="s1">&#39;{&quot;requires_thermal_bag&quot;: true}&#39;</span><span class="p">;</span>
-</span></code></pre></div></p>
-<p><strong>3.2. O Poder do Índice GIN **
-*   </strong>Conceito:<strong> Generalized Inverted Index (Índice Invertido Generalizado). Explicar que ele "desmonta" o JSON e indexa cada par chave-valor.
-*   </strong>Ação:<strong> Criar o índice.
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_manifest_payload_gin</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">delivery_manifests</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GIN</span><span class="w"> </span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+* </em>Mini-desafio rápido:</em> escrever uma query que retorne apenas o <code>manifest_type</code> e o <code>name</code> do primeiro item do JSON.</p>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">manifest_type</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="o">-&gt;</span><span class="s1">&#39;items&#39;</span><span class="o">-&gt;</span><span class="mi">0</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">first_item</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">delivery_manifests</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">#```</span><span class="w">   </span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">---</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="o">####</span><span class="w"> </span><span class="n">BLOCO</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="n">Prática</span><span class="w"> </span><span class="err">—</span><span class="w"> </span><span class="err">Í</span><span class="n">ndices</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="n">Performance</span><span class="w"> </span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="o">**</span><span class="mi">3</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="n">O</span><span class="w"> </span><span class="n">Problema</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">Busca</span><span class="w"> </span><span class="n">Linear</span><span class="w"> </span><span class="o">**</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="o">*</span><span class="w">   </span><span class="o">**</span><span class="n">Objetivo</span><span class="p">:</span><span class="o">**</span><span class="w"> </span><span class="n">observar</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="n">custo</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">procurar</span><span class="w"> </span><span class="n">uma</span><span class="w"> </span><span class="n">chave</span><span class="w"> </span><span class="n">dentro</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">documentos</span><span class="w"> </span><span class="n">sem</span><span class="w"> </span><span class="n">um</span><span class="w"> </span><span class="err">í</span><span class="n">ndice</span><span class="w"> </span><span class="n">apropriado</span><span class="p">.</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="o">*</span><span class="w">   </span><span class="n">Antes</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">começar</span><span class="p">,</span><span class="w"> </span><span class="n">confirme</span><span class="w"> </span><span class="n">que</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">tabela</span><span class="w"> </span><span class="n">contém</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="n">dados</span><span class="w"> </span><span class="n">da</span><span class="w"> </span><span class="n">prática</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="n">verifique</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="n">já</span><span class="w"> </span><span class="n">existe</span><span class="w"> </span><span class="n">um</span><span class="w"> </span><span class="err">í</span><span class="n">ndice</span><span class="w"> </span><span class="n">em</span><span class="w"> </span><span class="o">`</span><span class="n">payload</span><span class="o">`</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="o">```</span><span class="k">sql</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="err">\</span><span class="n">d</span><span class="w"> </span><span class="n">delivery_manifests</span>
 </span></code></pre></div>
-*   </strong>Validação:<strong> Rodar o <code>EXPLAIN ANALYZE</code> novamente. Mostrar a mudança de <em>Seq Scan</em> para <em>Bitmap Index Scan</em> (GIN).
-*   <em>Dica de Ouro do Instrutor:</em> Mostrar que o GIN é ótimo para <code>@&gt;</code> e <code>?</code>, mas </strong>péssimo** para comparações numéricas dentro do JSON (ex: <code>weight_kg &gt; 5</code>). Isso gera o gancho para o Desafio.</p>
+*   Apresente a consulta e peça que os alunos prevejam quais linhas serão retornadas. Em seguida, execute-a com <code>EXPLAIN (ANALYZE, BUFFERS)</code> para inspecionar o plano:
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- O operador @&gt; verifica se o documento contém o fragmento informado.</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">EXPLAIN</span><span class="w"> </span><span class="p">(</span><span class="k">ANALYZE</span><span class="p">,</span><span class="w"> </span><span class="n">BUFFERS</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">manifest_type</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">delivery_manifests</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="o">@&gt;</span><span class="w"> </span><span class="s1">&#39;{&quot;requires_thermal_bag&quot;: true}&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+*   <strong>Leitura guiada do plano:</strong>
+    *   <code>Seq Scan</code> significa que o PostgreSQL percorreu as linhas da tabela e avaliou o filtro em cada documento.
+    *   <code>Rows Removed by Filter</code> indica quantas linhas foram examinadas, mas não atenderam à condição.
+    *   <code>Execution Time</code> e <code>Buffers</code> ajudam a comparar o custo, mas variam conforme o volume de dados, o cache e o ambiente.
+*   Com apenas os três registros de exemplo, o PostgreSQL pode preferir um <code>Seq Scan</code> mesmo após a criação do índice: para tabelas pequenas, ler tudo pode ser mais barato. Para comparar os planos, use uma tabela de demonstração maior ou trate a escolha como decisão do otimizador, não como garantia de uso do índice.</p>
+<p><strong>3.2. O Poder do Índice GIN **
+*   </strong>Conceito:<strong> GIN significa <em>Generalized Inverted Index</em> (Índice Invertido Generalizado). Em vez de guardar uma entrada por documento inteiro, o índice registra ocorrências de chaves e valores para localizar documentos candidatos com mais rapidez.
+*   </strong>Ação:<strong> crie o índice e repita exatamente a consulta da etapa anterior:
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_manifest_payload_gin</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">delivery_manifests</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GIN</span><span class="w"> </span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">EXPLAIN</span><span class="w"> </span><span class="p">(</span><span class="k">ANALYZE</span><span class="p">,</span><span class="w"> </span><span class="n">BUFFERS</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">manifest_type</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">delivery_manifests</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="o">@&gt;</span><span class="w"> </span><span class="s1">&#39;{&quot;requires_thermal_bag&quot;: true}&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+*   </strong>Validação e interpretação:<strong> quando o otimizador considerar vantajoso, o plano poderá mostrar <code>Bitmap Index Scan</code> usando <code>idx_manifest_payload_gin</code>, seguido de <code>Bitmap Heap Scan</code>, que busca as linhas correspondentes na tabela. Compare o plano e os buffers com a etapa anterior. A mudança não é garantida em tabelas pequenas ou quando o filtro retorna grande parte das linhas.
+*   </strong>Discussão sobre operadores:<strong> o índice GIN padrão para <code>JSONB</code> (<code>jsonb_ops</code>) atende operadores como <code>@&gt;</code> e <code>?</code>. Para cargas de trabalho focadas em contenção, existe também a classe <code>jsonb_path_ops</code>, que pode produzir um índice menor, mas não oferece o mesmo suporte a todos os operadores. Não é necessário criar ambos nesta atividade.
+*   </strong>Limite importante:** esse índice ajuda a localizar chaves e valores, mas não transforma uma comparação numérica como <code>weight_kg &gt; 5</code> em uma busca indexada. Para esse tipo de consulta, é necessário extrair o valor e usar uma estratégia adequada, como uma coluna relacional ou um índice de expressão compatível. Esse ponto prepara o desafio do próximo bloco.</p>
 <hr />
 <h4 id="bloco-4-o-desafio-e-consolidacao">BLOCO 4: O Desafio e Consolidação<a class="headerlink" href="#bloco-4-o-desafio-e-consolidacao" title="Permanent link">&para;</a></h4>
 <p><strong>4.1. O Desafio da Semana (40 min)</strong>
@@ -1492,23 +1547,23 @@
 *   <em>Tempo para os alunos tentarem (individual ou em duplas).</em></p>
 <p><em><em>4.2. Resolução Comentada (Gabarito) **
 *   Abordagem 1 (SQL/JSON Path - </em>Recomendado para PG 12+</em>):
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">manifest_type</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">delivery_manifests</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">jsonb_path_exists</span><span class="p">(</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="s1">&#39;$.items[*] ? (@.fragile == true &amp;&amp; @.weight_kg &gt; 5)&#39;</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">);</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">manifest_type</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">delivery_manifests</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">jsonb_path_exists</span><span class="p">(</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">payload</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="s1">&#39;$.items[*] ? (@.fragile == true &amp;&amp; @.weight_kg &gt; 5)&#39;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">);</span>
 </span></code></pre></div>
 *   Abordagem 2 (Desnormalização com Coluna Gerada - <em>Para performance extrema</em>):
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">-- Criando uma coluna gerada para indexar com B-Tree tradicional</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">delivery_manifests</span><span class="w"> </span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">max_fragile_weight</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="n">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">((</span><span class="n">item</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;weight_kg&#39;</span><span class="p">)::</span><span class="nb">numeric</span><span class="p">)</span><span class="w"> </span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">     </span><span class="k">FROM</span><span class="w"> </span><span class="n">jsonb_array_elements</span><span class="p">(</span><span class="n">payload</span><span class="o">-&gt;</span><span class="s1">&#39;items&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">item</span><span class="w"> </span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">     </span><span class="k">WHERE</span><span class="w"> </span><span class="n">item</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;fragile&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="p">)</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">)</span><span class="w"> </span><span class="n">STORED</span><span class="p">;</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_fragile_weight</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">delivery_manifests</span><span class="p">(</span><span class="n">max_fragile_weight</span><span class="p">);</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">-- Criando uma coluna gerada para indexar com B-Tree tradicional</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">delivery_manifests</span><span class="w"> </span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">max_fragile_weight</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="n">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">((</span><span class="n">item</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;weight_kg&#39;</span><span class="p">)::</span><span class="nb">numeric</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">     </span><span class="k">FROM</span><span class="w"> </span><span class="n">jsonb_array_elements</span><span class="p">(</span><span class="n">payload</span><span class="o">-&gt;</span><span class="s1">&#39;items&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">item</span><span class="w"> </span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">     </span><span class="k">WHERE</span><span class="w"> </span><span class="n">item</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;fragile&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">)</span><span class="w"> </span><span class="n">STORED</span><span class="p">;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_fragile_weight</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">delivery_manifests</span><span class="p">(</span><span class="n">max_fragile_weight</span><span class="p">);</span>
 </span></code></pre></div></p>
 <p>**4.3. Wrap-up e Entrega **
 *   Resumo dos conceitos.
