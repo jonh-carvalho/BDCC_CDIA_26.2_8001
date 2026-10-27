@@ -1,3 +1,4 @@
+-- Active: 1792551606560@@127.0.0.1@5432
 # Plano de Aula: Módulo 1 — Semana 2
 
 ## Tema: O Paradigma Documento — Catálogos Flexíveis
@@ -82,27 +83,51 @@ INSERT INTO delivery_manifests (delivery_id, manifest_type, payload) VALUES
     "assembly_required": true
 }');
 ```
-*   *Mini-desafio rápido:* Peça para eles escreverem uma query que retorne apenas o `manifest_type` e o `name` do primeiro item do JSON.
+* *Mini-desafio rápido:* escrever uma query que retorne apenas o `manifest_type` e o `name` do primeiro item do JSON.
+
+```sql
+SELECT manifest_type, payload->'items'->0->>'name' AS first_item
+FROM delivery_manifests;
+#```   
+
 
 ---
 
 #### BLOCO 3: Prática — Índices e Performance 
 **3.1. O Problema da Busca Linear **
-*   Rodar uma query filtrando o JSON *sem índice* e mostrar o `EXPLAIN ANALYZE` (Seq Scan).
+*   **Objetivo:** observar o custo de procurar uma chave dentro de documentos sem um índice apropriado.
+*   Antes de começar, confirme que a tabela contém os dados da prática e verifique se já existe um índice em `payload`:
 ```sql
--- Query ineficiente sem índice
-SELECT * FROM delivery_manifests 
+\d delivery_manifests
+```
+*   Apresente a consulta e peça que os alunos prevejam quais linhas serão retornadas. Em seguida, execute-a com `EXPLAIN (ANALYZE, BUFFERS)` para inspecionar o plano:
+```sql
+-- O operador @> verifica se o documento contém o fragmento informado.
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT id, manifest_type
+FROM delivery_manifests
 WHERE payload @> '{"requires_thermal_bag": true}';
 ```
+*   **Leitura guiada do plano:**
+    *   `Seq Scan` significa que o PostgreSQL percorreu as linhas da tabela e avaliou o filtro em cada documento.
+    *   `Rows Removed by Filter` indica quantas linhas foram examinadas, mas não atenderam à condição.
+    *   `Execution Time` e `Buffers` ajudam a comparar o custo, mas variam conforme o volume de dados, o cache e o ambiente.
+*   Com apenas os três registros de exemplo, o PostgreSQL pode preferir um `Seq Scan` mesmo após a criação do índice: para tabelas pequenas, ler tudo pode ser mais barato. Para comparar os planos, use uma tabela de demonstração maior ou trate a escolha como decisão do otimizador, não como garantia de uso do índice.
 
 **3.2. O Poder do Índice GIN **
-*   **Conceito:** Generalized Inverted Index (Índice Invertido Generalizado). Explicar que ele "desmonta" o JSON e indexa cada par chave-valor.
-*   **Ação:** Criar o índice.
+*   **Conceito:** GIN significa *Generalized Inverted Index* (Índice Invertido Generalizado). Em vez de guardar uma entrada por documento inteiro, o índice registra ocorrências de chaves e valores para localizar documentos candidatos com mais rapidez.
+*   **Ação:** crie o índice e repita exatamente a consulta da etapa anterior:
 ```sql
 CREATE INDEX idx_manifest_payload_gin ON delivery_manifests USING GIN (payload);
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT id, manifest_type
+FROM delivery_manifests
+WHERE payload @> '{"requires_thermal_bag": true}';
 ```
-*   **Validação:** Rodar o `EXPLAIN ANALYZE` novamente. Mostrar a mudança de *Seq Scan* para *Bitmap Index Scan* (GIN).
-*   *Dica de Ouro do Instrutor:* Mostrar que o GIN é ótimo para `@>` e `?`, mas **péssimo** para comparações numéricas dentro do JSON (ex: `weight_kg > 5`). Isso gera o gancho para o Desafio.
+*   **Validação e interpretação:** quando o otimizador considerar vantajoso, o plano poderá mostrar `Bitmap Index Scan` usando `idx_manifest_payload_gin`, seguido de `Bitmap Heap Scan`, que busca as linhas correspondentes na tabela. Compare o plano e os buffers com a etapa anterior. A mudança não é garantida em tabelas pequenas ou quando o filtro retorna grande parte das linhas.
+*   **Discussão sobre operadores:** o índice GIN padrão para `JSONB` (`jsonb_ops`) atende operadores como `@>` e `?`. Para cargas de trabalho focadas em contenção, existe também a classe `jsonb_path_ops`, que pode produzir um índice menor, mas não oferece o mesmo suporte a todos os operadores. Não é necessário criar ambos nesta atividade.
+*   **Limite importante:** esse índice ajuda a localizar chaves e valores, mas não transforma uma comparação numérica como `weight_kg > 5` em uma busca indexada. Para esse tipo de consulta, é necessário extrair o valor e usar uma estratégia adequada, como uma coluna relacional ou um índice de expressão compatível. Esse ponto prepara o desafio do próximo bloco.
 
 ---
 

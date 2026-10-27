@@ -21,8 +21,9 @@ nav:
         - 10 - Aurora RDS: Disciplina/roteiros/10 - aurora.md
         - Big Data: 
           - 11 - Transacional: Disciplina/roteiros/bigdata/aula01/aula01 - 01.md
-          - 11 - Analítico: Disciplina/roteiros/bigdata/aula01/aula01 - 02_transaction.md
-          - 11 - Data Lake: Disciplina/roteiros/bigdata/aula01/aula01 - 03_seed.md
+          - 12 - Analítico: Disciplina/roteiros/bigdata/aula01/aula01 - 02_transaction.md
+          - 12 - Data Lake: Disciplina/roteiros/bigdata/aula01/aula01 - 03_seed.md
+          - 13 - 
 #        - 12 - EB MySQL: Disciplina/roteiros/12 - ebmysql.md
   - Avaliações:
       - AC:
