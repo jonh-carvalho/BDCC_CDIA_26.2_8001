@@ -36,8 +36,7 @@ WHERE delivery_id IN (
           ('Campinas - SP', 'Belo Horizonte - MG'),
           ('Santos - SP', 'Porto Alegre - RS')
       )
-)
-OR invoice_number IN ('NF-2026-0001', 'NF-2026-0002', 'NF-2026-0003');
+      );
 
 DELETE FROM deliveries
 WHERE customer_id = :'customer_id'
@@ -64,5 +63,9 @@ SELECT d.id, d.origin_address, d.destination_address, d.status
 FROM deliveries d
 JOIN customers c ON c.id = d.customer_id
 WHERE c.document = '12.345.678/0001-99'
-  AND d.origin_address IN ('São Paulo - SP', 'Campinas - SP', 'Santos - SP')
+  AND (d.origin_address, d.destination_address) IN (
+      ('São Paulo - SP', 'Rio de Janeiro - RJ'),
+      ('Campinas - SP', 'Belo Horizonte - MG'),
+      ('Santos - SP', 'Porto Alegre - RS')
+  )
 ORDER BY d.id;
