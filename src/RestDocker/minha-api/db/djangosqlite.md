@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Criar a API Django mais simples possível e rodá-la em um container Docker usando SQLite. Este é o ponto de partida: o roteiro seguinte ([djangopg.md](./djangopg.md)) evolui o mesmo projeto para PostgreSQL.
+Criar a API Django e rodá-la em um container Docker usando SQLite. Este é o ponto de partida: o roteiro seguinte ([djangopg.md](./djangopg.md)) evolui o mesmo projeto para PostgreSQL.
 
 Resultado: endpoint `http://localhost:8000/api/tarefas/` funcionando em container, com dados persistidos em um volume.
 
@@ -23,6 +23,25 @@ pip freeze > requirements.txt
 django-admin startproject config .
 python manage.py startapp tarefas
 ```
+
+No Windows, salve o conteúdo abaixo como `criar-projeto.ps1` na pasta onde deseja criar o projeto e execute-o no PowerShell. O script usa diretamente o Python do ambiente virtual, sem precisar ativá-lo:
+
+```powershell
+$ErrorActionPreference = "Stop"
+
+New-Item -ItemType Directory -Force -Path "minha-api" | Out-Null
+Set-Location "minha-api"
+
+python -m venv .venv
+$python = ".\.venv\Scripts\python.exe"
+& $python -m pip install django djangorestframework gunicorn
+& $python -m pip freeze | Set-Content -Encoding ascii requirements.txt
+& ".\.venv\Scripts\django-admin.exe" startproject config .
+& $python manage.py startapp tarefas
+```
+
+Execute com ` .\criar-projeto.ps1` (sem o espaço inicial). Se a política de execução bloquear o script, use `powershell -ExecutionPolicy Bypass -File .\criar-projeto.ps1`.
+
 
 ## Parte 2 - Código da API
 
