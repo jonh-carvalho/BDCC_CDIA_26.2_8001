@@ -1,11 +1,11 @@
 -- SWIFTTRACK CORE - Cena 4: tentativa de faturar entrega cancelada
 SET search_path TO swifttrack_core;
 
-\echo '=========================================='
-\echo 'CENA 4: FALHA — ENTREGA CANCELADA (ROLLBACK)'
-\echo '=========================================='
+SELECT '==========================================' AS message;
+SELECT 'CENA 4: FALHA — ENTREGA CANCELADA (ROLLBACK)' AS message;
+SELECT '==========================================' AS message;
 
-\echo 'Estado ANTES (entrega cancelada):'
+SELECT 'Estado ANTES (entrega cancelada):' AS message;
 SELECT d.id, d.status
 FROM deliveries d
 JOIN customers c ON c.id = d.customer_id
@@ -34,13 +34,17 @@ BEGIN
     IF v_status = 'CANCELED' THEN
         RAISE EXCEPTION 'REGRA DE NEGÓCIO VIOLADA: Não é permitido faturar entrega cancelada';
     END IF;
+  EXCEPTION
+    WHEN raise_exception THEN
+      -- Captura a falha para que o restante do script também rode no VS Code.
+      RAISE NOTICE '%', SQLERRM;
 END $$;
 
--- O DO block lança uma exceção; o ROLLBACK encerra a transação abortada.
+  -- O DO block registra a violação; o ROLLBACK encerra a transação sem alterações.
 ROLLBACK;
 
-\echo 'ROLLBACK executado — entrega continua CANCELED e nenhuma fatura foi criada!'
-\echo 'Estado DEPOIS:'
+  SELECT 'ROLLBACK executado — entrega continua CANCELED e nenhuma fatura foi criada!' AS message;
+  SELECT 'Estado DEPOIS:' AS message;
 SELECT d.id, d.status
 FROM deliveries d
 JOIN customers c ON c.id = d.customer_id

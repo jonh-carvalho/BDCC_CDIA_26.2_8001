@@ -1,11 +1,11 @@
 -- SWIFTTRACK CORE - Cena 3: falha por valor negativo e ROLLBACK
 SET search_path TO swifttrack_core;
 
-\echo '=========================================='
-\echo 'CENA 3: FALHA — VALOR NEGATIVO (ROLLBACK)'
-\echo '=========================================='
+SELECT '==========================================' AS mensagem;
+SELECT 'CENA 3: FALHA — VALOR NEGATIVO (ROLLBACK)' AS mensagem;
+SELECT '==========================================' AS mensagem;
 
-\echo 'Estado ANTES (entrega ainda PENDING):'
+SELECT 'Estado ANTES (entrega ainda PENDING):' AS mensagem;
 SELECT d.id, d.status
 FROM deliveries d
 JOIN customers c ON c.id = d.customer_id
@@ -23,25 +23,32 @@ WHERE c.id = d.customer_id
   AND d.origin_address = 'Campinas - SP'
   AND d.destination_address = 'Belo Horizonte - MG';
 
-\echo 'Entrega atualizada dentro da transação; a fatura negativa deve falhar.'
+SELECT 'Entrega atualizada dentro da transação; a fatura negativa deve falhar.' AS mensagem;
 
-INSERT INTO invoices (
+-- O bloco trata a violação em um sub-bloco transacional, permitindo que o script continue.
+DO $$
+BEGIN
+  INSERT INTO invoices (
     delivery_id, customer_id, invoice_number, series,
     total_value, tax_value, net_value, status, due_date
-)
-SELECT d.id, c.id, 'NF-2026-0002', '001',
+  )
+  SELECT d.id, c.id, 'NF-2026-0002', '001',
        -500.00, 0, -500.00, 'ISSUED', CURRENT_DATE + 30
-FROM deliveries d
-JOIN customers c ON c.id = d.customer_id
-WHERE c.document = '12.345.678/0001-99'
-  AND d.origin_address = 'Campinas - SP'
-  AND d.destination_address = 'Belo Horizonte - MG';
+  FROM deliveries d
+  JOIN customers c ON c.id = d.customer_id
+  WHERE c.document = '12.345.678/0001-99'
+    AND d.origin_address = 'Campinas - SP'
+    AND d.destination_address = 'Belo Horizonte - MG';
+EXCEPTION
+  WHEN check_violation THEN
+    RAISE NOTICE 'A constraint chk_invoices_total_value rejeitou o INSERT.';
+END;
+$$;
 
--- A constraint chk_invoices_total_value rejeita o INSERT.
 ROLLBACK;
 
-\echo 'ROLLBACK executado — nenhuma alteração foi persistida!'
-\echo 'Estado DEPOIS (deve continuar PENDING):'
+SELECT 'ROLLBACK executado — nenhuma alteração foi persistida!' AS mensagem;
+SELECT 'Estado DEPOIS (deve continuar PENDING):' AS mensagem;
 SELECT d.id, d.status
 FROM deliveries d
 JOIN customers c ON c.id = d.customer_id

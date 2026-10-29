@@ -5,7 +5,7 @@
 
 SET search_path TO swifttrack_core;
 
-\echo 'Inserindo 1.000 entregas (META PRINCIPAL)...'
+SELECT 'Inserindo 1.000 entregas (META PRINCIPAL)...' AS mensagem;
 
 WITH delivery_inputs AS MATERIALIZED (
     SELECT

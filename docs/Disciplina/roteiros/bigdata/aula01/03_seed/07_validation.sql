@@ -4,13 +4,10 @@
 
 SET search_path TO swifttrack_core;
 
-\echo ''
-\echo '=========================================='
-\echo 'RELATÓRIO FINAL DO SEED'
-\echo '=========================================='
+-- RELATÓRIO FINAL DO SEED
+-- Execute as consultas abaixo individualmente ou em sequência pela extensão SQL.
 
-\echo ''
-\echo 'Contagem por tabela:'
+-- Contagem por tabela
 SELECT 'customers'  AS tabela, COUNT(*) AS total FROM customers
 UNION ALL
 SELECT 'drivers',    COUNT(*) FROM drivers
@@ -22,16 +19,14 @@ UNION ALL
 SELECT 'invoices',   COUNT(*) FROM invoices
 ORDER BY tabela;
 
-\echo ''
-\echo 'Distribuição de status das entregas:'
+-- Distribuição de status das entregas
 SELECT status, COUNT(*) AS total,
        ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM deliveries), 1) AS percentual
 FROM deliveries
 GROUP BY status
 ORDER BY total DESC;
 
-\echo ''
-\echo 'Resumo financeiro:'
+-- Resumo financeiro
 SELECT
     COUNT(*) AS total_faturas,
     SUM(total_value) AS faturamento_total,
@@ -40,8 +35,7 @@ SELECT
     MAX(total_value) AS maior_fatura
 FROM invoices;
 
-\echo ''
-\echo 'Distribuição temporal (últimos 90 dias):'
+-- Distribuição temporal (últimos 90 dias)
 SELECT
     DATE_TRUNC('week', scheduled_at)::date AS semana,
     COUNT(*) AS entregas
@@ -50,14 +44,11 @@ GROUP BY semana
 ORDER BY semana DESC
 LIMIT 8;
 
-\echo ''
-\echo 'Integridade referencial (FKs órfãs — deve retornar 0):'
+-- Integridade referencial (FKs órfãs — deve retornar 0)
 SELECT
     (SELECT COUNT(*) FROM deliveries d LEFT JOIN customers c ON d.customer_id = c.id WHERE c.id IS NULL) AS entregas_sem_cliente,
     (SELECT COUNT(*) FROM deliveries d LEFT JOIN drivers dr ON d.driver_id = dr.id WHERE dr.id IS NULL AND d.driver_id IS NOT NULL) AS entregas_sem_motorista,
     (SELECT COUNT(*) FROM deliveries d LEFT JOIN vehicles v ON d.vehicle_id = v.id WHERE v.id IS NULL AND d.vehicle_id IS NOT NULL) AS entregas_sem_veiculo,
     (SELECT COUNT(*) FROM invoices i LEFT JOIN deliveries d ON i.delivery_id = d.id WHERE d.id IS NULL) AS faturas_sem_entrega;
 
-\echo ''
-\echo 'SEED CONCLUÍDO COM SUCESSO!'
-\echo 'O banco está populado com 1.000 entregas e dados relacionados coerentes.'
+-- Seed concluído: o banco deve conter 1.000 entregas e dados relacionados coerentes.

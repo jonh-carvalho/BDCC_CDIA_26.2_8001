@@ -5,7 +5,7 @@
 
 SET search_path TO swifttrack_core;
 
-\echo 'Gerando faturas para entregas DELIVERED...'
+SELECT 'Gerando faturas para entregas DELIVERED...' AS mensagem;
 
 WITH invoice_inputs AS MATERIALIZED (
     SELECT

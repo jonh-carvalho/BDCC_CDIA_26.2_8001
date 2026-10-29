@@ -4,7 +4,7 @@
 
 SET search_path TO swifttrack_core;
 
-\echo 'Inserindo 25 motoristas...'
+SELECT 'Inserindo 25 motoristas...' AS mensagem;
 
 INSERT INTO drivers (name, cpf, cnh_number, cnh_category, phone, is_active, hired_at)
 SELECT

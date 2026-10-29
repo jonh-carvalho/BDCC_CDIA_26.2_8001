@@ -4,7 +4,7 @@
 
 SET search_path TO swifttrack_core;
 
-\echo 'Inserindo 12 veículos...'
+SELECT 'Inserindo 12 veículos...' AS mensagem;
 
 INSERT INTO vehicles (plate, model, manufacturer, year, capacity_kg, status)
 SELECT

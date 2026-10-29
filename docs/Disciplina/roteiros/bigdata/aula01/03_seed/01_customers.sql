@@ -45,8 +45,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-\echo 'Funções auxiliares criadas.'
-\echo 'Inserindo 80 clientes...'
+SELECT 'Funções auxiliares criadas.' AS status;
+SELECT 'Inserindo 80 clientes...' AS status;
 
 INSERT INTO customers (document, name, email, address)
 SELECT

@@ -1,14 +1,14 @@
 -- SWIFTTRACK CORE - Cena 2: faturamento bem-sucedido
 SET search_path TO swifttrack_core;
 
-\echo '=========================================='
-\echo 'CENA 2: FATURAMENTO BEM-SUCEDIDO'
-\echo '=========================================='
+-- ==========================================
+-- CENA 2: FATURAMENTO BEM-SUCEDIDO
+-- ==========================================
 
-\echo 'Estado ANTES:'
+-- Estado ANTES:
 SELECT d.id, d.status
 FROM deliveries d
-JOIN customers c ON c.id = d.customer_id
+JOIN customers c ON c.id = d.customer_idA
 WHERE c.document = '12.345.678/0001-99'
   AND d.origin_address = 'São Paulo - SP'
   AND d.destination_address = 'Rio de Janeiro - RJ';
@@ -47,8 +47,8 @@ WHERE c.document = '12.345.678/0001-99'
 
 COMMIT;
 
-\echo 'Transação COMMITADA com sucesso!'
-\echo 'Estado DEPOIS:'
+-- Transação COMMITADA com sucesso!
+-- Estado DEPOIS:
 SELECT d.id, d.status, d.delivered_at
 FROM deliveries d
 JOIN customers c ON c.id = d.customer_id
