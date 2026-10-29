@@ -304,13 +304,14 @@ git push
 
 ## Parte 6 - Sincronizar com a EC2 (GitHub → EC2)
 
-No Security Group da EC2, libere a porta de entrada `22` (SSH) e a `8000` (API, TCP). Conecte-se pelo terminal do Windows:
+No Security Group da EC2, libere a porta de entrada `22` (SSH) e a `8000` (API, TCP). Conecte-se pelo terminal do Vscode:
 
+ou Terminal do Windows
 ```powershell
 ssh -i caminho\chave.pem ec2-user@<IP_PUBLICO_EC2>
 ```
 
-Na **EC2** (Ubuntu usa o usuário `ubuntu`), obtenha o código:
+Na **EC2** (ec2-user), obtenha o código:
 
 ```bash
 # primeira vez
