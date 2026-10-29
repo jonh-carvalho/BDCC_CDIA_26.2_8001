@@ -1,0 +1,8 @@
+asgiref==3.11.1
+Django==6.0.4
+djangorestframework==3.17.1
+gunicorn==25.3.0
+packaging==26.0
+pillow==12.2.0
+sqlparse==0.5.5
+tzdata==2026.1

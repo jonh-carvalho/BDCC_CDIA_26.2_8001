@@ -1,0 +1,18 @@
+branch-defaults:
+  main:
+    environment: null
+    group_suffix: null
+environment-defaults: {}
+deploy:
+  artifact: app.zip
+global:
+  application_name: catalogo-produtos
+  default_platform: Python 3.12
+  default_region: us-east-1
+  include_gitid: yes
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  sc: git
+  workspace_type: Application
