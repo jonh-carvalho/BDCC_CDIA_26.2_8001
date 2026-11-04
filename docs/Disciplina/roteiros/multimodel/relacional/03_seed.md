@@ -1,4 +1,4 @@
-# Script de Seed — 1.000 entregas
+## Script de Seed — 1.000 entregas
 
 Este material demonstra a geração de dados sintéticos em escala usando SQL nativo do PostgreSQL. O script foi organizado em **sete cenas executáveis**, cada uma em um arquivo SQL separado, para facilitar a execução e a avaliação dos resultados.
 

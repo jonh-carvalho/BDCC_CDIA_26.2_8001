@@ -60,8 +60,6 @@ docker run -d --name swifttrack-pg -e POSTGRES_PASSWORD=12345678 -e POSTGRES_DB=
 | `CHECK` em vez de `ENUM` nativo | `CHECK` é mais portável entre bancos e permite mensagens de erro customizadas. |
 | Índices em **todas as FKs** | O PostgreSQL **não** cria índices automaticamente em FKs. Sem eles, `DELETE CASCADE` e `JOIN`s ficam lentíssimos. |
 
----
-
 ## Script SQL Completo (`01_schema.sql`)
 
 ```sql
@@ -287,8 +285,6 @@ CREATE TRIGGER trg_deliveries_updated_at
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 ```
 
----
-
 ## Queries de Validação (Para o Aluno Testar as Constraints)
 
 Depois de rodar o script acima, o aluno pode testar se as constraints estão funcionando. **Todas as queries abaixo DEVEM falhar** com erro de constraint:
@@ -325,8 +321,6 @@ VALUES (1, 'SP', 'RJ', 100, 'IN_TRANSIT', NOW());
 -- ERRO: violates check constraint "chk_deliveries_delivered_at"
 ```
 
----
-
 ## Verificando os Índices Criados
 
 Para confirmar que os índices B-Tree foram criados, o aluno pode rodar:
@@ -351,8 +345,6 @@ WHERE status = 'IN_TRANSIT';
 -- O plano pode usar o índice ou uma varredura sequencial, conforme o volume e a distribuição dos dados.
 ```
 
----
-
 ## Pontos de Discussão para a Aula
 
 1. **Por que `BIGSERIAL` e não `SERIAL`?**
@@ -367,14 +359,10 @@ WHERE status = 'IN_TRANSIT';
 4. **`NUMERIC` vs `DECIMAL`:**
    No PostgreSQL, são sinônimos. Ambos garantem precisão exata — essenciais para dinheiro.
 
----
----
 
-# Aplicando o `01_schema.sql` no Docker (sem docker-compose)
+## Aplicando o `01_schema.sql` no Docker (sem docker-compose)
 
 Existem **3 formas principais** de fazer isso. Vou apresentar da mais simples para a mais robusta.
-
----
 
 ## Opção 1: Pipe direto (MAIS RÁPIDA — Recomendada)
 
@@ -405,8 +393,6 @@ CREATE FUNCTION
 CREATE TRIGGER
 ```
 
----
-
 ## Opção 2: Copiar o arquivo para o container (MAIS ROBUSTA)
 
 Se o arquivo for grande ou você quiser inspecioná-lo dentro do container depois:
@@ -423,8 +409,6 @@ docker exec swifttrack-pg rm /tmp/01_schema.sql
 ```
 
 **Vantagem:** Se der erro no meio, você pode entrar no container e editar o arquivo sem precisar reenviar.
-
----
 
 ## Opção 3: Usar `psql` local (se tiver instalado na sua máquina)
 
@@ -443,8 +427,6 @@ PGPASSWORD=secret psql -h localhost -p 5432 -U postgres -d swifttrack_core -f 01
 ```
 
 ** Limitação:** Requer ter o `psql` instalado na máquina host.
-
----
 
 ## Validando que Funcionou
 
@@ -472,8 +454,6 @@ WHERE table_schema = 'swifttrack_core' AND table_type = 'BASE TABLE';
 \q
 ```
 
----
-
 ## Problemas Comuns e Soluções
 
 ### Erro: `docker: "exec" requires at least 2 arguments`
@@ -499,8 +479,6 @@ docker run --name swifttrack-pg \
 **Causa:** Permissões do Linux.
 **Solução:** `chmod +r 01_schema.sql`
 
----
-
 ## Dica Bônus: Script de "Reset Total"
 
 Se você quiser **recriar o schema do zero** (útil durante os testes da aula), crie um arquivo `reset.sh`:
@@ -520,8 +498,6 @@ chmod +x reset.sh
 ./reset.sh
 ```
 
----
-
 ## Resumo Prático
 
 Para a aula, a **Opção 1** é a mais didática e rápida:
@@ -529,4 +505,3 @@ Para a aula, a **Opção 1** é a mais didática e rápida:
 ```bash
 cat 01_schema.sql | docker exec -i swifttrack-pg psql -U postgres -d swifttrack_core
 ```
-

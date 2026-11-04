@@ -1,13 +1,4 @@
--- Active: 1792551606560@@127.0.0.1@5432
-# Plano de Aula: Módulo 1 — Semana 2
-
 ## Tema: O Paradigma Documento — Catálogos Flexíveis
-
-**Duração Total:** 4 horas (1h Teoria + 3h Prática)
-**Público-alvo:** Engenheiros de Dados, Desenvolvedores Backend, Arquitetos de Software.
-**Pré-requisitos:** PostgreSQL 16 rodando (configurado na Semana 1) e conhecimento básico de SQL.
-
----
 
 ### Objetivos de Aprendizagem
 
@@ -18,11 +9,7 @@ Ao final, serão capazes de:
 3. Manipular e consultar dados semiestruturados usando operadores nativos (`@>`, `?`, `?|`).
 4. Criar e otimizar buscas em documentos JSON utilizando índices `GIN`.
 
----
-
-### Cronograma Detalhado
-
-#### BLOCO 1: Teoria 
+### Teoria 
 
 **1.1. A Dor do Relacional em Dados Variáveis**
 
@@ -43,10 +30,7 @@ Ao final, serão capazes de:
     *   `?|` (Existe alguma das chaves): OR lógico para chaves.
     *   `->` vs `->>`: Navegação (retorna JSON vs retorna Texto).
 
-
----
-
-#### BLOCO 2: Prática — Setup e Modelagem 
+#### Prática — Setup e Modelagem 
 
 **2.1. Criação da Tabela Híbrida **
 *   Os alunos devem criar a tabela `delivery_manifests` que faz ponte entre o relacional (Semana 1) e o documento.
@@ -90,17 +74,17 @@ SELECT manifest_type, payload->'items'->0->>'name' AS first_item
 FROM delivery_manifests;
 #```   
 
-
----
-
-#### BLOCO 3: Prática — Índices e Performance 
+#### Prática — Índices e Performance 
 **3.1. O Problema da Busca Linear **
 *   **Objetivo:** observar o custo de procurar uma chave dentro de documentos sem um índice apropriado.
 *   Antes de começar, confirme que a tabela contém os dados da prática e verifique se já existe um índice em `payload`:
+
 ```sql
 \d delivery_manifests
 ```
+
 *   Apresente a consulta e peça que os alunos prevejam quais linhas serão retornadas. Em seguida, execute-a com `EXPLAIN (ANALYZE, BUFFERS)` para inspecionar o plano:
+
 ```sql
 -- O operador @> verifica se o documento contém o fragmento informado.
 EXPLAIN (ANALYZE, BUFFERS)
@@ -129,9 +113,7 @@ WHERE payload @> '{"requires_thermal_bag": true}';
 *   **Discussão sobre operadores:** o índice GIN padrão para `JSONB` (`jsonb_ops`) atende operadores como `@>` e `?`. Para cargas de trabalho focadas em contenção, existe também a classe `jsonb_path_ops`, que pode produzir um índice menor, mas não oferece o mesmo suporte a todos os operadores. Não é necessário criar ambos nesta atividade.
 *   **Limite importante:** esse índice ajuda a localizar chaves e valores, mas não transforma uma comparação numérica como `weight_kg > 5` em uma busca indexada. Para esse tipo de consulta, é necessário extrair o valor e usar uma estratégia adequada, como uma coluna relacional ou um índice de expressão compatível. Esse ponto prepara o desafio do próximo bloco.
 
----
-
-#### BLOCO 4: O Desafio e Consolidação 
+#### O Desafio e Consolidação 
 **4.1. O Desafio da Semana (40 min)**
 *   **Briefing do Desafio:** "O setor de seguros precisa de um relatório urgente. Precisamos encontrar todos os manifestos que contenham itens classificados como `'fragile': true` E que tenham `'weight_kg' > 5`. Como o GIN não indexa cast numérico nativamente, como vocês resolvem isso de forma performática ou funcional?"
 *   *Tempo para os alunos tentarem (individual ou em duplas).*

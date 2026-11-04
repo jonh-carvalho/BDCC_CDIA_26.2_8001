@@ -1,7 +1,7 @@
 ---
-repo_url: https://github.com/jonh-carvalho/BDCC_26.2_8001
+repo_url: https://github.com/jonh-carvalho/BDCC_ADS_26.2_8001
 site_author: Jonh Carvalho
-site_name: BDCC_CDIA_26.2_8001
+site_name: BDCC_ADS_26.2_8001
 copyright: Copyright ©️ 2026, Jonh Carvalho
 
 nav: 
@@ -9,22 +9,24 @@ nav:
   - Disciplina:
       - Aulas: Disciplina/aulas.md
 #      - Ambiente: Disciplina/ambiente.md
-      - Roteiros:
+      - Roteiro:
         - 03 - AWS: Disciplina/roteiros/04 - aws.md
         - 04 - Linux Bash: Disciplina/roteiros/03 - linux.md
         - 05 - EC2: Disciplina/roteiros/04 - ec2.md
+        - 05 - Nginx: Disciplina/roteiros/05 - nginxsite.md
         - 06 - Docker: Disciplina/roteiros/06 - docker.md
-        - 06 - Nginx: Disciplina/roteiros/05 - nginxsite.md
         - 06 - S3: Disciplina/roteiros/06 - s3.md
-        - 07 - Beanstalk: Disciplina/roteiros/07 - eb.md
-        - 10 - RDS no docker EC2: Disciplina/roteiros/10 - docker_rds.md
+        - 07 - EB: Disciplina/roteiros/07 - eb.md
         - 10 - Aurora RDS: Disciplina/roteiros/10 - aurora.md
-        - Big Data: 
-          - 11 - Transacional: Disciplina/roteiros/bigdata/aula01/aula01 - 01.md
-          - 12 - Analítico: Disciplina/roteiros/bigdata/aula01/aula01 - 02_transaction.md
-          - 12 - Data Lake: Disciplina/roteiros/bigdata/aula01/aula01 - 03_seed.md
-          - 13 - 
+        - 10 - RDS no Docker EC2: Disciplina/roteiros/10 - docker_rds.md
 #        - 12 - EB MySQL: Disciplina/roteiros/12 - ebmysql.md
+        - MultiModel:
+          - 11 - Schema - Constraints: Disciplina/roteiros/multimodel/relacional/01_schema.md
+          - 12 - Transactional: Disciplina/roteiros/multimodel/relacional/02_transaction.md
+          - 12 - Seed: Disciplina/roteiros/multimodel/relacional/03_seed.md
+          - 13 - Document: Disciplina/roteiros/multimodel/documentos/01.md
+          - 13 - Delivery: Disciplina/roteiros/multimodel/documentos/03_1.md
+          - 14 - Minio: Disciplina/roteiros/multimodel/objetos/minio.md
   - Avaliações:
       - AC:
         - Index: Avalia/index.md
@@ -80,8 +82,6 @@ markdown_extensions:
   - pymdownx.snippets
   # Admonitions, Annotations, Code Blocks, Content Tabs
   - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
   # Content Tabs
   - pymdownx.tabbed:
       alternate_style: true
@@ -96,17 +96,10 @@ markdown_extensions:
       permalink: true
 
 plugins:
-  - pygments: 
-      light: tango
-      dark: solarized-dark
   - search
   - plantuml:
       puml_url: https://www.plantuml.com/plantuml/
       puml_keyword: plantuml
-
-          
-  
-
 
 theme:
   favicon: assets/ibmec_icon.png
@@ -116,7 +109,7 @@ theme:
     - navigation.indexes
     - navigation.instant
     - navigation.instant.progress
-#    - navigation.path
+    - navigation.path
     - navigation.tabs
     - navigation.top
     - navigation.tracking
