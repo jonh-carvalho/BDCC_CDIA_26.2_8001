@@ -1,0 +1,215 @@
+Aqui está o **passo a passo detalhado e executável** para o **BLOCO 3 — Lab 2: Interação Programática com boto3 (45 min)**. 
+
+Este roteiro foi desenhado para ser copiado e colado pelos alunos, com explicações embutidas sobre o *porquê* de cada decisão de arquitetura.
+
+---
+
+# 🛠️ ROTEIRO DE LABORATÓRIO: Semana 5, Bloco 3 (45 min)
+**Objetivo:** Implementar upload seguro de comprovantes com checksum, metadados customizados e dominar a geração de URLs pré-assinadas (GET e PUT) para desacoplar o tráfego de mídia da API principal.
+
+---
+
+## ⏱️ Passo 1: Preparação do Ambiente Python e Dados de Teste (10 min)
+
+**1.1. Ative o ambiente virtual e instale as dependências:**
+```bash
+python -m venv venv
+source venv/bin/activate  # No Windows: venv\Scripts\activate
+pip install boto3 botocore pillow python-dotenv
+```
+
+**1.2. Gere uma imagem de teste sintética:**
+Para não depender de arquivos externos, crie um script rápido que gera um "comprovante" falso.
+Crie o arquivo `gerar_teste.py`:
+```python
+from PIL import Image
+import os
+
+# Cria uma imagem RGB de 800x600 (simulando ~400KB de JPEG)
+img = Image.new('RGB', (800, 600), color = (73, 109, 137))
+os.makedirs('testes', exist_ok=True)
+img.save('testes/comprovante_exemplo.jpg', quality=85)
+print("✅ Imagem de teste gerada em testes/comprovante_exemplo.jpg")
+```
+Execute: `python gerar_teste.py`
+
+---
+
+## ⏱️ Passo 2: Configuração do Cliente `boto3` para MinIO (10 min)
+
+O `boto3` é nativo da AWS, mas funciona perfeitamente com MinIO **se** configurado corretamente. O erro mais comum é esquecer o *path-style addressing*.
+
+Crie o arquivo `swifttrack_storage.py`:
+```python
+import os
+import boto3
+from botocore.config import Config
+
+def get_s3_client():
+    """
+    Configura o cliente S3 para apontar para o MinIO local.
+    """
+    return boto3.client(
+        "s3",
+        endpoint_url="http://localhost:9000",  # ⚠️ CRÍTICO: Use localhost, não 'minio-hot', para URLs externas
+        aws_access_key_id=os.getenv("MINIO_ROOT_USER", "swiftadmin"),
+        aws_secret_access_key=os.getenv("MINIO_ROOT_PASSWORD", "swiftsecret123"),
+        region_name="us-east-1", # MinIO exige uma região, mesmo que fake
+        config=Config(
+            signature_version="s3v4",
+            s3={"addressing_style": "path"} # ⚠️ CRÍTICO para MinIO local sem DNS wildcard
+        )
+    )
+
+BUCKET_POD = "swifttrack-proof-of-delivery"
+```
+
+> 💡 **Discussão rápida com a turma:** Por que usamos `localhost:9000` e não `http://minio-hot:9000` (nome do container)? 
+> *Resposta:* Porque a URL gerada será aberta no navegador do usuário ou no app do motorista. Se a URL contiver `minio-hot`, o DNS do celular/navegador não saberá resolver, gerando erro. O endpoint na configuração do cliente define o *host* que será embutido na URL pré-assinada.
+
+---
+
+## ⏱️ Passo 3: Upload Seguro com Checksum e Metadados (15 min)
+
+Não basta apenas "jogar" o arquivo no bucket. Precisamos de integridade (checksum) e rastreabilidade (metadados).
+
+Adicione ao `swifttrack_storage.py`:
+```python
+import hashlib
+import uuid
+from datetime import datetime, timezone
+import base64
+
+def build_key(delivery_id: str, ext: str = "jpg") -> str:
+    """Aplica a convenção de chaves definida no Lab 1."""
+    now = datetime.now(timezone.utc)
+    return f"pod/{now:%Y}/{now:%m}/{now:%d}/{delivery_id}/{uuid.uuid4()}.{ext}"
+
+def upload_proof(file_path: str, delivery_id: str, driver_id: str) -> dict:
+    s3 = get_s3_client()
+    
+    # 1. Ler e calcular hash SHA-256
+    with open(file_path, "rb") as f:
+        file_bytes = f.read()
+    
+    sha256_hash = hashlib.sha256(file_bytes).hexdigest()
+    # O S3/MinIO espera o checksum em Base64 para a header ChecksumSHA256
+    checksum_b64 = base64.b64encode(bytes.fromhex(sha256_hash)).decode('utf-8')
+    
+    key = build_key(delivery_id)
+    
+    # 2. Upload com metadados e controle de cache
+    response = s3.put_object(
+        Bucket=BUCKET_POD,
+        Key=key,
+        Body=file_bytes,
+        ContentType="image/jpeg",
+        ChecksumSHA256=checksum_b64, # Validação de integridade nativa do S3
+        CacheControl="private, max-age=0, no-store", # Nunca cachear comprovante em CDN pública
+        Metadata={
+            "delivery-id": delivery_id,
+            "driver-id": driver_id,
+            "captured-at": datetime.now(timezone.utc).isoformat()
+        }
+    )
+    
+    return {
+        "bucket": BUCKET_POD,
+        "key": key,
+        "sha256": sha256_hash,
+        "size_bytes": len(file_bytes),
+        "version_id": response.get("VersionId") # Só existe porque ativamos versionamento no Lab 1!
+    }
+
+# --- TESTE RÁPIDO ---
+if __name__ == "__main__":
+    resultado = upload_proof("testes/comprovante_exemplo.jpg", "DEL-998877", "DRV-102")
+    print("✅ Upload realizado com sucesso!")
+    print(f"Chave: {resultado['key']}")
+    print(f"Version ID: {resultado['version_id']}")
+```
+Execute: `python swifttrack_storage.py`
+
+> 🔍 **Checkpoint do Instrutor:** Peça para um aluno abrir o Console do MinIO (`http://localhost:9001`), navegar até o bucket `swifttrack-proof-of-delivery`, clicar no arquivo recém-criado e mostrar na tela as abas **Metadata** e **Versions**. Se não houver `Version ID`, o versionamento do Lab 1 falhou.
+
+---
+
+## ⏱️ Passo 4: URLs Pré-assinadas (GET e PUT) (10 min)
+
+Agora, simularemos o fluxo real do aplicativo do motorista. A API **não** deve receber o arquivo de imagem. A API deve gerar uma URL de *escrita* (PUT) e devolver ao app. O app envia a imagem **direto** para o MinIO.
+
+Adicione ao `swifttrack_storage.py`:
+```python
+def generate_presigned_get(bucket: str, key: str, ttl_seconds: int = 300) -> str:
+    """Gera URL para o cliente (ex: portal web) baixar o comprovante."""
+    s3 = get_s3_client()
+    return s3.generate_presigned_url(
+        "get_object",
+        Params={"Bucket": bucket, "Key": key},
+        ExpiresIn=ttl_seconds
+    )
+
+def generate_presigned_put(bucket: str, key: str, content_type: str, ttl_seconds: int = 900) -> str:
+    """
+    Gera URL para o app do motorista fazer upload DIRETO no storage.
+    Economiza largura de banda e CPU do servidor de aplicação.
+    """
+    s3 = get_s3_client()
+    return s3.generate_presigned_url(
+        "put_object",
+        Params={
+            "Bucket": bucket, 
+            "Key": key, 
+            "ContentType": content_type
+        },
+        ExpiresIn=ttl_seconds
+    )
+```
+
+**Teste prático no terminal (adicione ao final do `__main__`):**
+```python
+    # Simula a API gerando uma URL de upload para o app do motorista
+    nova_chave = build_key("DEL-112233")
+    url_upload = generate_presigned_put(BUCKET_POD, nova_chave, "image/jpeg", ttl_seconds=60)
+    print(f"\n🔗 URL de UPLOAD (para o App): \n{url_upload}")
+
+    # Simula o upload direto via curl (imitando o app do motorista)
+    import subprocess
+    print("\n⏳ Simulando upload do App via curl...")
+    subprocess.run(["curl", "-X", "PUT", "-T", "testes/comprovante_exemplo.jpg", 
+                    "-H", "Content-Type: image/jpeg", url_upload], 
+                   capture_output=True, text=True)
+    print("✅ Upload direto via URL pré-assinada concluído!")
+```
+Execute novamente: `python swifttrack_storage.py`
+
+---
+
+## ⏱️ Passo 5: O Experimento da "Armadilha" (5 min)
+
+Este é o momento "Aha!" da aula. Vamos provar dois conceitos na prática.
+
+**Armadilha A: A URL expira de verdade.**
+1. No código, altere o `ttl_seconds` do `generate_presigned_get` para **5** (5 segundos).
+2. Execute o script, copie a URL de GET gerada.
+3. Espere 6 segundos.
+4. Cole a URL no navegador ou faça `curl -I <URL>`.
+5. **Resultado esperado:** `403 Forbidden` com a mensagem `Request has expired`. 
+   *Lição:* URLs vazadas em logs de aplicação tornam-se inúteis rapidamente, mitigando riscos de segurança.
+
+**Armadilha B: O problema do Host Interno (se o aluno errou o Passo 2).**
+1. Peça para um aluno alterar propositalmente no código: `endpoint_url="http://minio-hot:9000"`.
+2. Gere uma URL pré-assinada e tente abrir no navegador do sistema operacional host (Chrome/Firefox).
+3. **Resultado esperado:** O navegador não encontra o site (`ERR_NAME_NOT_RESOLVED`).
+   *Lição:* A URL pré-assinada é um token de acesso **acoplado a um endpoint específico**. Se o backend gera a URL usando a rede interna do Docker, o cliente externo nunca conseguirá usá-la.
+
+---
+
+### 🚦 Checklist de Conclusão do Bloco 3
+- [ ] Dependências `boto3` instaladas e imagem de teste gerada.
+- [ ] Cliente `boto3` configurado com `addressing_style="path"` e `localhost`.
+- [ ] Upload realizado com sucesso, gerando `VersionId` e `ChecksumSHA256`.
+- [ ] Metadados customizados (`driver-id`, `delivery-id`) visíveis no Console do MinIO.
+- [ ] Upload direto via `curl` usando URL pré-assinada (PUT) funcionou.
+- [ ] Comprovado que a URL expira após o TTL e que o endpoint deve ser acessível ao cliente final.
+

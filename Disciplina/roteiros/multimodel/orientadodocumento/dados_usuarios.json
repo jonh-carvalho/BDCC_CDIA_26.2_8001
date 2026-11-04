@@ -1,0 +1,232 @@
+[
+    {
+        "IDUsuario": 1,
+        "Nome": "Usuario_1",
+        "Endereco": {
+            "Rua": "Rua_1",
+            "Numero": 10,
+            "Cidade": "Rio de Janeiro"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 20
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 30
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 40
+            }
+        ]
+    },
+    {
+        "IDUsuario": 2,
+        "Nome": "Usuario_2",
+        "Endereco": {
+            "Rua": "Rua_2",
+            "Numero": 20,
+            "Cidade": "S\u00e3o Paulo"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 30
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 40
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 50
+            }
+        ]
+    },
+    {
+        "IDUsuario": 3,
+        "Nome": "Usuario_3",
+        "Endereco": {
+            "Rua": "Rua_3",
+            "Numero": 30,
+            "Cidade": "Rio de Janeiro"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 40
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 50
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 60
+            }
+        ]
+    },
+    {
+        "IDUsuario": 4,
+        "Nome": "Usuario_4",
+        "Endereco": {
+            "Rua": "Rua_4",
+            "Numero": 40,
+            "Cidade": "S\u00e3o Paulo"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 50
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 60
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 70
+            }
+        ]
+    },
+    {
+        "IDUsuario": 5,
+        "Nome": "Usuario_5",
+        "Endereco": {
+            "Rua": "Rua_5",
+            "Numero": 50,
+            "Cidade": "Rio de Janeiro"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 60
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 70
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 80
+            }
+        ]
+    },
+    {
+        "IDUsuario": 6,
+        "Nome": "Usuario_6",
+        "Endereco": {
+            "Rua": "Rua_6",
+            "Numero": 60,
+            "Cidade": "S\u00e3o Paulo"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 70
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 80
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 90
+            }
+        ]
+    },
+    {
+        "IDUsuario": 7,
+        "Nome": "Usuario_7",
+        "Endereco": {
+            "Rua": "Rua_7",
+            "Numero": 70,
+            "Cidade": "Rio de Janeiro"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 80
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 90
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 100
+            }
+        ]
+    },
+    {
+        "IDUsuario": 8,
+        "Nome": "Usuario_8",
+        "Endereco": {
+            "Rua": "Rua_8",
+            "Numero": 80,
+            "Cidade": "S\u00e3o Paulo"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 90
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 100
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 110
+            }
+        ]
+    },
+    {
+        "IDUsuario": 9,
+        "Nome": "Usuario_9",
+        "Endereco": {
+            "Rua": "Rua_9",
+            "Numero": 90,
+            "Cidade": "Rio de Janeiro"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 100
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 110
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 120
+            }
+        ]
+    },
+    {
+        "IDUsuario": 10,
+        "Nome": "Usuario_10",
+        "Endereco": {
+            "Rua": "Rua_0",
+            "Numero": 100,
+            "Cidade": "S\u00e3o Paulo"
+        },
+        "Pedidos": [
+            {
+                "IDPedido": 1,
+                "Valor": 110
+            },
+            {
+                "IDPedido": 2,
+                "Valor": 120
+            },
+            {
+                "IDPedido": 3,
+                "Valor": 130
+            }
+        ]
+    }
+]
