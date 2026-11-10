@@ -57,11 +57,15 @@ volumes:
   pgdata:
 ```
 
+```bash
+docker run -d --name swifttrack-vec -p 5432:5432 -e POSTGRES_USER=swifttrack -e POSTGRES_PASSWORD=swifttrack123 -e POSTGRES_DB=swifttrack_logistics pgvector/pgvector:pg16
+```
+
 ### 1.3. Conectar e validar
 
 ```bash
 # Entrar no container
-docker exec -it swifttrack-db psql -U swifttrack -d swifttrack_logistics
+docker exec -it swifttrack-vec psql -U swifttrack -d swifttrack_logistics
 
 # Dentro do psql, verificar versão
 SELECT version();
@@ -76,7 +80,7 @@ SELECT version();
 ## 🔌 PASSO 2 — Instalação da Extensão pgvector (5 min)
 
 ```bash
-docker exec -it swifttrack-db psql -U swifttrack -d swifttrack_logistics
+docker exec -it swifttrack-vec psql -U swifttrack -d swifttrack_logistics
 ```
 
 ```sql
@@ -95,18 +99,14 @@ WHERE typname IN ('vector', 'halfvec', 'sparsevec', 'bit');
 ```
   typname  
 -----------
- vector
- halfvec
- sparsevec
- bit
+ vector // tipo de dado para vetores de precisão simples
+ halfvec // tipo de dado para vetores de metade da precisão
+ sparsevec // tipo de dado para vetores esparsos
+ bit // tipo de dado para vetores binários
 (4 rows)
 ```
 
-> 💡 **Dica para o professor:** Se o `CREATE EXTENSION` falhar com "extension not found", a imagem Docker usada não tem o pgvector. Substituir por `pgvector/pgvector:pg16`.
-
----
-
-## 🏗️ PASSO 3 — Modelagem da Tabela (10 min)
+## PASSO 3 — Modelagem da Tabela (10 min)
 
 ### 3.1. Schema completo com comentários didáticos
 
@@ -150,7 +150,7 @@ COMMENT ON TABLE address_embeddings IS
 
 ---
 
-## 📦 PASSO 4 — Dataset Seed do SwiftTrack (5 min)
+## PASSO 4 — Dataset Seed do SwiftTrack (5 min)
 
 ### 4.1. Criar arquivo `seed_addresses.csv`
 

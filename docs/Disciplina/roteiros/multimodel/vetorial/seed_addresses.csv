@@ -1,0 +1,21 @@
+id,raw_address,hub_id,city
+a001,"Rua das Flores, 123 - Apto 4",1,São Paulo
+a002,"R. das Flores, 123",1,São Paulo
+a003,"Rua das Flores cento e vinte e tres",1,São Paulo
+a004,"Avenida Paulista, 1000 - 10o andar",1,São Paulo
+a005,"Av Paulista mil",1,São Paulo
+a006,"Ave Paulist 1000",1,São Paulo
+a007,"Rua Augusta, 500",1,São Paulo
+a008,"R. Augusta quinhentos",1,São Paulo
+a009,"Rua Oscar Freire, 200",1,São Paulo
+a010,"Alameda Santos, 1500",1,São Paulo
+a011,"Rua Vergueiro, 3000",1,São Paulo
+a012,"Avenida Brasil, 100",2,Rio de Janeiro
+a013,"Av. Brasil cem",2,Rio de Janeiro
+a014,"Rua Copacabana, 50",2,Rio de Janeiro
+a015,"Praia de Ipanema, s/n",2,Rio de Janeiro
+a016,"Rua XV de Novembro, 200",3,Curitiba
+a017,"Rua XV novembro duzentos",3,Curitiba
+a018,"Avenida Batel, 1000",3,Curitiba
+a019,"Rua Marechal Deodoro, 500",4,Belo Horizonte
+a020,"Av. Afonso Pena, 2000",4,Belo Horizonte

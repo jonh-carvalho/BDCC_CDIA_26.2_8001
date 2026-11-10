@@ -70,6 +70,12 @@ volumes:
 docker-compose up -d
 ```
 
+#### comando alternativo (sem docker-compose):
+
+```bash
+docker run -d --name swifttrack_age -e POSTGRES_DB=swifttrack_graph -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=secret123 -p 5433:5432 apache/age:latest
+```
+
 ### 1.4 Checkpoint 1 — Verificar se está rodando
 
 ```bash
@@ -84,7 +90,6 @@ abc123...      apache/age:latest  Up 10 seconds  0.0.0.0:5433->5432/tcp   swiftt
 
 > **Se o STATUS for diferente de "Up"**, execute: `docker logs swifttrack_age` e chame o professor.
 
----
 
 ## **PASSO 2 — Conectar ao Banco de Dados**
 
