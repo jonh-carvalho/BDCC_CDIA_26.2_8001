@@ -1,186 +1,162 @@
-## AP2 - APRESENTAÇÃO no LABORATÓRIO 
-### Apresentação destacando os principais pontos do Deploy/Aplicação - importante um slide  com os destaques e todos membros do grupo devem apresentar algum aspecto. 
-
-### Prazo de Entrega: 17/11/2026 
-
-<!--
-**Envio pelo GitHub no mesmo repositório da AP1**
+# AP2 - Django API Multimodelo (PostgreSQL) em Docker na EC2 + Documentação RUP
 
 ## Objetivo
 
-Evoluir o projeto da AP1 (Django Rest + deploy em Elastic Beanstalk) para uma arquitetura em nuvem mais próxima de produção, com:
+Evoluir o projeto da AP1 (Django Rest + SQLite no Elastic Beanstalk) para uma arquitetura mais próxima de produção:
 
-- Banco de dados gerenciado no **AWS RDS PostgreSQL**
-- Armazenamento de arquivos de mídia dos produtos em **AWS S3**
+- Migrar o **deploy** do Elastic Beanstalk para uma **instância EC2 com Docker e Docker Compose**, conforme os roteiros [13 - djangosqlitedocker](../Disciplina/roteiros/13%20-%20djangosqlitedocker.md) e [14 - djangopgdocker](../Disciplina/roteiros/14%20-%20djangopgdocker.md).
+- Migrar o banco de **SQLite** para **PostgreSQL em container**, explorando o conceito **multimodelo** (relacional + documento/JSONB e, opcionalmente, vetorial, objetos ou grafos) vistos na disciplina.
+- Entregar a **documentação completa** das fases Iniciação, Elaboração e Transição do RUP/UP no site MkDocs do repositório do grupo.
 
-## Introdução
+## Prazo e entrega
 
-Na AP1, você criou uma nova classe no projeto e publicou a API na AWS. Nesta AP2, o foco é tornar a solução mais robusta e escalável, separando responsabilidades:
-
-- **Dados relacionais** no PostgreSQL (RDS)
-- **Mídia estática dos produtos** (imagens/arquivos) no S3
-
-Você deverá manter a API funcional, atualizar configurações de ambiente e comprovar o funcionamento fim a fim.
+- **Prazo:** `17/11/2026` até as 9:20h. O envio é feito pelo **repositório do Grupo**
+- O `README.md` deve conter: link da API publicada (`http://<IP-PUBLICO>:8000/api/`), link do site MkDocs publicado e a arquitetura da solução (diagramas).
+- **Apresentação no Laboratório:** todos os membros devem apresentar algum aspecto (deploy, modelo de dados, API, documentação). Incluir um slide com os destaques.
+- Todos presentes devem estar no **repositório do grupo** (professor como colaborador) com **commits individuais**. A ausência de commits de algum membro são penalizados na nota individual(ACs) para a disciplina Projeto de Cloud.
+---
 
 ## Cenário
 
-Você já possui um projeto Django Rest com as entidades da AP1 (incluindo `Produto` e a nova classe criada). Agora deve:
+O grupo já possui um projeto Django Rest, no contexto do Tema do Projeto de Cloud, publicado no Beanstalk com SQLite. O cliente solicitou:
 
-1. Evoluir para um pequeno e-commerce com carrinho de compras(Pedido, itens do Pedido, etc.), integrando o modelo de dados existente.
-2. Configurar o projeto para usar **PostgreSQL no AWS RDS** em vez de SQLite.
-3. Criar um **bucket S3** e configurar o Django para salvar e servir os arquivos de mídia dos produtos no bucket.
-4. Validar a aplicação deployada no Elastic Beanstalk com as novas integrações.
+1. Retirar a dependência do Beanstalk e do SQLite, executando a solução em **EC2 + Docker Compose** (containers `web` e `db`).
+2. Persistir os dados em **PostgreSQL** com volume Docker, com segredos fora do Git (`.env`).
+3. Expor uma API que combine **dados relacionais** (ACID) com **dados semiestruturados** (JSONB) do domínio do Tema.
+4. Formalizar o projeto com a documentação de Iniciação, Elaboração e Transição.
 
-## Requisitos Técnicos Mínimos
+---
 
-- Projeto Django Rest atualizado para PostgreSQL (RDS)
-- Uso de variáveis de ambiente para dados sensíveis (host, usuário, senha, nome do banco, bucket, chaves)
-- Upload de mídia de produto persistindo no S3
-- Endpoints da API funcionando no ambiente AWS
-- Django Admin funcionando com usuário administrador (root)
+## Parte A - Aplicação Django API (PostgreSQL multimodelo)
+
+### Requisitos mínimos
+
+| # | Requisito |
+|---|---|
+| A1 | Projeto e app Django nomeados no contexto do Tema (sem `produtos`/`tarefas`). |
+| A2 | **Mínimo de 4 models relacionais** com pelo menos 2 relacionamentos `ForeignKey` e 1 `ManyToMany` (ou tabela associativa com atributos), com migrations versionadas. |
+| A3 | **Modelo documento:** pelo menos 1 model com `JSONField` (JSONB) para atributos flexíveis do Tema (ex.: cardápio, especificações, metadados), com **índice GIN** criado por migration. |
+| A4 | **Transação:** ao menos 1 endpoint que grave em 2+ tabelas dentro de `transaction.atomic()`, com rollback em caso de violação de regra de negócio. |
+| A5 | API DRF com CRUD completo dos models, serializers aninhados quando fizer sentido, e **ao menos 1 filtro por campo JSON** (ex.: `?atributos__chave=valor`). |
+| A6 | Django Admin funcional com superusuário criado (via variáveis de ambiente ou `createsuperuser` no container). |
+| A7 | Configuração por variáveis de ambiente (`POSTGRES_*`, `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`), sem segredos no código. |
+| A8 | Dados de exemplo (seed/fixture) e ao menos 3 testes automatizados (`python manage.py test`). |
+
+### Pontos extras (até +10)
+
+Implementar **um** paradigma adicional no mesmo PostgreSQL, justificado no Tema:
+
+- **Vetorial:** `pgvector` + endpoint de busca por similaridade.
+- **Objetos:** upload de mídia em MinIO/S3 com `django-storages`.
+- **Grafos:** Apache AGE com consulta Cypher (ex.: relacionamentos do domínio).
+
+---
+
+## Parte B - Deploy em EC2 com Docker
+
+### Requisitos mínimos
+
+| # | Requisito |
+|---|---|
+| B1 | Instância **EC2** (Amazon Linux/Ubuntu) com Docker, Docker Compose e Git instalados; **Security Group** liberando apenas SSH (22) e a porta da API (8000 ou 80); Postgres **não exposto** publicamente. |
+| B2 | `Dockerfile` e `docker-compose.yml` com serviços `web` (Django) e `db` (Postgres), **volume nomeado** para os dados e `depends_on`/healthcheck. |
+| B3 | `requirements.txt` com `psycopg[binary]`; `settings.py` lendo o banco do ambiente. |
+| B4 | `.env` **fora do Git** (`.gitignore`) e `.env.example` versionado, sem senhas reais. |
+| B5 | Fluxo do roteiro: código alterado no Windows → `git push` → `git pull` na EC2 → `docker-compose up -d --build`. Migrations e `collectstatic` executados no deploy. |
+| B6 | API acessível pelo **IP público** e Django Admin operante. |
+| B7 | **Persistência comprovada:** reiniciar os containers (`docker-compose down` / `up`) e demonstrar que os dados permanecem. |
+| B8 | Evidências no README: prints de `docker ps`, `docker-compose logs`, acesso à API e à tabela no Postgres (`psql`). |
+
+### Pontos extras (até +5)
+
+- Proxy reverso Nginx na porta 80 ou HTTPS.
+- Gunicorn no lugar do `runserver`.
+- Script de deploy/backup (`pg_dump`) documentado.
+- Elastic IP associado.
+
+---
+
+## Parte C - Documentação (MkDocs publicado)
+
+Todos os documentos devem estar no site MkDocs do repositório (publicado via GitHub Pages), preenchidos **para o Tema do grupo**, sem trechos como `[NOME DO PROJETO]` ou `XXXX`, e consistentes com a aplicação implementada.
+
+### Iniciação (`docs/Iniciacao`)
+
+| Documento | Arquivo | Conteúdo esperado |
+|---|---|---|
+| Documento de Visão | `dv.md` | Problema, partes interessadas, necessidades, funcionalidades, restrições. |
+| Requisitos Suplementares | `rs.md` | Desempenho, disponibilidade, segurança, operação, custo, SLA, riscos. Deve citar a decisão de usar EC2 + Docker + Postgres. |
+
+### Elaboração (`docs/Elaboracao`)
+
+| Documento | Arquivo | Conteúdo esperado |
+|---|---|---|
+| Casos de Uso Arquiteturais | `cua.md` | Casos de uso significativos para a arquitetura e diagramas. |
+| Pacotes/Subsistemas | `maps.md` | Pacotes (Django apps, API, dados, infraestrutura, segurança), dependências e rastreabilidade. |
+| Dimensionamento de Computação (EC2) | `dim_comp.md` | Tipo de instância justificado (CPU/RAM para `web` + `db`), classes de análise, diagrama PlantUML. |
+| Dimensionamento de Banco de Dados | `dimrbd.md` | Volumetria, crescimento, memória de cálculo, armazenamento, backup/restauração. Comparar volume Docker em EC2 vs. RDS. |
+| Sequência/Comunicação | `seq_com.md` | Fluxos críticos (ex.: criação de registro transacional, consulta por JSONB, deploy) e matriz de rastreamento. |
+| Índice da fase | `index.md` | Resumo e links dos artefatos. |
+
+### Transição (`docs/Transicao`)
+
+| Documento | Arquivo | Conteúdo esperado |
+|---|---|---|
+| Estratégias de Deploy (Atividades) | `ativ_deploy.md` | Estratégias avaliadas (Beanstalk, EC2 + Docker, RDS, etc.), a escolhida, diagrama de atividades do deploy realizado, estimativa de tempo e custo, plano de rollback. |
+
+### Critérios gerais de documentação
+
+- Diagramas renderizando no site (Mermaid/PlantUML).
+- Matrizes de rastreamento ligando requisito → caso de uso → componente → teste/evidência.
+- Histórico de versões e aprovações preenchidos.
+- Estimativa de custo mensal coerente com a infraestrutura usada.
+
+---
 
 ## Entregáveis
 
-1. **Código-fonte no GitHub** com todas as alterações da AP2.
-2. **README atualizado** com:
-	- Arquitetura da solução (AP1 -> AP2)
-	- Passo a passo para execução local
-	- Passo a passo de deploy
-	- Link da API em produção
-	- Evidências de uso do RDS e do S3
-3. **Documentação da AP2** (neste repositório) contendo:
-	- Etapas realizadas
-	- Principais decisões técnicas
-	- Dificuldades e soluções
-4. **Link da aplicação/API no ar**.
+1. Repositório GitHub (professor como colaborador) com código, `Dockerfile`, `docker-compose.yml`, `.env.example`, seed e testes.
+2. `README.md` com: arquitetura (diagrama), execução local, passo a passo do deploy na EC2, links da API e do MkDocs, e evidências (B8).
+3. Site MkDocs publicado com todos os documentos da Parte C.
+4. API no ar na EC2 até a data/hora da avaliação.
+5. Apresentação no laboratório (todos os membros).
 
-## Roteiro Sugerido (Incremental)
+---
 
-### Parte 1 - Preparação
+## Critérios de Correção (100 pontos + extras)
 
-1. Partir do projeto funcional da AP1.
-2. Criar branch específica para AP2.
-3. Garantir que o projeto rode localmente antes de iniciar as mudanças.
+| Eixo | Critério | Pontos |
+|---|---|---|
+| **App Django (35)** | Models relacionais e relacionamentos (A1, A2) | 10 |
+| | Modelo documento JSONB + índice GIN + filtro (A3, A5) | 10 |
+| | Transação e regra de negócio (A4) | 5 |
+| | API/DRF, Admin, seed e testes (A5, A6, A8) | 10 |
+| **Deploy (30)** | Dockerfile/Compose com Postgres e volume (B2, B3) | 8 |
+| | Segredos e variáveis de ambiente (A7, B4) | 5 |
+| | EC2 + Security Group e acesso por IP público (B1, B6) | 7 |
+| | Fluxo Git (Windows → GitHub → EC2) e persistência (B5, B7) | 5 |
+| | Evidências e README do deploy (B8) | 5 |
+| **Documentação (30)** | Iniciação: `dv.md` e `rs.md` | 8 |
+| | Elaboração: `cua`, `maps`, `dim_comp`, `dimrbd`, `seq_com` | 14 |
+| | Transição: `ativ_deploy.md` | 5 |
+| | Publicação do MkDocs e consistência com a aplicação | 3 |
+| **Apresentação (5)** | Participação de todos os membros e clareza | 5 |
+| **Extras** | Paradigma adicional (+10) e infraestrutura (+5) | até +15 (nota limitada a 10,0) |
 
-### Parte 2 - Banco AWS RDS PostgreSQL
+### Penalidades
 
-1. Criar instância PostgreSQL no RDS.
-2. Configurar segurança de rede (security groups) para permitir conexão da aplicação.
-3. Ajustar `settings.py` para ler configurações do banco via variáveis de ambiente.
-4. Executar migrações no novo banco.
-5. Criar superusuário admin(root) no ambiente correto.
+- Segredos (senhas, chaves) versionados no Git: **-10 pontos**.
+- API fora do ar na data da avaliação: máximo de 50% do eixo Deploy.
+- Documentos com texto de template não preenchido: pontuação proporcional zerada no item.
 
-### Parte 3 - Bucket AWS S3 para mídia
 
-1. Criar bucket S3 para arquivos de mídia dos produtos.
-2. Configurar permissões/política conforme necessidade do projeto.
-3. Integrar Django ao S3 para `MEDIA` (upload e URL).
-4. Testar upload de imagem/arquivo em `Produto` e validar persistência no bucket.
-
-### Parte 4 - Deploy e validação
-
-1. Atualizar ambiente do Elastic Beanstalk com as novas variáveis.
-2. Gerar pacote `app.zip` e realizar deploy.
-3. Validar:
-	- Endpoints GET/POST/PUT/DELETE
-	- Acesso ao Django Admin
-	- Upload e leitura de mídia no S3
-	- Conectividade com RDS
-
-### Parte 5 - Extensão opcional: JSONB com JSONField
-
-Objetivo: aplicar um aspecto orientado a documento dentro do PostgreSQL para atributos variáveis do e-commerce.
-
-1. Adicionar no modelo `Produto` (ou modelo relacionado) um campo `JSONField` para metadados dinâmicos.
-2. Persistir esse campo no PostgreSQL (tipo `JSONB`).
-3. Implementar ao menos 2 consultas filtrando dados dentro do JSON (ex.: marca, RAM, cor, tamanho, especificações técnicas).
-4. Demonstrar um caso combinado de filtro relacional + JSON (ex.: categoria + atributo do JSON).
-
-Exemplo de estrutura esperada para o campo JSON:
-
-```json
-{
-	"marca": "Dell",
-	"ram_gb": 16,
-	"cor": "preto",
-	"especificacoes": {
-		"cpu": "i7",
-		"armazenamento": "512GB SSD"
-	}
-}
-```
-
-Evidências desta parte opcional:
-
-- Print de um registro salvo com JSONField preenchido.
-- Print de ao menos 2 consultas com filtros no JSON.
-- Breve explicação no README sobre quando usar campo relacional e quando usar JSONField.
-
-## Evidências Obrigatórias
-
-- URL pública da API funcionando
-- Prints (ou GIFs) de:
-  - Console RDS (instância ativa)
-  - Console S3 (arquivos de mídia enviados)
-  - Requisição da API criando/atualizando produto com mídia
-  - Django Admin com login de administrador
-
-## Critérios de Correção
-
-- Configuração correta e funcional do RDS PostgreSQL
-- Configuração correta e funcional do S3 para mídia
-- Integração da API com banco e mídia em nuvem
-- Uso adequado de variáveis de ambiente e boas práticas de configuração
-- Deploy funcional no Elastic Beanstalk com `app.zip`
-- Clareza da documentação técnica e reprodutibilidade
-
-## Rubrica de Pontuação (10,0 pontos)
-
-1. **Modelagem e integração com RDS PostgreSQL (2,5 pontos)**
-	- 2,5: integração completa e funcional no ambiente AWS
-	- 1,5: integração parcial, com inconsistências ou ajustes pendentes
-	- 0,5: tentativa sem funcionamento estável
-
-2. **Integração com S3 para mídia de produtos (2,5 pontos)**
-	- 2,5: upload, armazenamento e acesso aos arquivos funcionando corretamente
-	- 1,5: upload funcional com falhas de configuração/acesso
-	- 0,5: tentativa sem fluxo completo
-
-3. **Deploy e operação no Elastic Beanstalk (2,0 pontos)**
-	- 2,0: aplicação publicada e operando com banco + mídia integrados
-	- 1,0: aplicação no ar com funcionamento parcial
-	- 0,5: deploy com erros recorrentes
-
-4. **Boas práticas de configuração e segurança (1,5 ponto)**
-	- 1,5: variáveis de ambiente e segredos tratados corretamente
-	- 1,0: boas práticas aplicadas parcialmente
-	- 0,5: configuração expõe riscos ou está incompleta
-
-5. **Documentação e evidências (1,5 ponto)**
-	- 1,5: documentação clara, reprodutível e com evidências completas
-	- 1,0: documentação suficiente, mas com lacunas
-	- 0,5: documentação incompleta
-
-### Observações de Avaliação
-
-- Trabalhos sem link da API em produção terão desconto mínimo de 2,0 pontos.
-- Trabalhos sem evidências de RDS e S3 terão desconto mínimo de 2,0 pontos.
-- A ausência de instruções para criação do usuário admin(root) poderá reduzir até 1,0 ponto.
-
-## Diferenciais (Bônus)
-
-- Organização de ambientes (`dev` e `prod`)
-- Tratamento de erros de upload e validações adicionais
-- Checklist de troubleshooting no README
-- Script/comando de bootstrap para facilitar setup local
-- Uso de `JSONField` no Django com consultas em `JSONB` no PostgreSQL (até +1,0 ponto)
+---
 
 ## Referências
 
-- [Documentação Django Rest Framework](https://www.django-rest-framework.org/)
-- [Deploy Python/Django no AWS Elastic Beanstalk](https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/create-deploy-python-django.html)
-- [Amazon RDS para PostgreSQL](https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html)
-- [Amazon S3](https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/Welcome.html)
-- [Roteiro de aula - Elastic Beanstalk](https://jonh-carvalho.github.io/BDCC_CDIA_26.1_8001/Disciplina/roteiros/07%20-%20eb/)
-
--->
+- [Roteiro 13 - Django + SQLite + Docker](../Disciplina/roteiros/13%20-%20djangosqlitedocker.md)
+- [Roteiro 14 - Django + PostgreSQL + Docker](../Disciplina/roteiros/14%20-%20djangopgdocker.md)
+- [Django - PostgreSQL specific model fields](https://docs.djangoproject.com/en/stable/ref/contrib/postgres/fields/)
+- [Django REST Framework](https://www.django-rest-framework.org/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- Material multimodelo da disciplina (relacional, documentos/JSONB, vetorial, objetos, grafos)
