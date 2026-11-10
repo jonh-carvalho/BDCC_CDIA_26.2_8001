@@ -1,0 +1,1838 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Jonh Carvalho">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/ibmec_icon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Apache AGE e Grafos - BDCC_ADS_26.2_8001</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/mkdocs_puml/puml.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/mkdocs_puml/interaction.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="#FAB90A" data-md-color-accent="#193257">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#apache-age-e-grafos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="BDCC_ADS_26.2_8001" class="md-header__button md-logo" aria-label="BDCC_ADS_26.2_8001" data-md-component="logo">
+      
+  <img src="../../../../../assets/ibmec_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BDCC_ADS_26.2_8001
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Apache AGE e Grafos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="#FAB90A" data-md-color-accent="#193257"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="#193257" data-md-color-accent="#FAB90A"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="all" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jonh-carvalho/BDCC_ADS_26.2_8001" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../aulas/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Disciplina
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../Avalia/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Avaliações
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../bibliografia/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Bibliografia
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="BDCC_ADS_26.2_8001" class="md-nav__button md-logo" aria-label="BDCC_ADS_26.2_8001" data-md-component="logo">
+      
+  <img src="../../../../../assets/ibmec_logo.png" alt="logo">
+
+    </a>
+    BDCC_ADS_26.2_8001
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jonh-carvalho/BDCC_ADS_26.2_8001" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disciplina
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Disciplina
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../aulas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aulas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roteiro
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Roteiro
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04%20-%20aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 - AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03%20-%20linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 - Linux Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04%20-%20ec2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 - EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05%20-%20nginxsite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 - Nginx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06%20-%20docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 - Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../06%20-%20s3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 - S3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07%20-%20eb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 - EB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10%20-%20aurora/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 - Aurora RDS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10%20-%20docker_rds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 - RDS no Docker EC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_10" id="__nav_2_2_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MultiModel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MultiModel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../relacional/01_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 - Schema - Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../relacional/02_transaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 - Transactional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../relacional/03_seed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 - Seed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos/01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 - Document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos/03_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 - Delivery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objetos/minio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 - Minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avaliações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Avaliações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../Avalia/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Avalia/AC01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Avalia/AC02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Avalia/AC03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Avalia/AC04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Avalia/ap1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AP1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Avalia/ap2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AP2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../bibliografia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bibliografia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="apache-age-e-grafos">Apache AGE e Grafos<a class="headerlink" href="#apache-age-e-grafos" title="Permanent link">&para;</a></h1>
+<h2 id="do-zero-ao-primeiro-grafo-em-30-minutos"><strong>Do Zero ao Primeiro Grafo em 30 minutos</strong><a class="headerlink" href="#do-zero-ao-primeiro-grafo-em-30-minutos" title="Permanent link">&para;</a></h2>
+<h2 id="o-que-voce-vai-aprender"><strong>O que você vai aprender</strong><a class="headerlink" href="#o-que-voce-vai-aprender" title="Permanent link">&para;</a></h2>
+<p>Ao final deste roteiro, você será capaz de:
+1. Explicar o que é um grafo e quando usá-lo
+2. Criar seu primeiro grafo no Apache AGE
+3. Escrever queries básicas em Cypher
+4. Entender a diferença entre grafos e tabelas SQL</p>
+<h2 id="1-o-que-e-um-grafo"><strong>1. O que é um Grafo?</strong><a class="headerlink" href="#1-o-que-e-um-grafo" title="Permanent link">&para;</a></h2>
+<p>Um <strong>grafo</strong> é uma estrutura de dados feita de:
+- <strong>Nós</strong> (vértices): as "coisas" — pessoas, cidades, produtos
+- <strong>Arestas</strong> (relacionamentos): as "conexões" entre elas</p>
+<h3 id="analogia-simples">Analogia simples:<a class="headerlink" href="#analogia-simples" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Pense em um mapa de metrô:
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>- Estações = NÓS
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>- Linhas que conectam estações = ARESTAS
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>- Distância entre estações = PROPRIEDADE da aresta
+</span></code></pre></div>
+<h3 id="visualizacao">Visualização:<a class="headerlink" href="#visualizacao" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    (São Paulo) ──430km──▶ (Rio de Janeiro)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>        │                        │
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>     410km                    440km
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        │                        │
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        ▼                        ▼
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    (Curitiba) ◀──590km── (Belo Horizonte)
+</span></code></pre></div>
+<hr />
+<h2 id="2-por-que-grafos-a-diferenca-crucial"><strong>2. Por que Grafos? (A diferença crucial)</strong><a class="headerlink" href="#2-por-que-grafos-a-diferenca-crucial" title="Permanent link">&para;</a></h2>
+<h3 id="problema-classico-em-sql">Problema clássico em SQL:<a class="headerlink" href="#problema-classico-em-sql" title="Permanent link">&para;</a></h3>
+<p><em>"Encontre todos os caminhos entre São Paulo e Curitiba passando por no máximo 3 cidades"</em></p>
+<p><strong>Em SQL:</strong> Você precisaria de múltiplos JOINs, UNIONs, ou procedures recursivas. Complexo e lento.</p>
+<p><strong>Em Cypher (grafo):</strong>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">MATCH</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">sp</span><span class="p">:</span><span class="n">City</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;São Paulo&#39;</span><span class="p">})</span><span class="o">-[</span><span class="p">:</span><span class="n">ROAD</span><span class="p">*</span><span class="m">1</span><span class="p">..</span><span class="m">3</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span><span class="n">City</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Curitiba&#39;</span><span class="p">})</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">RETURN</span><span class="w"> </span><span class="n">path</span>
+</span></code></pre></div>
+<strong>Pronto.</strong> Uma linha.</p>
+<h3 id="quando-usar-cada-um">Quando usar cada um?<a class="headerlink" href="#quando-usar-cada-um" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dados com estrutura fixa, transações financeiras</td>
+<td><strong>SQL</strong></td>
+</tr>
+<tr>
+<td>Dados semiestruturados, catálogos variáveis</td>
+<td><strong>Documento (MongoDB)</strong></td>
+</tr>
+<tr>
+<td>Relacionamentos complexos, rotas, redes sociais</td>
+<td><strong>Grafo (AGE)</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-apache-age-em-1-minuto"><strong>3. Apache AGE em 1 minuto</strong><a class="headerlink" href="#3-apache-age-em-1-minuto" title="Permanent link">&para;</a></h2>
+<p><strong>Apache AGE</strong> = Extensão do PostgreSQL que adiciona suporte a grafos.</p>
+<p><strong>Vantagens:</strong>
+- Usa a mesma sintaxe Cypher do Neo4j (padrão da indústria)
+- Roda <strong>dentro</strong> do PostgreSQL (ACID, backups, ferramentas conhecidas)
+- Você pode misturar SQL + Cypher na mesma query</p>
+<p><strong>Instalação:</strong> </p>
+<h4 id="comando-alternativo-sem-docker-compose">comando alternativo (sem docker-compose):<a class="headerlink" href="#comando-alternativo-sem-docker-compose" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>swifttrack_age<span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>swifttrack_graph<span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_USER</span><span class="o">=</span>admin<span class="w"> </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>secret123<span class="w"> </span>-p<span class="w"> </span><span class="m">5433</span>:5432<span class="w"> </span>apache/age:latest
+</span></code></pre></div>
+<h2 id="4-mao-na-massa-seu-primeiro-grafo"><strong>4. Mão na Massa — Seu Primeiro Grafo</strong><a class="headerlink" href="#4-mao-na-massa-seu-primeiro-grafo" title="Permanent link">&para;</a></h2>
+<h3 id="41-conecte-se-ao-banco">4.1 Conecte-se ao banco<a class="headerlink" href="#41-conecte-se-ao-banco" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>swifttrack_age<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>-d<span class="w"> </span>swifttrack_graph
+</span></code></pre></div>
+<h3 id="42-habilite-o-age">4.2 Habilite o AGE<a class="headerlink" href="#42-habilite-o-age" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">LOAD</span><span class="w"> </span><span class="s1">&#39;age&#39;</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ag_catalog</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;$user&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="43-crie-seu-primeiro-grafo">4.3 Crie seu primeiro grafo<a class="headerlink" href="#43-crie-seu-primeiro-grafo" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">create_graph</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Parabéns!</strong> Você tem um grafo vazio.</p>
+<hr />
+<h2 id="5-sintaxe-cypher-o-essencial"><strong>5. Sintaxe Cypher — O Essencial</strong><a class="headerlink" href="#5-sintaxe-cypher-o-essencial" title="Permanent link">&para;</a></h2>
+<p>Cypher é a linguagem de consulta de grafos. Pense nela como o "SQL dos grafos".</p>
+<h3 id="51-create-criar-nos">5.1 CREATE — Criar nós<a class="headerlink" href="#51-create-criar-nos" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="p">(:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Ana&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">idade</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="k">result</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Anatomia:</strong>
+- <code>:Pessoa</code> → <strong>rótulo</strong> (tipo do nó)
+- <code>{nome: 'Ana', idade: 30}</code> → <strong>propriedades</strong> (dados do nó)</p>
+<h3 id="52-create-criar-relacionamento">5.2 CREATE — Criar relacionamento<a class="headerlink" href="#52-create-criar-relacionamento" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Ana&#39;</span><span class="err">}</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Bruno&#39;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="p">[:</span><span class="n">AMIGO_DE</span><span class="w"> </span><span class="err">{</span><span class="n">desde</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="err">}</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="k">result</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Anatomia:</strong>
+- <code>[:AMIGO_DE]</code> → tipo do relacionamento
+- <code>{desde: 2020}</code> → propriedade da aresta
+- <code>-&gt;</code> → direção (opcional)</p>
+<hr />
+<h2 id="6-exemplo-completo-rede-social-simples"><strong>6. Exemplo Completo — Rede Social Simples</strong><a class="headerlink" href="#6-exemplo-completo-rede-social-simples" title="Permanent link">&para;</a></h2>
+<p>Vamos criar uma mini-rede social:</p>
+<div class='puml-container'><div class="puml light" style=""><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" data-diagram-type="CLASS" style="width:203px;height:330px;background:#FFFFFF;" width="203px" height="330px" viewBox="0 0 203 330" zoomAndPan="magnify" preserveAspectRatio="xMidYMid meet" contentStyleType="text/css" class="diagram"><?plantuml 1.2026.9beta4?><defs/><g font-family="sans-serif" lengthAdjust="spacing"><g class="entity" data-qualified-name="ana" id="ent0001" data-source-line="2"><ellipse cx="26.836" cy="14" rx="8" ry="8" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text x="13.321" y="43.995" fill="#000" font-size="14" textLength="27.029">Ana</text></g><g class="entity" data-qualified-name="bruno" id="ent0002" data-source-line="3"><ellipse cx="26.836" cy="149" rx="8" ry="8" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text x="6" y="178.995" fill="#000" font-size="14" textLength="41.672">Bruno</text></g><g class="entity" data-qualified-name="carla" id="ent0003" data-source-line="4"><ellipse cx="26.836" cy="284" rx="8" ry="8" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text x="8.546" y="313.995" fill="#000" font-size="14" textLength="36.579">Carla</text></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" id="lnk4" data-source-line="5" data-link-type="dependency"><path d="M26.836,22.92 C26.836,46.63 26.836,111.85 26.836,135.29" style="stroke:#181818;stroke-width:1;" fill="none" id="ana-to-bruno" codeLine="5"/><polygon points="26.836,140.29,30.836,131.29,26.836,135.29,22.836,131.29,26.836,140.29" fill="#181818" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><text x="27.836" y="86.067" fill="#000" font-size="13" textLength="159.739">AMIGO_DE (desde 2020)</text></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0003" id="lnk5" data-source-line="6" data-link-type="dependency"><path d="M26.836,157.92 C26.836,181.63 26.836,246.85 26.836,270.29" style="stroke:#181818;stroke-width:1;" fill="none" id="bruno-to-carla" codeLine="6"/><polygon points="26.836,275.29,30.836,266.29,26.836,270.29,22.836,266.29,26.836,275.29" fill="#181818" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><text x="27.836" y="221.067" fill="#000" font-size="13" textLength="159.739">AMIGO_DE (desde 2022)</text></g><?plantuml-src ROyx3eCm44HxJk5GXGACA2aYaO-YA48v0bhC1blO1jdhvFhX8r6b6xrvKyn1MQ53XqmIJRxatC4twnN9q0QFJeoMq58cHiDhDKXG-kdWW-Iv6RfH-6OAHdC3dj1nacZGymxV43HnhNf9sI94GZcXaSMLXPY1Ps1XPsSNxBZITaaxlu3JcosM5CqRbgQdpM8bg-h7_TLSR-pOePyV57cH9z7MBjww-kyLoGy0?></g></svg></div><div class="puml dark" style=""><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" data-diagram-type="CLASS" style="width:203px;height:330px;background:#1B1B1B;" width="203px" height="330px" viewBox="0 0 203 330" zoomAndPan="magnify" preserveAspectRatio="xMidYMid meet" contentStyleType="text/css" class="diagram"><?plantuml 1.2026.9beta4?><defs/><g font-family="sans-serif" lengthAdjust="spacing"><rect x="0" y="0" width="203" height="330" fill="#1B1B1B" style="stroke:none;"/><g class="entity" data-qualified-name="ana" id="ent0001" data-source-line="2"><ellipse cx="26.836" cy="14" rx="8" ry="8" fill="#313139" style="stroke:#E7E7E7;stroke-width:0.5;"/><text x="13.321" y="43.995" fill="#FFF" font-size="14" textLength="27.029">Ana</text></g><g class="entity" data-qualified-name="bruno" id="ent0002" data-source-line="3"><ellipse cx="26.836" cy="149" rx="8" ry="8" fill="#313139" style="stroke:#E7E7E7;stroke-width:0.5;"/><text x="6" y="178.995" fill="#FFF" font-size="14" textLength="41.672">Bruno</text></g><g class="entity" data-qualified-name="carla" id="ent0003" data-source-line="4"><ellipse cx="26.836" cy="284" rx="8" ry="8" fill="#313139" style="stroke:#E7E7E7;stroke-width:0.5;"/><text x="8.546" y="313.995" fill="#FFF" font-size="14" textLength="36.579">Carla</text></g><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" id="lnk4" data-source-line="5" data-link-type="dependency"><path d="M26.836,22.92 C26.836,46.63 26.836,111.85 26.836,135.29" style="stroke:#E7E7E7;stroke-width:1;" fill="none" id="ana-to-bruno" codeLine="5"/><polygon points="26.836,140.29,30.836,131.29,26.836,135.29,22.836,131.29,26.836,140.29" fill="#E7E7E7" style="stroke:#E7E7E7;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><text x="27.836" y="86.067" fill="#FFF" font-size="13" textLength="159.739">AMIGO_DE (desde 2020)</text></g><g class="link" data-entity-1="ent0002" data-entity-2="ent0003" id="lnk5" data-source-line="6" data-link-type="dependency"><path d="M26.836,157.92 C26.836,181.63 26.836,246.85 26.836,270.29" style="stroke:#E7E7E7;stroke-width:1;" fill="none" id="bruno-to-carla" codeLine="6"/><polygon points="26.836,275.29,30.836,266.29,26.836,270.29,22.836,266.29,26.836,275.29" fill="#E7E7E7" style="stroke:#E7E7E7;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/><text x="27.836" y="221.067" fill="#FFF" font-size="13" textLength="159.739">AMIGO_DE (desde 2022)</text></g><?plantuml-src RO_B3e8m54JtV4Lb9GieOSd211ynnX0_WLpRgsre2sblzVVbaR1oDpbpPZ4xxOI94faY6aFDkOTlyTQauZC6z69mX8uACLZUwbw1DdSF7wJ0RIy74RenMiCj14BFIQ75m2M-81hY4dnVp7qYj1S6MTeuI1a41WusTlJH3GjzpcdZ9_1cjSMSacd3ylomMgncJNkxFhhpXUqbXkb0LLPbbgpjx2sh_rwL_G00?></g></svg></div></div>
+
+<h3 id="passo-1-criar-pessoas">Passo 1: Criar pessoas<a class="headerlink" href="#passo-1-criar-pessoas" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="p">(:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Ana&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">idade</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="n">cidade</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;SP&#39;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="p">(:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Bruno&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">idade</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="n">cidade</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;SP&#39;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="p">(:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Carla&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">idade</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="n">cidade</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;RJ&#39;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="passo-2-criar-relacionamentos">Passo 2: Criar relacionamentos<a class="headerlink" href="#passo-2-criar-relacionamentos" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Ana&#39;</span><span class="err">}</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Bruno&#39;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="p">[:</span><span class="n">AMIGO_DE</span><span class="w"> </span><span class="err">{</span><span class="n">desde</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="err">}</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Bruno&#39;</span><span class="err">}</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Carla&#39;</span><span class="err">}</span><span class="p">)</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="k">CREATE</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="p">[:</span><span class="n">AMIGO_DE</span><span class="w"> </span><span class="err">{</span><span class="n">desde</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="err">}</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="passo-3-consultar-quem-sao-os-amigos-de-bruno">Passo 3: Consultar — "Quem são os amigos de Bruno?"<a class="headerlink" href="#passo-3-consultar-quem-sao-os-amigos-de-bruno" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">bruno</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Bruno&#39;</span><span class="err">}</span><span class="p">)</span><span class="o">-</span><span class="p">[:</span><span class="n">AMIGO_DE</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="n">amigo</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">amigo</span><span class="p">.</span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">amigo</span><span class="p">.</span><span class="n">idade</span><span class="p">,</span><span class="w"> </span><span class="n">amigo</span><span class="p">.</span><span class="n">cidade</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">nome</span><span class="w"> </span><span class="n">agtype</span><span class="p">,</span><span class="w"> </span><span class="n">idade</span><span class="w"> </span><span class="n">agtype</span><span class="p">,</span><span class="w"> </span><span class="n">cidade</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong>
+| nome | idade | cidade |
+|------|-------|--------|
+| Ana | 30 | SP |
+| Carla | 35 | RJ |</p>
+<h3 id="passo-4-consultar-amigos-de-amigos-de-ana-2-hops">Passo 4: Consultar — "Amigos de amigos de Ana" (2 hops)<a class="headerlink" href="#passo-4-consultar-amigos-de-amigos-de-ana-2-hops" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">ana</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="err">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Ana&#39;</span><span class="err">}</span><span class="p">)</span><span class="o">-</span><span class="p">[:</span><span class="n">AMIGO_DE</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="n">fof</span><span class="p">)</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">fof</span><span class="p">.</span><span class="n">nome</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;Ana&#39;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">fof</span><span class="p">.</span><span class="n">nome</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">nome</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Resultado:</strong> Carla (amiga de Bruno, que é amigo de Ana)</p>
+<hr />
+<h2 id="7-as-5-queries-essenciais-que-voce-precisa-saber"><strong>7. As 5 Queries Essenciais que Você Precisa Saber</strong><a class="headerlink" href="#7-as-5-queries-essenciais-que-voce-precisa-saber" title="Permanent link">&para;</a></h2>
+<h3 id="1-listar-todos-os-nos">🔹 1. Listar todos os nós<a class="headerlink" href="#1-listar-todos-os-nos" title="Permanent link">&para;</a></h3>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">select</span><span class="w"> </span><span class="p">*</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">RETURN</span><span class="w"> </span><span class="n">labels</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">count</span><span class="p">(*)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">labels</span><span class="w"> </span><span class="n">agtype</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="2-buscar-no-por-propriedade">🔹 2. Buscar nó por propriedade<a class="headerlink" href="#2-buscar-no-por-propriedade" title="Permanent link">&para;</a></h3>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">select</span><span class="w"> </span><span class="p">*</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="p">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Ana&#39;</span><span class="p">})</span><span class="w"> </span><span class="k">RETURN</span><span class="w"> </span><span class="n">p</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="3-filtrar-com-where">🔹 3. Filtrar com WHERE<a class="headerlink" href="#3-filtrar-com-where" title="Permanent link">&para;</a></h3>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">select</span><span class="w"> </span><span class="p">*</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Pessoa</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">idade</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="m">28</span><span class="w"> </span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">idade</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">nome</span><span class="w"> </span><span class="n">agtype</span><span class="p">,</span><span class="w"> </span><span class="n">idade</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="4-contar-relacionamentos">🔹 4. Contar relacionamentos<a class="headerlink" href="#4-contar-relacionamentos" title="Permanent link">&para;</a></h3>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">select</span><span class="w"> </span><span class="p">*</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Pessoa</span><span class="p">)</span><span class="o">-[</span><span class="n">r</span><span class="p">:</span><span class="n">AMIGO_DE</span><span class="o">]-&gt;</span><span class="p">()</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_amigos</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">nome</span><span class="w"> </span><span class="n">agtype</span><span class="p">,</span><span class="w"> </span><span class="n">num_amigos</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="5-caminho-mais-curto">🔹 5. Caminho mais curto<a class="headerlink" href="#5-caminho-mais-curto" title="Permanent link">&para;</a></h3>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">MATCH</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">shortestPath</span><span class="p">(</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="p">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Ana&#39;</span><span class="p">})</span><span class="o">-[</span><span class="p">*</span><span class="o">]-</span><span class="p">(</span><span class="n">b</span><span class="p">:</span><span class="n">Pessoa</span><span class="w"> </span><span class="p">{</span><span class="n">nome</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Carla&#39;</span><span class="p">})</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">)</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">RETURN</span><span class="w"> </span><span class="n">path</span>
+</span></code></pre></div>
+<hr />
+<h2 id="8-padroes-visuais-do-cypher"><strong>8. Padrões Visuais do Cypher</strong><a class="headerlink" href="#8-padroes-visuais-do-cypher" title="Permanent link">&para;</a></h2>
+<p>A sintaxe do Cypher é <strong>icônica</strong> — ela desenha o grafo:</p>
+<table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(n)</code></td>
+<td>Nó qualquer</td>
+</tr>
+<tr>
+<td><code>(:Pessoa)</code></td>
+<td>Nó com rótulo "Pessoa"</td>
+</tr>
+<tr>
+<td><code>({nome: 'Ana'})</code></td>
+<td>Nó com propriedade</td>
+</tr>
+<tr>
+<td><code>()-[]-&gt;()</code></td>
+<td>Relacionamento direcionado</td>
+</tr>
+<tr>
+<td><code>()-[:AMIGO_DE]-&gt;()</code></td>
+<td>Relacionamento de tipo específico</td>
+</tr>
+<tr>
+<td><code>()-[*1..3]-&gt;()</code></td>
+<td>Entre 1 e 3 hops</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dica:</strong> Se você consegue desenhar o que quer, consegue escrever a query!</p>
+<hr />
+<h2 id="9-exercicios-de-fixacao"><strong>9. Exercícios de Fixação</strong><a class="headerlink" href="#9-exercicios-de-fixacao" title="Permanent link">&para;</a></h2>
+<h3 id="nivel-1-basico">Nível 1 — Básico<a class="headerlink" href="#nivel-1-basico" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Crie 3 cidades: São Paulo, Rio de Janeiro, Curitiba</li>
+<li>Crie rotas entre elas com distância em km</li>
+<li>Liste todas as cidades</li>
+</ol>
+<h3 id="nivel-2-intermediario">Nível 2 — Intermediário<a class="headerlink" href="#nivel-2-intermediario" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Encontre a rota mais curta entre SP e Curitiba</li>
+<li>Calcule a distância total de cada rota</li>
+<li>Liste cidades com mais de 1 conexão</li>
+</ol>
+<h3 id="nivel-3-avancado">Nível 3 — Avançado<a class="headerlink" href="#nivel-3-avancado" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Encontre todos os caminhos possíveis entre SP e Curitiba (máx. 3 hops)</li>
+<li>Ordene por custo (distância × R$2/km)</li>
+<li>Retorne o caminho mais barato</li>
+</ol>
+<hr />
+<h2 id="10-comandos-uteis-de-sobrevivencia"><strong>10. Comandos Úteis de Sobrevivência</strong><a class="headerlink" href="#10-comandos-uteis-de-sobrevivencia" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">-- Ver todos os grafos</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ag_graph</span><span class="p">;</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1">-- Ver todos os nós de um grafo</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cypher</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">$$</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">RETURN</span><span class="w"> </span><span class="n">n</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="err">$$</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="n">agtype</span><span class="p">);</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="c1">-- Apagar o grafo inteiro (CUIDADO!)</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">drop_graph</span><span class="p">(</span><span class="s1">&#39;meu_primeiro_grafo&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">);</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="c1">-- Sair do psql</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="err">\</span><span class="n">q</span>
+</span></code></pre></div>
+<hr />
+<h2 id="resumo-em-1-paragrafo">** Resumo em 1 Parágrafo**<a class="headerlink" href="#resumo-em-1-paragrafo" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Grafos</strong> são estruturas de nós e relacionamentos, ideais para dados altamente conectados. <strong>Apache AGE</strong> traz essa capacidade para dentro do PostgreSQL, usando a linguagem <strong>Cypher</strong> (padrão da indústria). A sintaxe é visual: você "desenha" a query com parênteses para nós e setas para relacionamentos. Em 1 linha de Cypher, você faz o que levaria dezenas de JOINs em SQL.</p>
+</blockquote>
+<hr />
+<h2 id="proximos-passos">** Próximos Passos**<a class="headerlink" href="#proximos-passos" title="Permanent link">&para;</a></h2>
+<p>Após dominar este roteiro, avance para:
+1. <strong>Propriedades em arestas</strong> (pesos, datas, status)
+2. <strong>Agregações</strong> (COUNT, SUM, AVG em grafos)
+3. <strong>Algoritmos</strong> (caminho mais curto, PageRank)
+4. <strong>Integração SQL + Cypher</strong> (o poder real do AGE)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright ©️ 2026, Jonh Carvalho
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["content.code.copy", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../assets/mkdocs_puml/puml.js"></script>
+      
+        <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+      
+        <script src="../../../../../assets/mkdocs_puml/interaction.js"></script>
+      
+    
+  </body>
+</html>
